@@ -9,5 +9,6 @@
 
   <ItemGroup>
     <EmscriptenPrependPATH Include="$(EmscriptenPythonBinPath)" />
+    <EmscriptenEnvVars Include="EMSDK_PYTHON=$(EmscriptenPythonBinPath)\python3" />
   </ItemGroup>
 </Project>
