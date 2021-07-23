@@ -6,8 +6,8 @@
      <PostBuildSign>true</PostBuildSign>
      <_UploadPathRoot>aspnetcore</_UploadPathRoot>
 
-     <_FullNugetVersion>$(VersionPrefix)-$(PreReleaseVersionLabel)</FullNugetVersion>
-     <_FullNugetVersion Condition="'$(PreReleaseVersionIteration)' != ''">$(FullNugetVersion).$(PreReleaseVersionIteration)</FullNugetVersion>
+     <_FullNugetVersion>$(VersionPrefix)-$(PreReleaseVersionLabel)</_FullNugetVersion>
+     <_FullNugetVersion Condition="'$(PreReleaseVersionIteration)' != ''">$(FullNugetVersion).$(PreReleaseVersionIteration)</_FullNugetVersion>
      <_FullNugetVersion Condition=" '$(VersionSuffixDateStamp)' != '' And '$(VersionSuffixBuildOfTheDay)' != '' ">$(FullNugetVersion).$(VersionSuffixDateStamp).$(VersionSuffixBuildOfTheDay)</_FullNugetVersion>
    </PropertyGroup>
 
