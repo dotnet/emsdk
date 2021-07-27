@@ -11,7 +11,7 @@
     <MicrosoftDotNetBuildTasksPackagingVersion>6.0.0-beta.21376.4</MicrosoftDotNetBuildTasksPackagingVersion>
     <MicrosoftDotNetBuildTasksTemplatingVersion>6.0.0-beta.21376.4</MicrosoftDotNetBuildTasksTemplatingVersion>
     <MicrosoftDotNetBuildTasksInstallersVersion>6.0.0-beta.21376.4</MicrosoftDotNetBuildTasksInstallersVersion>
-    <MicrosoftDotNetBuildTasksWorkloadsPackageVersion>6.0.0-beta.21376.4</MicrosoftDotNetBuildTasksWorkloadsPackageVersion>
+    <MicrosoftDotNetBuildTasksWorkloadsVersion>6.0.0-beta.21376.4</MicrosoftDotNetBuildTasksWorkloadsVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SwixPackageVersion>1.1.87-gba258badda</SwixPackageVersion>
