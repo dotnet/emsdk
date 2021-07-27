@@ -4,6 +4,7 @@
       <PublishingVersion>3</PublishingVersion>
       <AutoGenerateSymbolPackages>false</AutoGenerateSymbolPackages> <!-- we don't need symbol packages for emsdk -->
       <PostBuildSign>true</PostBuildSign>
+      <_UploadPathRoot>emsdk</_UploadPathRoot>
    </PropertyGroup>
 
   <PropertyGroup>
@@ -19,7 +20,7 @@
       <ItemsToPushToBlobFeed Include="@(_InstallersToPublish)">
         <IsShipping>true</IsShipping>
         <PublishFlatContainer>true</PublishFlatContainer>
-        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/$(_PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
+        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/%(Filename)%(Extension)</RelativeBlobPath>
       </ItemsToPushToBlobFeed>
     </ItemGroup>
   </Target>
