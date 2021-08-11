@@ -7,11 +7,15 @@
    </PropertyGroup>
 
   <PropertyGroup>
+    <_UploadPathRoot>emsdk</_UploadPathRoot>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PublishDependsOnTargets>$(PublishDependsOnTargets);_PublishInstallers</PublishDependsOnTargets>
   </PropertyGroup>
 
   <ItemGroup>
-    <_InstallersToPublish Include="$(ArtifactsDir)**\*.wixpack.zip" UploadPathSegment="wixpack" />
+    <_InstallersToPublish Include="$(ArtifactsDir)**\*.wixpack.zip" UploadPathSegment="Runtime" />
   </ItemGroup>
 
   <Target Name="_PublishInstallers">
@@ -19,7 +23,7 @@
       <ItemsToPushToBlobFeed Include="@(_InstallersToPublish)">
         <IsShipping>true</IsShipping>
         <PublishFlatContainer>true</PublishFlatContainer>
-        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/$(_PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
+        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/$(PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
       </ItemsToPushToBlobFeed>
     </ItemGroup>
   </Target>
