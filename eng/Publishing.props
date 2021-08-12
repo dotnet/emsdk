@@ -19,11 +19,22 @@
   </ItemGroup>
 
   <Target Name="_PublishInstallers">
+    <MSBuild Projects="$(RepoRoot)eng\emsdk.proj"
+        Properties="DisableYarnCheck=true;ExcludeFromBuild=false"
+        Targets="_GetPackageVersionInfo"
+        SkipNonexistentProjects="false">
+      <Output TaskParameter="TargetOutputs" ItemName="_ResolvedPackageVersionInfo" />
+    </MSBuild>
+
+    <PropertyGroup>
+      <_PackageVersion>@(_ResolvedPackageVersionInfo->'%(PackageVersion)')</_PackageVersion>
+    </PropertyGroup>
+
     <ItemGroup>
       <ItemsToPushToBlobFeed Include="@(_InstallersToPublish)">
         <IsShipping>true</IsShipping>
         <PublishFlatContainer>true</PublishFlatContainer>
-        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/$(PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
+        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/$(_PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
       </ItemsToPushToBlobFeed>
     </ItemGroup>
   </Target>
