@@ -16,8 +16,8 @@
 
   <ItemGroup>
     <_InstallersToPublish Include="$(ArtifactsDir)**\*.wixpack.zip" />
-    <_InstallerStuffToPublish Include="$(ArtifactsDir)VSSetup\$(Configuration)\Insertion\**\*.json" />
-    <_InstallerStuffToPublish Include="$(ArtifactsDir)VSSetup\$(Configuration)\Insertion\**\*.msi" />
+    <_InstallerManifestFilesToPublish Include="$(ArtifactsDir)VSSetup\$(Configuration)\Insertion\**\*.json" />
+    <_InstallerManifestFilesToPublish Include="$(ArtifactsDir)VSSetup\$(Configuration)\Insertion\**\*.msi" />
   </ItemGroup>
 
   <Target Name="_PublishInstallers">
@@ -36,9 +36,9 @@
       <ItemsToPushToBlobFeed Include="@(_InstallersToPublish)">
         <IsShipping>true</IsShipping>
         <PublishFlatContainer>true</PublishFlatContainer>
-        <RelativeBlobPath>$(_UploadPathRoot)/%(_InstallersToPublish.UploadPathSegment)/$(_PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
+        <RelativeBlobPath>$(_UploadPathRoot)/$(_PackageVersion)/%(Filename)%(Extension)</RelativeBlobPath>
       </ItemsToPushToBlobFeed>
-      <ItemsToPushToBlobFeed Include="@(_InstallerStuffToPublish)">
+      <ItemsToPushToBlobFeed Include="@(_InstallerManifestFilesToPublish)">
         <IsShipping>true</IsShipping>
         <PublishFlatContainer>true</PublishFlatContainer>
         <RelativeBlobPath>$(_UploadPathRoot)/$(_PackageVersion)/workloads/%(Filename)%(Extension)</RelativeBlobPath>
