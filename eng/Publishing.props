@@ -19,15 +19,15 @@
   </ItemGroup>
 
   <Target Name="_PublishInstallers">
-    <MSBuild Projects="$(RepoRoot)eng\emsdk.proj"
+    <MSBuild Projects="$(RepoRoot)eng\nuget\Microsoft.NET.Workload.Emscripten.Manifest\Microsoft.NET.Workload.Emscripten.Manifest.pkgproj"
         Properties="DisableYarnCheck=true;ExcludeFromBuild=false"
-        Targets="_GetPackageVersionInfo"
+        Targets="GetPackageIdentity"
         SkipNonexistentProjects="false">
-      <Output TaskParameter="TargetOutputs" ItemName="_ResolvedPackageVersionInfo" />
+      <Output TaskParameter="TargetOutputs" ItemName="_PackageIdentity" />
     </MSBuild>
 
     <PropertyGroup>
-      <_PackageVersion>@(_ResolvedPackageVersionInfo->'%(PackageVersion)')</_PackageVersion>
+      <_PackageVersion>@(_PackageIdentity->'%(Version)')</_PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
