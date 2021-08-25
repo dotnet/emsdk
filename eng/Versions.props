@@ -7,6 +7,10 @@
     <EmscriptenVersion>2.0.23</EmscriptenVersion>
     <WorkloadSdkBandVersion>6.0.100</WorkloadSdkBandVersion>
   </PropertyGroup>
+    <StabilizePackageVersion Condition="'$(StabilizePackageVersion)' == ''">false</StabilizePackageVersion>
+    <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
+  </PropertyGroup>
+  <PropertyGroup>
   <PropertyGroup>
     <MicrosoftDotNetBuildTasksPackagingVersion>6.0.0-beta.21418.12</MicrosoftDotNetBuildTasksPackagingVersion>
     <MicrosoftDotNetBuildTasksTemplatingVersion>6.0.0-beta.21418.12</MicrosoftDotNetBuildTasksTemplatingVersion>
