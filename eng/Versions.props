@@ -12,8 +12,8 @@
     <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetBuildTasksPackagingVersion>6.0.0-beta.21425.1</MicrosoftDotNetBuildTasksPackagingVersion>
-    <MicrosoftDotNetBuildTasksTemplatingVersion>6.0.0-beta.21425.1</MicrosoftDotNetBuildTasksTemplatingVersion>
+    <MicrosoftDotNetBuildTasksPackagingVersion>6.0.0-beta.21427.6</MicrosoftDotNetBuildTasksPackagingVersion>
+    <MicrosoftDotNetBuildTasksTemplatingVersion>6.0.0-beta.21427.6</MicrosoftDotNetBuildTasksTemplatingVersion>
   </PropertyGroup>
   <PropertyGroup>
     <MicrosoftDotNetBuildTasksInstallersPackageVersion>6.0.0-beta.21366.1</MicrosoftDotNetBuildTasksInstallersPackageVersion>
