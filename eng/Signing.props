@@ -21,6 +21,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ItemsToSignPostBuild Include="$(ArtifactsDir)VSSetup\$(Configuration)\Insertion\**\*.msi" />
+    <ItemsToSignPostBuild Include="$(VisualStudioSetupInsertionPath)\**\*.msi" />
   </ItemGroup>
 </Project>
