@@ -4,8 +4,8 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove(Microsoft.NET.Runtime.Emscripten.Common.props))" />
 
   <PropertyGroup>
-    <PackageDescription>Dummy Package</PackageDescription>
-    <Description>Dummy Package</Description>
+    <PackageDescription>Internal package to carry full build version number.</PackageDescription>
+    <Description>Internal package to carry full build version number.</Description>
     <IsShipping>false</IsShipping>
     <VersionSuffix>$(_PreReleaseLabel)$(_BuildNumberLabels)</VersionSuffix>
     <StableVersion></StableVersion>
