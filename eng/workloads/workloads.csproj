@@ -7,7 +7,8 @@
     <MicrosoftDotNetBuildTasksInstallersTaskAssembly>$(MicrosoftDotNetBuildTasksInstallersPath)\tools\$(MicrosoftDotNetBuildTasksInstallersTaskTargetFramework)\Microsoft.DotNet.Build.Tasks.Installers.dll</MicrosoftDotNetBuildTasksInstallersTaskAssembly>
   </PropertyGroup>
 
-  <UsingTask AssemblyFile="$(PkgMicrosoft_DotNet_Build_Tasks_Workloads)\tools\net472\Microsoft.DotNet.Build.Tasks.Workloads.dll" TaskName="CreateVisualStudioWorkload" />
+  <UsingTask AssemblyFile="$(PkgMicrosoft_DotNet_Build_Tasks_Workloads)\tools\net472\Microsoft.DotNet.Build.Tasks.Workloads.dll" TaskName="GenerateManifestMsi" />
+  <UsingTask AssemblyFile="$(PkgMicrosoft_DotNet_Build_Tasks_Workloads)\tools\net472\Microsoft.DotNet.Build.Tasks.Workloads.dll" TaskName="GenerateVisualStudioWorkload" />
   <UsingTask TaskName="GenerateMsiVersion" AssemblyFile="$(MicrosoftDotNetBuildTasksInstallersTaskAssembly)" />
   <UsingTask TaskName="CreateLightCommandPackageDrop" AssemblyFile="$(MicrosoftDotNetBuildTasksInstallersTaskAssembly)" />
 
@@ -54,8 +55,11 @@
       <!-- Overrides for Visual Studio setup generation. If the workload definition IDs change,
            these must be updated. -->
       <ComponentResources Include="microsoft-net-sdk-emscripten" Title=".NET WebAssembly Build Tools (Emscripten)"
-                          Description="Build tools for WebAssembly ahead-of-time (AoT) compilation and native linking."
-                          Version="$(AssemblyVersion)" />
+                          Description="Build tools for WebAssembly ahead-of-time (AoT) compilation and native linking."/>
+
+      <!-- Visual Studio components must be versioned. Build tasks will fall back to cobbling a version number from
+           the manifest information unless it's overridden. -->
+      <ComponentVersions Include="microsoft-net-sdk-emscripten" Version="$(AssemblyVersion)" />
     </ItemGroup>
 
     <!-- BAR requires having version information in blobs -->
@@ -71,24 +75,36 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ManifestPackages Include="$(PackageSource)Microsoft.NET.Workload.Emscripten.Manifest*.nupkg" MsiVersion="$(MsiVersion)"/>
+      <ManifestPackages Include="$(PackageSource)Microsoft.NET.Workload.Emscripten.Manifest*.nupkg" />
     </ItemGroup>
 
-    <CreateVisualStudioWorkload BaseIntermediateOutputPath="$(WorkloadIntermediateOutputPath)"
-                                WixToolsetPath="$(WixToolsetPath)"
-                                PackageSource="$(PackageSource)"
-                                BaseOutputPath="$(WorkloadOutputPath)"
-                                ShortNames="@(ShortNames)"
-                                WorkloadManifestPackageFiles="@(ManifestPackages)">
+    <GenerateManifestMsi
+        IntermediateBaseOutputPath="$(IntermediateOutputPath)"
+        OutputPath="$(OutputPath)"
+        MsiVersion="$(MsiVersion)"
+        WixToolsetPath="$(WixToolsetPath)"
+        WorkloadManifestPackage="%(ManifestPackages.Identity)" >
+      <Output TaskParameter="Msis" ItemName="ManifestMsis" />
+    </GenerateManifestMsi>
+
+    <GenerateVisualStudioWorkload IntermediateBaseOutputPath="$(WorkloadIntermediateOutputPath)"
+                                  WixToolsetPath="$(WixToolsetPath)"
+                                  GenerateMsis="true"
+                                  ComponentVersions="@(ComponentVersions)"
+                                  OutputPath="$(WorkloadOutputPath)"
+                                  PackagesPath="$(PackageSource)"
+                                  ShortNames="@(ShortNames)"
+                                  WorkloadPackages="@(ManifestPackages)">
       <Output TaskParameter="SwixProjects" ItemName="SwixProjects" />
       <Output TaskParameter="Msis" ItemName="Msis" />
-    </CreateVisualStudioWorkload>
+    </GenerateVisualStudioWorkload>
 
     <!-- Build all the SWIX projects. This requires full framework MSBuild-->
     <MSBuild Projects="%(ManifestMsis.SwixProject)" Properties="SwixBuildTargets=$(SwixBuildTargets);ManifestOutputPath=$(VersionedVisualStudioSetupInsertionPath)" />
     <MSBuild Projects="@(SwixProjects)" Properties="SwixBuildTargets=$(SwixBuildTargets);ManifestOutputPath=$(VersionedVisualStudioSetupInsertionPath)" />
 
     <!-- Gather .wixobj files for post-build signing. We'll have to batch since we generated multiple MSIs in the previous step. -->
+    <MSBuild Projects="$(MSBuildProjectFile)" Properties="_WixObjDir=%(ManifestMsis.WixObj);_Msi=%(ManifestMsis.Identity)" Targets="CreateWixPack" />
     <MSBuild Projects="$(MSBuildProjectFile)" Properties="_WixObjDir=%(Msis.WixObj);_Msi=%(Msis.Identity)" Targets="CreateWixPack" />
 
     <!-- Build the Visual Studio manifest project. -->
