@@ -25,6 +25,7 @@ stages:
       enablePublishBuildArtifacts: true
       enablePublishBuildAssets: true
       enablePublishUsingPipelines: true
+      enableMicrobuild: true
       variables:
         - _BuildConfig: Release
       jobs:
