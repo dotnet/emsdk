@@ -101,13 +101,13 @@ stages:
               path: 'artifacts/packages'
 
           - powershell: |
-              ./eng/common/build.ps1 -ci -configuration -restore -sign -publish $(_BuildConfig) /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs)
+              ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs)
             displayName: Sign and Publish
 
       ############ Windows BUILD ############
       - job: Build_Windows
         displayName: Windows
-        timeoutInMinutes: 30
+        timeoutInMinutes: 60
         pool:
           ${{ if eq(variables['System.TeamProject'], 'public') }}:
             vmImage: windows-2019
