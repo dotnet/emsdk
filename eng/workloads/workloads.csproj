@@ -79,7 +79,8 @@
                                 PackageSource="$(PackageSource)"
                                 BaseOutputPath="$(WorkloadOutputPath)"
                                 ShortNames="@(ShortNames)"
-                                WorkloadManifestPackageFiles="@(ManifestPackages)">
+                                WorkloadManifestPackageFiles="@(ManifestPackages)"
+                                ManifestMsiVersion="$(MsiVersion)">
       <Output TaskParameter="SwixProjects" ItemName="SwixProjects" />
       <Output TaskParameter="Msis" ItemName="Msis" />
     </CreateVisualStudioWorkload>
