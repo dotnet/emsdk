@@ -7,7 +7,7 @@ variables:
       find artifacts/packages/$(_BuildConfig)/Shipping -name '*.nupkg' -type f -size +250M -exec ls -lh {} \;
       | awk '{ print "Error: NuGet size exceeds 250MiB: " $9 " - " $5 }' 2>&1
       | tee _size_exceeded_files.txt &&
-      test -s _size_exceeded_files.txt && exit 1
+      test -s _size_exceeded_files.txt && exit 1 || exit 0
 
 trigger:
   batch: true
