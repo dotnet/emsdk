@@ -2,6 +2,12 @@ variables:
   - template: /eng/common-variables.yml
   - name: Build.Repository.Clean
     value: true
+  - name: CheckNuGetSizesScript
+    value: >-
+      find artifacts/packages/$(_BuildConfig)/Shipping -name '*.nupkg' -type f -size +250M -exec ls -lh {} \;
+      | awk '{ print "Error: NuGet size exceeds 250MiB: " $9 " - " $5 }' 2>&1
+      | tee _size_exceeded_files.txt &&
+      test -s _size_exceeded_files.txt && exit 1
 
 trigger:
   batch: true
@@ -44,6 +50,8 @@ stages:
         - bash: |
             rm -rf upstream node python
           displayName: Remove temporary artifacts
+        - bash: $(CheckNuGetSizesScript)
+          displayName: Check NuGet sizes
 
       ############ Linux BUILD ############
       - job: Build_Linux
@@ -64,6 +72,8 @@ stages:
         - bash: |
             rm -rf upstream node python
           displayName: Remove temporary artifacts
+        - bash: $(CheckNuGetSizesScript)
+          displayName: Check NuGet sizes
 
       ############ Windows BUILD ############
       - job: Build_Windows
