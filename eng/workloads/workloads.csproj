@@ -77,6 +77,7 @@
            Condition="@(ManifestPackages -> Count()) == 0" />
 
     <CreateVisualStudioWorkload BaseIntermediateOutputPath="$(WorkloadIntermediateOutputPath)"
+          AllowMissingPacks="True"
           BaseOutputPath="$(WorkloadOutputPath)"
           ComponentResources="$(ComponentResources)"
           PackageSource="$(PackageSource)"
