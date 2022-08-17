@@ -14,6 +14,7 @@
   },
   "packs": {
     "Microsoft.NET.Runtime.Emscripten.Node.net6" : {
+      "kind": "Sdk",
       "version": "${PackageVersionNet6}",
       "alias-to": {
         "win-x64": "Microsoft.NET.Runtime.Emscripten.${EmscriptenVersionNet6}.Node.win-x64",
