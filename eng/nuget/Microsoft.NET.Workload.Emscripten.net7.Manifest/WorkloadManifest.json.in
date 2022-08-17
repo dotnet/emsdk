@@ -5,9 +5,9 @@
       "abstract": true,
       "description": "Emscripten SDK compiler tooling",
       "packs": [
-        "Microsoft.NET.Runtime.Emscripten.Node",
-        "Microsoft.NET.Runtime.Emscripten.Python",
-        "Microsoft.NET.Runtime.Emscripten.Sdk"
+        "Microsoft.NET.Runtime.Emscripten.Node.net7",
+        "Microsoft.NET.Runtime.Emscripten.Python.net7",
+        "Microsoft.NET.Runtime.Emscripten.Sdk.net7"
       ],
       "platforms": [ "win-x64", "linux-x64", "osx-x64", "osx-arm64" ]
     }
