@@ -75,8 +75,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ManifestPackages Include="$(PackageSource)Microsoft.NET.Workload.Emscripten.Manifest*.nupkg" />
+      <ManifestPackages Include="$(PackageSource)Microsoft.NET.Workload.Emscripten.*Manifest*.nupkg" />
     </ItemGroup>
+
+    <Error Text="Could not find any manifest packages in $(PackageSource)"
+           Condition="@(ManifestPackages -> Count()) == 0" />
 
     <GenerateManifestMsi
         IntermediateBaseOutputPath="$(IntermediateOutputPath)"
