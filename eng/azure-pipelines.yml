@@ -4,8 +4,8 @@ variables:
     value: true
   - name: CheckNuGetSizesScript
     value: >-
-      $nupkgs_large=(Get-ChildItem artifacts/packages/$(_BuildConfig)/Shipping -recurse -include "*.nupkg" | Select-Object Name,Length | Where-Object { $_.Length -gt 200*1MB });
-      if ($nupkgs_large.Length -gt 0) { Write-Error $nupkgs_large; throw "Found too large packages!" }
+      $nupkgs_large=(Get-ChildItem artifacts/packages/$(_BuildConfig)/Shipping -recurse -include "*.nupkg" | Select-Object Name,Length | Where-Object { $_.Length -gt 20*1MB });
+      if ($nupkgs_large.Length -gt 0) { Write-Error "Found too large packages: $($nupkgs_large | Format-Table | Out-String)"; exit 1 }
 
 trigger:
   batch: true
