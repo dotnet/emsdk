@@ -64,8 +64,8 @@
 
     <!-- Shorten package names to avoid long path issues in Visual Studio -->
     <ItemGroup>
-      <ShortNames Include="Microsoft.NET.Workload.Emscripten">
-        <Replacement>Emscripten</Replacement>
+      <ShortNames Include="microsoft.net.workload.emscripten.net;Microsoft.NET.Workload.Emscripten.net">
+        <Replacement>Emsdk.</Replacement>
       </ShortNames>
       <ShortNames Include="microsoft.netcore.app.runtime;Microsoft.NETCore.App.Runtime;microsoft.net.runtime;Microsoft.NET.Runtime">
         <Replacement>Microsoft</Replacement>
