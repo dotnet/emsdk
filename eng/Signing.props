@@ -17,6 +17,9 @@
     <FileExtensionSignInfo Update=".ps1" CertificateName="None" />
     <FileExtensionSignInfo Update=".js" CertificateName="None" />
     <FileExtensionSignInfo Include=".vbs" CertificateName="None" />
+
+    <!-- python.cat is already signed and cannot be re-signed -->
+    <FileSignInfo Include="python.cat" CertificateName="None" />
   </ItemGroup>
   
   <ItemGroup>
