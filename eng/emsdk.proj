@@ -125,6 +125,14 @@
     <!--<Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-ld.exe" />--> <!-- TODO: this is used by emcc but could be a symlink to ld.exe -->
 
     <ItemGroup>
+      <!-- these libs are needed for the threaded runtime. Move them out of the way -->
+      <ThreadingCacheFiles Include="$(ArtifactsObjDir)upstream\emscripten\cache\sysroot\lib\wasm32-emscripten\lib*-mt.a" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ThreadingCacheFiles)"
+	  DestinationFiles="$(ArtifactsObjDir)\.threading\upstream\emscripten\cache\sysroot\lib\wasm32-emscripten\%(RecursiveDir)%(Filename)%(Extension)" />
+	
+    <ItemGroup>
       <!-- delete these libs from the cache to reduce windows nuget size context: https://github.com/dotnet/emsdk/pull/34#issuecomment-872691739 -->
       <DeleteCacheFiles Include="$(ArtifactsObjDir)upstream\emscripten\cache\sysroot\lib\wasm32-emscripten\libasan_js.a" />
       <DeleteCacheFiles Include="$(ArtifactsObjDir)upstream\emscripten\cache\sysroot\lib\wasm32-emscripten\libasan_rt-mt.a" />
@@ -165,6 +173,7 @@
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Node\Microsoft.NET.Runtime.Emscripten.Node.pkgproj" Targets="Build" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Python\Microsoft.NET.Runtime.Emscripten.Python.pkgproj" Targets="Build" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Sdk\Microsoft.NET.Runtime.Emscripten.Sdk.pkgproj" Targets="Build" />
+    <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Threading.Sdk\Microsoft.NET.Runtime.Emscripten.Threading.Sdk.pkgproj" Targets="Build" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Workload.Emscripten.net6.Manifest\Microsoft.NET.Workload.Emscripten.net6.Manifest.pkgproj" Targets="Build" Condition="'$(AssetManifestOS)' == '' or '$(AssetManifestOS)' == 'win'" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Workload.Emscripten.net7.Manifest\Microsoft.NET.Workload.Emscripten.net7.Manifest.pkgproj" Targets="Build" Condition="'$(AssetManifestOS)' == '' or '$(AssetManifestOS)' == 'win'" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Sdk.Internal\Microsoft.NET.Runtime.Emscripten.Sdk.Internal.pkgproj" Targets="Build" Condition="'$(OS)' == 'Windows_NT'" />

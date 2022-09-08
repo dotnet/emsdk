@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <EmscriptenThreadingSdkToolsPath>$(MSBuildThisFileDirectory)..\tools\</EmscriptenThreadingSdkToolsPath>
+    <EmscriptenThreadingUpstreamEmscriptenPath>$(EmscriptenSdkToolsPath)emscripten\</EmscriptenThreadingUpstreamEmscriptenPath>
+
+    <EmscriptenThreadingSdkCacheDir>$(EmscriptenThreadingUpstreamEmscriptenPath)cache\sysroot\lib\wasm32-emscripten
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmscriptenPrependPATH Include="$(EmscriptenUpstreamBinPath)" />
+    <EmscriptenPrependPATH Include="$(EmscriptenUpstreamEmscriptenPath)" />
+  </ItemGroup>
+</Project>

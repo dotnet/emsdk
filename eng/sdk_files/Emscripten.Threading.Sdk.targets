@@ -1,0 +1,8 @@
+<Project>
+  <Target Name="_EmscriptenThreadingPrependLinkFlags" BeforeTargets="_WasmWriteRspFilesForLinking" >
+    <ItemGroup>
+      <!-- FIXME: normalize to platform path separator - don't use \ on unix -->
+      <_EmccLDFlags Include="-L$(EmscriptenThreadingSdkCacheDir)" />
+    </ItemGroup>
+  </Target>
+</Project>

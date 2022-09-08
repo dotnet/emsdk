@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <ArtifactsDirToPackage>$(ArtifactsObjDir).threading\</ArtifactsDirToPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <File Include="$(ArtifactsDirToPackage)**" TargetPath="tools\%(RecursiveDir)" SkipPackageFileCheck="true" />
+    <File Include="$(RepoRoot)eng\sdk_files\Emscripten.Threading.Sdk.props" TargetPath="Sdk\Sdk.props" SkipPackageFileCheck="true" />
+  </ItemGroup>
+</Project>
