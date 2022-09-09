@@ -6,5 +6,6 @@
   <ItemGroup>
     <File Include="$(ArtifactsDirToPackage)**" TargetPath="tools\%(RecursiveDir)" SkipPackageFileCheck="true" />
     <File Include="$(RepoRoot)eng\sdk_files\Emscripten.Threading.Sdk.props" TargetPath="Sdk\Sdk.props" SkipPackageFileCheck="true" />
+    <File Include="$(RepoRoot)eng\sdk_files\Emscripten.Threading.Sdk.targets" TargetPath="Sdk\Sdk.targets" SkipPackageFileCheck="true" />
   </ItemGroup>
 </Project>
