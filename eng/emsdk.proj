@@ -125,11 +125,15 @@
     <!--<Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-ld.exe" />--> <!-- TODO: this is used by emcc but could be a symlink to ld.exe -->
 
     <PropertyGroup>
-      <CacheSdkFilesDir>$(ArtifactObjDir)\.cache-sdk\</CacheSdkFilesDir>
+      <CacheSdkFilesDir>$(ArtifactsObjDir)\.cache-sdk\</CacheSdkFilesDir>
     </PropertyGroup>
 
+    <ItemGroup>
+      <CacheSdkFilesToMove Include="$(ArtifactsObjDir)upstream\emscripten\cache\**\*" />
+    </ItemGroup>
+
     <!-- move the emscripten cache to a separate directory -->
-    <Move SourceFiles="$(ArtifactObjDir)upstream\emscripten\cache\**\*"
+    <Move SourceFiles="@(CacheSdkFilesToMove)"
 	  DestinationFiles="$(CacheSdkFilesDir)emscripten\cache\%(RecursiveDir)%(Filename)%(Extension)" />
 
     <ItemGroup>
