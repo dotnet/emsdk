@@ -134,7 +134,7 @@
 
     <!-- move the emscripten cache to a separate directory -->
     <Move SourceFiles="@(CacheSdkFilesToMove)"
-	  DestinationFiles="$(CacheSdkFilesDir)emscripten\cache\%(RecursiveDir)%(Filename)%(Extension)" />
+          DestinationFiles="$(CacheSdkFilesDir)emscripten\cache\%(RecursiveDir)%(Filename)%(Extension)" />
 
     <ItemGroup>
       <!-- delete these libs from the cache to reduce windows nuget size context: https://github.com/dotnet/emsdk/pull/34#issuecomment-872691739 -->
