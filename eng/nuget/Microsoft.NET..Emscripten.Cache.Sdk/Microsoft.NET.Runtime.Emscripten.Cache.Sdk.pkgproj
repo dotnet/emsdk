@@ -2,18 +2,18 @@
   <Import Project="$(RepoRoot)\Directory.Build.props" />
   <Import Project="$(NuGetPackageRoot)\microsoft.dotnet.build.tasks.packaging\$(MicrosoftDotNetBuildTasksPackagingVersion)\build\Microsoft.DotNet.Build.Tasks.Packaging.props" />
   <Import Project="$([MSBuild]::GetPathOfFileAbove(Microsoft.NET.Runtime.Emscripten.Common.props))" />
-  <Import Project="Microsoft.NET.Runtime.Emscripten.Threading.Sdk.props" />
+  <Import Project="Microsoft.NET.Runtime.Emscripten.Cache.Sdk.props" />
 
   <Target Name="_PrepareForPack" BeforeTargets="GetPackageFiles" DependsOnTargets="GenerateUnixPermissionsFile" Returns="@(PackageFile)">
     <!-- Override the id to include the Emscripten version -->
     <PropertyGroup>
-      <Id>Microsoft.NET.Runtime.Emscripten.$(EmscriptenVersion).Threading.Sdk.$(PackageRID)</Id>
+      <Id>Microsoft.NET.Runtime.Emscripten.$(EmscriptenVersion).Cache.Sdk.$(PackageRID)</Id>
     </PropertyGroup>
   </Target>
 
   <PropertyGroup>
-    <PackageDescription>Contains Emscripten SDK multithreading binaries for $(PackageRID).</PackageDescription>
-    <Description>Contains Emscripten SDK multithreading binaries for $(PackageRID).</Description>
+    <PackageDescription>Contains Emscripten SDK system libraries cache for $(PackageRID).</PackageDescription>
+    <Description>Contains Emscripten SDK system libraries cache for $(PackageRID).</Description>
   </PropertyGroup>
 
   <Import Project="$(NuGetPackageRoot)\microsoft.dotnet.build.tasks.packaging\$(MicrosoftDotNetBuildTasksPackagingVersion)\build\Microsoft.DotNet.Build.Tasks.Packaging.targets" />

@@ -1,8 +1,0 @@
-<Project>
-  <Target Name="_EmscriptenThreadingPrependLinkFlags" BeforeTargets="_WasmWriteRspFilesForLinking" Condition="'$(WasmEnableThreads)' == 'true'">
-    <ItemGroup>
-      <!-- FIXME: quotes in case the path has spaces? -->
-      <_EmccLDFlags Include="-L$([MSBuild]::NormalizeDirectory($(EmscriptenThreadingSdkCacheDir)))" />
-    </ItemGroup>
-  </Target>
-</Project>
