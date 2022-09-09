@@ -100,7 +100,7 @@ stages:
           displayName: Sign Linux
           timeoutInMinutes: 30
           pool:
-            name: NetCore1ESPool-Internal
+            name: NetCore1ESPool-Svc-Internal
             demands: ImageOverride -equals Build.Server.Amd64.VS2019
           steps:
           - task: DownloadPipelineArtifact@2
