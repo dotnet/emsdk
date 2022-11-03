@@ -4,7 +4,7 @@
     <MajorVersion>7</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <VersionPrefix>7.0.1</VersionPrefix>
-    <PreReleaseVersionLabel>rtm</PreReleaseVersionLabel>
+    <PreReleaseVersionLabel>servicing</PreReleaseVersionLabel>
     <PreReleaseVersionIteration>
     </PreReleaseVersionIteration>
     <WorkloadSdkBandVersion>7.0.100</WorkloadSdkBandVersion>
