@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MajorVersion>7</MajorVersion>
     <MinorVersion>0</MinorVersion>
-    <VersionPrefix>7.0.0</VersionPrefix>
+    <VersionPrefix>7.0.1</VersionPrefix>
     <PreReleaseVersionLabel>rtm</PreReleaseVersionLabel>
     <PreReleaseVersionIteration>
     </PreReleaseVersionIteration>
