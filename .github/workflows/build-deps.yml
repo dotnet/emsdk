@@ -1,0 +1,22 @@
+name: Build emsdk dependencies
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'LLVM Webassembly arm64'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  build-llvm-webassembly-arm64:
+
+    runs-on: windows-latest
+
+    steps:
+    
+    - name: Build LLVM WebAssembly arm64
+      run: |
+        set
+        ls
