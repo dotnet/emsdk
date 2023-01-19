@@ -582,7 +582,11 @@ def unzip(source_filename, dest_dir):
       # Now do the actual decompress.
       for member in zf.infolist():
         zf.extract(member, fix_potentially_long_windows_pathname(unzip_to_dir))
-        dst_filename = os.path.join(unzip_to_dir, member.filename)
+        if WINDOWS:
+          filename = member.filename.replace(':', '_')
+        else:
+          filename = member.filename
+        dst_filename = os.path.join(unzip_to_dir, filename)
 
         # See: https://stackoverflow.com/questions/42326428/zipfile-in-python-file-permission
         unix_attributes = member.external_attr >> 16
@@ -592,9 +596,9 @@ def unzip(source_filename, dest_dir):
         # Move the extracted file to its final location without the base
         # directory name, if we are stripping that away.
         if common_subdir:
-          if not member.filename.startswith(common_subdir):
-            raise Exception('Unexpected filename "' + member.filename + '"!')
-          stripped_filename = '.' + member.filename[len(common_subdir):]
+          if not filename.startswith(common_subdir):
+            raise Exception('Unexpected filename "' + filename + '"!')
+          stripped_filename = '.' + filename[len(common_subdir):]
           final_dst_filename = os.path.join(dest_dir, stripped_filename)
           # Check if a directory
           if stripped_filename.endswith('/'):
