@@ -1,0 +1,87 @@
+name: Build emscripten tools using emsdk
+
+on:
+  workflow_dispatch:
+    inputs:
+      llvm_build:
+        description: 'LLVM Arm64 build'
+        required: false
+        default: false
+        type: boolean
+      python_build:
+        description: 'Python Arm64 build'
+        required: false
+        default: false
+        type: boolean
+      node_build:
+        description: 'Node Arm64 build'
+        required: false
+        default: false
+        type: boolean
+      binaryen_build:
+        description: 'Binaryen Arm64 build'
+        required: false
+        default: false
+        type: boolean
+      emscripten_build:
+        description: 'Emscripten Arm64 build'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  build_llvm:
+    if: ${{ inputs.llvm_build }}
+    
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 60
+
+    steps:
+      - name: Build LLVM wth emsdk
+        run: |
+          echo "Build LLVM with emsdk"
+
+  build_python:
+    if: ${{ inputs.python_build }}
+    
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 60
+
+    steps:
+      - name: Build Python with emsdk
+        run: |
+          echo "Build Python with emsdk"
+
+  build_node:
+    if: ${{ inputs.node_build }}
+    
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 60
+
+    steps:
+      - name: Build Node with emsdk
+        run: |
+          echo "Build Node with emsdk" 
+
+  build_binaryen:
+    if: ${{ inputs.binaryen_build }}
+    
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 60
+
+    steps:
+      - name: Build Binaryen with emsdk
+        run: |
+          echo "Build Binaryen with emsdk" 
+
+
+  build_emscripten:
+    if: ${{ inputs.emscripten_build }}
+    
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 60
+
+    steps:
+      - name: Build Emscripten with emsdk
+        run: |
+          echo "Build Emscripten with emsdk"
