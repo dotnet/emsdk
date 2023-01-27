@@ -1,7 +1,7 @@
 {
   "version": "${WorkloadVersion}",
   "workloads": {
-    "microsoft-net-sdk-emscripten-current": {
+    "microsoft-net-sdk-emscripten": {
       "abstract": true,
       "description": "Emscripten SDK compiler tooling",
       "packs": [
