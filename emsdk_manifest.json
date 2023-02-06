@@ -109,7 +109,7 @@
     "arch": "aarch64",
     "macos_url": "https://storage.googleapis.com/webassembly/emscripten-releases-builds/mac/%releases-tag%/wasm-binaries-arm64.tbz2",
     "linux_url": "https://storage.googleapis.com/webassembly/emscripten-releases-builds/linux/%releases-tag%/wasm-binaries-arm64.tbz2",
-    "windows_url": "https://github.com/Windows-on-ARM-Experiments/emsdk/releases/download/v0.1.0-alpha/emsdk-arm64.zip",
+    "windows_url": "https://github.com/Windows-on-ARM-Experiments/emsdk/releases/download/v0.1.0-alpha/wasm-binaries-arm64.zip",
     "zipfile_prefix": "%releases-tag%-",
     "install_path": "upstream",
     "activated_path": "%installation_dir%/emscripten",

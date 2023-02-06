@@ -1452,7 +1452,7 @@ def emscripten_npm_install(tool, directory):
     closure_compiler_native = 'google-closure-compiler-linux'
   if MACOS and ARCH in ('x86', 'x86_64'):
     closure_compiler_native = 'google-closure-compiler-osx'
-  if WINDOWS and ARCH in ('x86_64', 'aarch64'):
+  if WINDOWS and ARCH in ('x86_64'):
     closure_compiler_native = 'google-closure-compiler-windows'
 
   if closure_compiler_native:
