@@ -356,7 +356,7 @@
     "arch": "aarch64",
     "bitness": 64,
     "windows_url": "https://github.com/Windows-on-ARM-Experiments/emsdk/releases/download/v0.1.0-alpha/node-v20.0.0-pre-win-arm64.zip",
-    "activated_path": "%installation_dir%",
+    "activated_path": "%installation_dir%/bin",
     "activated_cfg": "NODE_JS='%installation_dir%/bin/node%.exe%'",
     "activated_env": "EMSDK_NODE=%installation_dir%/bin/node%.exe%"
   },
