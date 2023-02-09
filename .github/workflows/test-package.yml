@@ -1,0 +1,66 @@
+name: Test the release package
+
+on:
+  workflow_dispatch:
+    inputs:
+      emscripten_repository:
+        description: 'Emscripten repository'
+        required: true
+        default: 'Windows-on-ARM-Experiments/emscripten'
+        type: string
+      emscripten_branch:
+        description: 'Emscripten repository branch'
+        required: true
+        default: 'fix-unit-tests-arm64'
+        type: string
+      emscripten_test_suite:
+        description: 'Emscripten test suite'
+        required: true
+        default: '*'
+        type: string
+
+defaults:
+  run:
+    working-directory: test-package
+
+jobs:
+  bootstrap-workflow:
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 10
+
+    steps:
+      - name: Create working directory
+        working-directory: ${{ github.workspace }}
+        run: New-Item -ItemType Directory -Force -Path test-package
+
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+  install-package:
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 10
+    steps:
+      - name: Install latest release package
+        run: |
+          .\emsdk.bat list
+          .\emsdk.bat install latest
+          .\emsdk.bat activate latest
+          .\emsdk.bat list
+
+  run-tests:
+    runs-on: [ self-hosted, Windows, ARM64, WASM ]
+    timeout-minutes: 10
+    steps:
+      - name: Git checkout Emscripten
+        uses: actions/checkout@v3
+        repository: ${{ inputs.emscripten_repository }}
+        ref: ${{ inputs.emscripten_branch }}
+
+      - name: Install Node packages
+        working-directory: test-package/emscripten
+        run: |
+          npm install
+      - name: Run unit tests
+        working-directory: test-package/emscripten
+        run: |
+          .\tests\runner.bat ${{ inputs.emscripten_test_suite }} --fail-fast
