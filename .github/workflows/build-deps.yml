@@ -3,20 +3,230 @@ name: Build emsdk dependencies
 on:
   workflow_dispatch:
     inputs:
-      branch:
+      llvm_build:
         description: 'LLVM Webassembly arm64'
+        required: false
+        default: false
+        type: boolean
+      llvm_build_cross_compilation:
+        description: 'LLVM Webassembly arm64 (cross compilation)'
+        required: false
+        default: false
+        type: boolean
+      binaryen_build:
+        description: 'Binaryen Arm64'
+        required: false
+        default: false
+        type: boolean
+      emscripten_build:
+        description: 'Emscripten'
+        required: false
+        default: false
+        type: boolean
+      nodejs_build:
+        description: 'Node.js arm64'
+        required: false
+        default: false
+        type: boolean
+      wasm_binaries_build:
+        description: 'WASM binaries arm64'
         required: false
         default: false
         type: boolean
 
 jobs:
   build-llvm-webassembly-arm64:
+    if: ${{ inputs.llvm_build || inputs.wasm_binaries_build }}
+
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+    timeout-minutes: 600
+
+    steps:
+    
+    - name: Build LLVM WebAssembly arm64
+      shell: cmd
+      run: |
+        git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git --single-branch --depth 1
+        cd llvm-project
+        if exist build_arm64 rmdir /s /q build_arm64
+        call "%ProgramFiles%\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvarsall.bat" arm64
+        cmake -G Ninja -S llvm -B build_arm64 ^
+          -DCLANG_ENABLE_ARCMT=OFF ^
+          -DCLANG_ENABLE_STATIC_ANALYZER=OFF ^
+          -DCMAKE_BUILD_TYPE=Release ^
+          -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON ^
+          -DCMAKE_CXX_COMPILER_LAUNCHER='ccache' ^
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ^
+          -DCMAKE_LINKER="C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\Llvm\x64\bin\lld-link.exe" ^
+          -DLLVM_BUILD_LLVM_DYLIB=OFF ^
+          -DLLVM_LINK_LLVM_DYLIB=OFF ^
+          -DLLVM_DISTRIBUTION_COMPONENTS='clang;lld;llvm-ar;llvm-addr2line;llvm-cxxfilt;llvm-dwarfdump;llvm-dwp;llvm-nm;llvm-objcopy;llvm-objdump;llvm-ranlib;llvm-readobj;llvm-size;llvm-strings;llvm-strip;llvm-symbolizer;clang-resource-headers' ^
+          -DLLVM_ENABLE_ASSERTIONS=OFF ^
+          -DLLVM_ENABLE_BINDINGS=OFF ^
+          -DLLVM_ENABLE_LIBXML2=OFF ^
+          -DLLVM_ENABLE_PROJECTS='lld;clang' ^
+          -DLLVM_ENABLE_TERMINFO=ON ^
+          -DLLVM_INCLUDE_EXAMPLES=OFF ^
+          -DLLVM_INCLUDE_TESTS=OFF ^
+          -DLLVM_INSTALL_TOOLCHAIN_ONLY=ON ^
+          -DLLVM_TARGETS_TO_BUILD='host;WebAssembly' ^
+          -DLLVM_TOOL_LTO_BUILD=OFF ^
+          -DLLVM_TOOLCHAIN_TOOLS='clang;lld;llvm-ar;llvm-addr2line;llvm-cxxfilt;llvm-dwarfdump;llvm-dwp;llvm-nm;llvm-objcopy;llvm-objdump;llvm-ranlib;llvm-readobj;llvm-size;llvm-strings;llvm-strip;llvm-symbolizer;clang-resource-headers' ^
+          -DLLVM_USE_CRT_RELEASE=MT ^
+          -DLLVM_USE_CRT_DEBUG=MTd 
+        cd build_arm64
+        ninja -v install-distribution
+
+    - name: Pack llvm-arm64.zip
+      run: |
+        cd llvm-project/build_arm64
+        $unneeded_tool = 'clang-check', 'clang-cl', 'clang-cpp', 
+          'clang-extdef-mapping', 'clang-format',
+          'clang-func-mapping', 'clang-import-test',
+          'clang-linker-wrapper', 'clang-offload-bundler',
+          'clang-offload-packager', 'clang-refactor',
+          'clang-rename', 'clang-repl', 'clang-scan-deps',
+          'diagtool', 'git-clang-format', 'hmaptool', 'ld.lld',
+          'ld64.lld', 'ld64.lld.darwinnew', 'ld64.lld.darwinold',
+          'lld-link', 'libclang.dll', 'llvm-cov', 'llvm-ml',
+          'llvm-lib', 'llvm-pdbutil', 'llvm-profdata',
+          'llvm-rc'
+        foreach ($tool in $unneeded_tool) {
+            $tool = "bin" + $tool + ".exe"
+            if (Test-Path $tool) {
+              "Remove " + $tool
+              Remove-Item $tool
+            }
+          }
+        Compress-Archive -Path bin,lib\clang -DestinationPath llvm-arm64
+
+    - name: Archive llvm-arm64.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: llvm-arm64.zip
+        path: llvm-project/build_arm64/llvm-arm64.zip
+        retention-days: 1
+
+  build-llvm-webassembly-arm64_cross_compilation:
+    if: ${{ inputs.llvm_build_llvm_build_cross_compilation }}
 
     runs-on: windows-latest
 
     steps:
     
-    - name: Build LLVM WebAssembly arm64
+    - name: Build LLVM WebAssembly arm64 (Cross Compilation)
       run: |
-        set
+        Set-PSDebug -Trace 1
+        git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git --single-branch --branch main --depth 1
+        cd llvm-project
+        cmake -S llvm -B build_host -DLLVM_ENABLE_PROJECTS='lld;clang' -DLLVM_TARGETS_TO_BUILD=""
+        cmake --build build_host --target llvm-tblgen llvm-nm clang-tblgen --config MinSizeRel
+        $llvm_root = Get-Location
+        cmake -S llvm -B build_arm64 -A ARM64 `
+          -DLLVM_TABLEGEN="$llvm_root\build_host\MinSizeRel\bin\llvm-tblgen.exe" `
+          -DCLANG_TABLEGEN="$llvm_root\build_host\MinSizeRel\bin\clang-tblgen.exe" `
+          -DLLVM_NM="$llvm_root\build_host\MinSizeRel\bin\llvm-nm.exe" `
+          -DLLVM_ENABLE_PROJECTS='lld;clang' -DLLVM_TARGETS_TO_BUILD="host;WebAssembly" `
+          -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF
+        cmake --build build_arm64 --config MinSizeRel
+
+  build-binaryen:
+    if: ${{ inputs.binaryen_build || inputs.wasm_binaries_build}}
+
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+
+    steps:
+    - name: Build Binaryen for Arm64
+      shell: cmd
+      run: |
+        git clone https://github.com/WebAssembly/binaryen.git --single-branch --depth 1
+        cd binaryen
+        git submodule init
+        git submodule update
+        if exist bin rmdir /s /q bin
+        call "%ProgramFiles%\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvarsall.bat" arm64
+        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER_LAUNCHER='ccache' .
+        ninja
+
+
+    - name: Archive binaryen-arm64.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: binaryen-arm64.zip
+        path: binaryen/binaryen-arm64.zip
+        retention-days: 1
+
+  build-nodejs:
+    if: ${{ inputs.nodejs_build }}
+
+    runs-on: [self-hosted, Windows, ARM64, WASM]
+
+    steps:
+
+    - name: Build Node.js arm64
+      run: |
+        Set-PSDebug -Trace 1
+        git clone https://github.com/Windows-on-ARM-Experiments/node.git --single-branch -b fix-arm64-compilation --depth 1
+        cd node
+        .\vcbuild openssl-no-asm arm64
+
+  build-emscripten:
+    if: ${{ inputs.emscripten_build || inputs.wasm_binaries_build }}
+
+    runs-on: [ubuntu-latest]
+
+    steps:
+
+    - name: Build Emscripten
+      run: |
+        git clone https://github.com/emscripten-core/emscripten.git --single-branch --depth 1
+        cd emscripten
+        ./tools/install.py ../emscripten_package
+        npm ci --production --no-optional ../emscripten_package
+        cd ../emscripten_package
+        zip -r ../emscripten_package.zip .
+
+    - name: Archive emscripten_package.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: emscripten_package.zip
+        path: emscripten_package.zip
+        retention-days: 1
+
+  build-wasm-binaries:
+    if: ${{ inputs.wasm_binaries_build }}
+    needs: [build-emscripten, build-binaryen, build-llvm-webassembly-arm64]
+
+    runs-on: [windows-latest]
+
+    steps:
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: emscripten_package.zip
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: llvm-arm64.zip
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: binaryen-arm64.zip
+
+    - name: Pack wasm-binaries for Arm64
+      run: |
         ls
+        New-Item -ItemType Directory -Force -Path emsdk/emscripten
+        Expand-Archive -LiteralPath emscripten_package.zip -DestinationPath emsdk\emscripten
+        Expand-Archive -LiteralPath llvm-arm64.zip -DestinationPath emsdk
+        Expand-Archive -LiteralPath binaryen-arm64.zip -DestinationPath emsdk
+        cd emsdk
+        Compress-Archive -Path * -DestinationPath wasm-binaries-arm64
+
+    - name: Archive wasm-binaries-arm64.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: wasm-binaries-arm64.zip
+        path: emsdk/wasm-binaries-arm64.zip
+        retention-days: 3
+
