@@ -58,7 +58,7 @@
         the manifest information unless it's overridden. -->
       <!-- Overrides for Visual Studio setup generation. If the workload definition IDs change,
             these must be updated. -->
-      <ComponentResources Include="microsoft-net-sdk-emscripten"
+      <ComponentResources Include="microsoft-net-sdk-emscripten-net7"
                           Version="$(AssemblyVersion)"
                           Title=".NET WebAssembly Build Tools (Emscripten)"
                           Description="Build tools for WebAssembly ahead-of-time (AoT) compilation and native linking."/>
