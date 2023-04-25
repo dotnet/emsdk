@@ -52,6 +52,55 @@
     <PackageReference Remove="@(PackageReference)" />
     <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
   </ItemGroup>
+
+  <Target Name="CopyBinaryen" BeforeTargets="ReallyBuild">
+    <Message Importance="High" Text="** Copying Binaryen to $(BinaryenDir)" />
+    <ItemGroup>
+      <BinaryenFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport')) == 'true'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(BinaryenFiles)" DestinationFolder="$(BinaryenDir)\%(RecursiveDir)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
+  </Target>
+
+  <Target Name="CopyNode" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
+    <Message Importance="High" Text="** Copying Node to $(NodeDir)" />
+    <ItemGroup>
+      <NodeFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Node.Transport')) == 'true'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(NodeFiles)" DestinationFolder="$(NodeDir)\%(RecursiveDir)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
+  </Target>
+
+  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
+    <Message Importance="High" Text="** Copying Python to $(PythonDir)" />
+    <ItemGroup>
+      <PythonFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Python.Transport')) == 'true'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PythonFiles)" DestinationFolder="$(PythonDir)\%(RecursiveDir)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
+  </Target>
+
+  <Target Name="CopyLLVM" BeforeTargets="ReallyBuild">
+    <Message Importance="High" Text="** Copying LLVM to $(LLVMDir)" />
+    <ItemGroup>
+      <LLVMFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.LLVM.Transport')) == 'true'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(LLVMFiles)" DestinationFolder="$(LLVMDir)\%(RecursiveDir)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
+  </Target>
+
   <Target Name="ReallyBuild" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" BeforeTargets="Build">
     <Error Condition="'$(PackageRID)' == ''" Text="PackageRID needs to be specified, e.g. 'osx-x64'!" />
 

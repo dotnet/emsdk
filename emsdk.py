@@ -1719,7 +1719,9 @@ class Tool(object):
       content_exists = False
 
     if hasattr(self, 'custom_is_installed_script'):
-      if self.custom_is_installed_script == 'is_optimizer_installed':
+      if self.custom_is_installed_script == 'lie_and_say_yes':
+        return True
+      elif self.custom_is_installed_script == 'is_optimizer_installed':
         return is_optimizer_installed(self)
       elif self.custom_is_installed_script == 'is_binaryen_installed':
         return is_binaryen_installed(self)
