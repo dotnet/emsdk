@@ -44,7 +44,7 @@ stages:
           vmImage: macOS-11
         steps:
         - bash: |
-            ./build.sh -ci -configuration $(_BuildConfig) /p:PackageRID=osx-x64 /p:AssetManifestOS=osx /p:PlatformName=x64 $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
+            ./build.sh --arch x64 --restore --build --pack --ci --configuration $(_BuildConfig) /p:PackageRID=osx-x64 /p:AssetManifestOS=osx /p:PlatformName=x64 $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
           displayName: Build
         - publish: artifacts/packages
           artifact: Packages_macOS
@@ -86,7 +86,7 @@ stages:
             demands: ImageOverride -equals build.ubuntu.2204.amd64
         steps:
         - bash: |
-            ./build.sh -ci -configuration $(_BuildConfig) /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
+            ./build.sh --arch x64 --restore --build --pack --ci --configuration $(_BuildConfig) /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
           displayName: Build
         - publish: artifacts/packages
           artifact: Packages_Linux
@@ -156,7 +156,7 @@ stages:
           displayName: Fetch storage.googleapis.com certificate
           condition: eq(variables['System.TeamProject'], 'internal')
         - script: |
-            .\build.cmd -ci -configuration $(_BuildConfig) -sign -publish /p:PackageRID=win-x64 /p:AssetManifestOS=win /p:PlatformName=x64 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
+            .\build.cmd -arch x64 -restore -build -pack -ci -configuration $(_BuildConfig) -sign -publish /p:PackageRID=win-x64 /p:AssetManifestOS=win /p:PlatformName=x64 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
           displayName: Build and Publish
         - publish: artifacts/packages
           artifact: Packages_Windows
