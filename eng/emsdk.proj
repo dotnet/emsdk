@@ -1,6 +1,57 @@
-<Project>
-  <Import Project="$(RepoRoot)\Directory.Build.props" />
-  <Target Name="Build" />
+<Project Sdk="Microsoft.Build.Traversal">
+  <PropertyGroup>
+    <PackageHostOS Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">linux</PackageHostOS>
+    <PackageHostOS Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">osx</PackageHostOS>
+    <PackageHostOS Condition="'$(OS)' == 'Windows_NT'">win</PackageHostOS>
+    <LLVMPkgVersion Condition="'$(PackageHostOS)' == 'linux'">$(runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion)</LLVMPkgVersion>
+    <LLVMPkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion)</LLVMPkgVersion>
+    <LLVMPkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion)</LLVMPkgVersion>
+    <BinaryenPkgVersion Condition="'$(PackageHostOS)' == 'linux'">$(runtimelinuxx64MicrosoftNETCoreRuntimeWasmBinaryenTransportVersion)</BinaryenPkgVersion>
+    <BinaryenPkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmBinaryenTransportVersion)</BinaryenPkgVersion>
+    <BinaryenPkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmBinaryenTransportVersion)</BinaryenPkgVersion>
+    <PythonPkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion)</PythonPkgVersion>
+    <PythonPkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion)</PythonPkgVersion>
+    <NodePkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
+    <NodePkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
+                      Version="$(LLVMPkgVersion)"
+                      PackageArch="$(TargetArchitecture)"
+                      Condition="'$(TargetArchitecture)' != ''" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
+                      Version="$(LLVMPkgVersion)"
+                      PackageArch="$(BuildArchitecture)"
+                      Condition="'$(BuildArchitecture)' != ''" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
+                      Version="$(BinaryenPkgVersion)"
+                      PackageArch="$(TargetArchitecture)"
+                      Condition="'$(TargetArchitecture)' != ''" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
+                      Version="$(BinaryenPkgVersion)"
+                      PackageArch="$(BuildArchitecture)"
+                      Condition="'$(BuildArchitecture)' != ''" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
+                      Version="$(PythonPkgVersion)"
+                      PackageArch="$(TargetArchitecture)"
+                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
+                      Version="$(PythonPkgVersion)"
+                      PackageArch="$(BuildArchitecture)"
+                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
+                      Version="$(NodePkgVersion)"
+                      PackageArch="$(TargetArchitecture)"
+                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
+                      Version="$(NodePkgVersion)"
+                      PackageArch="$(BuildArchitecture)"
+                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+    <_PackageReferenceDeduplicated Include="@(PackageReference->Distinct())" />
+    <PackageReference Remove="@(PackageReference)" />
+    <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
+  </ItemGroup>
   <Target Name="ReallyBuild" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" BeforeTargets="Build">
     <Error Condition="'$(PackageRID)' == ''" Text="PackageRID needs to be specified, e.g. 'osx-x64'!" />
 
@@ -183,8 +234,6 @@
     <Exec Condition="'$(StripCommand)' != ''" Command="$(StripCommand) $(ArtifactsObjDir)node/bin/node" IgnoreStandardErrorWarningFormat="true" />
     <Exec Condition="'$(StripCommand)' != ''" Command="$(StripCommand) %(UpstreamBinFiles.Identity) || true" IgnoreStandardErrorWarningFormat="true" />
   </Target>
-  <Target Name="Restore" />
-  <Target Name="Test" />
   <Target Name="Pack" DependsOnTargets="Build">
     <Message Importance="High" Text="Creating nuget packages..." />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Node\Microsoft.NET.Runtime.Emscripten.Node.pkgproj" Targets="Build" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
@@ -209,5 +258,4 @@
              Properties="PreReleaseVersionLabel=$(PreReleaseVersionLabel);PreReleaseVersionIteration=$(PreReleaseVersionIteration)" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Sdk.Internal\Microsoft.NET.Runtime.Emscripten.Sdk.Internal.pkgproj" Targets="Build" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
-  <Import Project="$(RepoRoot)\Directory.Build.targets" />
 </Project>
