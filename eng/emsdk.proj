@@ -50,9 +50,7 @@
                       PackageArch="$(BuildArchitecture)"
                       Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
-                      Version="$(EmscriptenPkgVersion)"
-                      PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != ''" />
+                      Version="$(EmscriptenPkgVersion)" />
     <_PackageReferenceDeduplicated Include="@(PackageReference->Distinct())" />
     <PackageReference Remove="@(PackageReference)" />
     <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
@@ -133,8 +131,6 @@
       <UsesPythonFromEmsdk Condition="!$([MSBuild]::IsOSPlatform(Linux))">true</UsesPythonFromEmsdk>
     </PropertyGroup>
 
-    <Exec WorkingDirectory="$(RepoRoot)"
-          Command="$(EmSdkFileName) install $(EmscriptenVersion)" />
     <Exec WorkingDirectory="$(RepoRoot)"
           Command="$(EmSdkFileName) activate $(EmscriptenVersion)" />
 
