@@ -13,6 +13,7 @@
     <PythonPkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion)</PythonPkgVersion>
     <NodePkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
     <NodePkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
+    <EmscriptenPkgVersion>$(MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion)</EmscriptenPkgVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,6 +49,10 @@
                       Version="$(NodePkgVersion)"
                       PackageArch="$(BuildArchitecture)"
                       Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+    <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
+                      Version="$(EmscriptenPkgVersion)"
+                      PackageArch="$(BuildArchitecture)"
+                      Condition="'$(BuildArchitecture)' != ''" />
     <_PackageReferenceDeduplicated Include="@(PackageReference->Distinct())" />
     <PackageReference Remove="@(PackageReference)" />
     <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
@@ -97,6 +102,18 @@
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.LLVM.Transport')) == 'true'" />
     </ItemGroup>
     <Copy SourceFiles="@(LLVMFiles)" DestinationFolder="$(LLVMDir)\%(RecursiveDir)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
+  </Target>
+
+    <Target Name="CopyEmscripten" BeforeTargets="ReallyBuild">
+    <Message Importance="High" Text="** Copying Emscripten to $(EmscriptenDir)" />
+    <ItemGroup>
+      <Emscripten Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport')) == 'true'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(EmscriptenFiles)" DestinationFolder="$(EmscriptenDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>

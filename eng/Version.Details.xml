@@ -81,6 +81,10 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
     </Dependency>
+    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-preview.4.23226.1">
+      <Uri>https://github.com/dotnet/emscripten</Uri>
+      <Sha>21dffcc20e5c02d92d0b3c97bb90e834de838920</Sha>
+    </Dependency>
   </ProductDependencies>
   <ToolsetDependencies>
     <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="8.0.0-beta.23224.1">

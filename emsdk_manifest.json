@@ -54,88 +54,16 @@
     "custom_is_installed_script": "lie_and_say_yes"
   },
   {
-    "id": "java",
-    "version": "8.152",
-    "bitness": 32,
-    "arch": "x86",
-    "windows_url": "portable_jre_8_update_152_32bit.zip",
-    "activated_env": "JAVA_HOME=%installation_dir%",
-    "activated_cfg": "JAVA='%installation_dir%/bin/java%.exe%'"
-  },
-  {
-    "id": "java",
-    "version": "8.152",
-    "bitness": 64,
-    "arch": "x86_64",
-    "windows_url": "portable_jre_8_update_152_64bit.zip",
-    "activated_env": "JAVA_HOME=%installation_dir%",
-    "activated_cfg": "JAVA='%installation_dir%/bin/java%.exe%'"
-  },
-  {
     "id": "emscripten",
-    "version": "tag-%tag%",
-    "bitness": 32,
+    "version": "8.0.0",
     "append_bitness": false,
-    "windows_url": "https://github.com/emscripten-core/emscripten/archive/%tag%.zip",
-    "unix_url": "https://github.com/emscripten-core/emscripten/archive/%tag%.tar.gz",
-    "zipfile_prefix": "emscripten-e",
-    "activated_cfg": "EMSCRIPTEN_ROOT='%installation_dir%';EMSCRIPTEN_NATIVE_OPTIMIZER='%installation_dir%%generator_prefix%_32bit_optimizer/%cmake_build_type_on_win%optimizer%.exe%'",
-    "activated_path": "%installation_dir%",
-    "activated_env": "EMSCRIPTEN=%installation_dir%;EMSCRIPTEN_NATIVE_OPTIMIZER=%installation_dir%%generator_prefix%_32bit_optimizer/%cmake_build_type_on_win%optimizer%.exe%",
-    "cmake_build_type": "Release",
-    "custom_install_script": "emscripten_post_install",
-    "custom_is_installed_script": "is_optimizer_installed",
-    "custom_uninstall_script": "uninstall_optimizer"
-  },
-  {
-    "id": "emscripten",
-    "version": "tag-%tag%",
-    "bitness": 64,
-    "append_bitness": false,
-    "windows_url": "https://github.com/emscripten-core/emscripten/archive/%tag%.zip",
-    "unix_url": "https://github.com/emscripten-core/emscripten/archive/%tag%.tar.gz",
-    "activated_cfg": "EMSCRIPTEN_ROOT='%installation_dir%';EMSCRIPTEN_NATIVE_OPTIMIZER='%installation_dir%%generator_prefix%_64bit_optimizer/%cmake_build_type_on_win%optimizer%.exe%'",
-    "activated_path": "%installation_dir%",
-    "activated_env": "EMSCRIPTEN=%installation_dir%;EMSCRIPTEN_NATIVE_OPTIMIZER=%installation_dir%%generator_prefix%_64bit_optimizer/%cmake_build_type_on_win%optimizer%.exe%",
-    "cmake_build_type": "Release",
-    "custom_install_script": "emscripten_post_install",
-    "custom_is_installed_script": "is_optimizer_installed",
-    "custom_uninstall_script": "uninstall_optimizer"
-  },
-  {
-    "id": "emscripten",
-    "version": "%precompiled_tag%",
-    "windows_url": "https://github.com/emscripten-core/emscripten/archive/%precompiled_tag%.zip",
-    "unix_url": "https://github.com/emscripten-core/emscripten/archive/%precompiled_tag%.tar.gz",
-    "activated_cfg": "EMSCRIPTEN_ROOT='%installation_dir%'",
-    "activated_path": "%installation_dir%",
-    "activated_env": "EMSCRIPTEN=%installation_dir%"
-  },
-  {
-    "id": "emscripten",
-    "version": "main",
-    "bitness": 32,
-    "append_bitness": false,
-    "url": "https://github.com/emscripten-core/emscripten.git",
-    "git_branch": "main",
+    "url": "https://github.com/dotnet/emscripten.git",
+    "git_branch": "dotnet/main",
     "activated_cfg": "EMSCRIPTEN_ROOT='%installation_dir%'",
     "activated_path": "%installation_dir%",
     "activated_env": "EMSCRIPTEN=%installation_dir%",
     "cmake_build_type": "Release",
-    "custom_install_script": "emscripten_npm_install"
-  },
-  {
-    "id": "emscripten",
-    "version": "main",
-    "bitness": 64,
-    "append_bitness": false,
-    "url": "https://github.com/emscripten-core/emscripten.git",
-    "git_branch": "main",
-    "activated_cfg": "EMSCRIPTEN_ROOT='%installation_dir%'",
-    "activated_path": "%installation_dir%",
-    "activated_env": "EMSCRIPTEN=%installation_dir%",
-    "cmake_build_type": "Release",
-    "custom_install_script": "emscripten_npm_install"
+    "custom_is_installed_script": "lie_and_say_yes"
   },
   {
     "id": "binaryen",
@@ -147,68 +75,23 @@
     "activated_env": "BINARYEN_ROOT=%installation_dir%",
     "cmake_build_type": "Release",
     "custom_is_installed_script": "lie_and_say_yes"
-  },
-  {
-    "id": "gnu",
-    "version": "2.5.4",
-    "windows_url": "grep-2.5.4.zip",
-    "activated_path": "%installation_dir%/bin"
-  },
-  {
-    "id": "mingw",
-    "version": "4.6.2",
-    "bitness": 32,
-    "windows_url": "mingw_4.6.2_32bit.zip",
-    "activated_cfg": "MINGW_ROOT='%installation_dir%'",
-    "activated_path": "%installation_dir%",
-    "is_old": true
-  },
-  {
-    "id": "mingw",
-    "version": "7.1.0",
-    "bitness": 64,
-    "windows_url": "mingw_7.1.0_64bit.zip",
-    "activated_cfg": "MINGW_ROOT='%installation_dir%'",
-    "activated_path": "%installation_dir%/bin"
-  },
-  {
-    "id": "ninja",
-    "version": "git-release",
-    "bitness": 64,
-    "url": "https://github.com/ninja-build/ninja.git",
-    "git_branch": "release",
-    "activated_cfg": "NINJA=%installation_dir%/bin",
-    "activated_path": "%installation_dir%/bin",
-    "cmake_build_type": "Release",
-    "custom_install_script": "build_ninja"
-  },
-  {
-    "id": "ccache",
-    "version": "git-emscripten",
-    "bitness": 64,
-    "url": "https://github.com/juj/ccache.git",
-    "git_branch": "emscripten",
-    "activated_path": "%installation_dir%/bin",
-    "activated_env": "_EMCC_CCACHE=1;CCACHE_CONFIGPATH=%installation_dir%/emcc_ccache.conf",
-    "cmake_build_type": "Release",
-    "custom_install_script": "build_ccache"
   }
   ],
 
   "sdks": [
   {
     "version": "main",
-    "uses": ["python-8.0.0", "llvm-8.0.0", "node-8.0.0", "emscripten-main-64bit", "binaryen-8.0.0"],
+    "uses": ["python-8.0.0", "llvm-8.0.0", "node-8.0.0", "emscripten-8.0.0", "binaryen-8.0.0"],
     "os": "win"
   },
   {
     "version": "main",
-    "uses": ["python-8.0.0", "llvm-8.0.0", "node-8.0.0", "emscripten-main-64bit", "binaryen-8.0.0"],
+    "uses": ["python-8.0.0", "llvm-8.0.0", "node-8.0.0", "emscripten-8.0.0", "binaryen-8.0.0"],
     "os": "macos"
   },
   {
     "version": "main",
-    "uses": ["llvm-8.0.0", "emscripten-main-32bit", "binaryen-8.0.0"],
+    "uses": ["llvm-8.0.0", "emscripten-8.0.0", "binaryen-8.0.0"],
     "os": "linux"
   },
   {

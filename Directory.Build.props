@@ -36,5 +36,6 @@
     <NodeDir>$(ProjectDir)\node\$(VersionPrefix)</NodeDir>
     <PythonDir>$(ProjectDir)\python\$(VersionPrefix)</PythonDir>
     <LLVMDir>$(ProjectDir)\llvm\$(VersionPrefix)</LLVMDir>
+    <EmscriptenDir>$(ProjectDir)\emscripten\$(VersionPrefix)</EmscriptenDir>
   </PropertyGroup>
 </Project>

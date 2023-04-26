@@ -31,6 +31,7 @@
     <runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>14.0.0-alpha.1.23221.2</runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>14.0.0-alpha.1.23221.2</runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>14.0.0-alpha.1.23221.2</runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>8.0.0-preview.4.23226.1</MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StabilizePackageVersion Condition="'$(StabilizePackageVersion)' == ''">false</StabilizePackageVersion>
