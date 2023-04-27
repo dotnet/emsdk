@@ -33,20 +33,20 @@
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
                       Condition="'$(BuildArchitecture)' != ''" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
+                      Version="$(NodePkgVersion)"
+                      PackageArch="$(TargetArchitecture)"
+                      Condition="'$(TargetArchitecture)' != ''" />
+    <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
+                      Version="$(NodePkgVersion)"
+                      PackageArch="$(BuildArchitecture)"
+                      Condition="'$(BuildArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
                       Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
-                      PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
-    <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
-                      Version="$(NodePkgVersion)"
-                      PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
-    <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
-                      Version="$(NodePkgVersion)"
                       PackageArch="$(BuildArchitecture)"
                       Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
@@ -134,59 +134,56 @@
     <Exec WorkingDirectory="$(RepoRoot)"
           Command="$(EmSdkFileName) activate $(EmscriptenVersion)" />
 
-    <PropertyGroup>
-      <NodeDirectory>$([System.IO.Directory]::GetDirectories("$(RepoRoot)\node", "*"))</NodeDirectory>
-      <PythonDirectory Condition="'$(UsesPythonFromEmsdk)' == 'true'">$([System.IO.Directory]::GetDirectories("$(RepoRoot)\python", "*"))</PythonDirectory>
-      <UpstreamDirectory>$(RepoRoot)\upstream</UpstreamDirectory>
-      <UpstreamEmscriptenDirectory>$(UpstreamDirectory)\emscripten</UpstreamEmscriptenDirectory>
-    </PropertyGroup>
+    <Message Importance="High" Text="Found node directory: $(NodeDir)" />
+    <Message Importance="High" Text="Found python directory: $(PythonDir)" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
+    <Message Importance="High" Text="Found binaryen directory: $(BinaryenDir)" />
+    <Message Importance="High" Text="Found LLVM directory: $(LLVMDir)" />
+    <Message Importance="High" Text="Found emscripten directory: $(EmscriptenDir)" />
 
-    <Message Importance="High" Text="Found node directory: $(NodeDirectory)" />
-    <Message Importance="High" Text="Found python directory: $(PythonDirectory)" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
-    <Message Importance="High" Text="Found upstream directory: $(UpstreamDirectory)" />
-
-    <Message Importance="High" Text="Pruning node modules in: $(UpstreamEmscriptenDirectory)" />
+    <Message Importance="High" Text="Pruning node modules in: $(EmscriptenDir)" />
     <PropertyGroup>
-      <NpmPath>$(NodeDirectory)/bin:$(PATH)</NpmPath>
-      <NpmPath Condition="$([MSBuild]::IsOSPlatform(Windows))">$(NodeDirectory)\bin%3B$(PATH.Replace(';', '%3B'))</NpmPath>
+      <NpmPath>$(NodeDir)/bin:$(PATH)</NpmPath>
+      <NpmPath Condition="$([MSBuild]::IsOSPlatform(Windows))">$(NodeDir)\bin%3B$(PATH.Replace(';', '%3B'))</NpmPath>
     </PropertyGroup>
     <ItemGroup>
       <NpmEnvironmentVariables Include="PATH=$(NpmPath)" />
     </ItemGroup>
 
-    <Exec WorkingDirectory="$(RepoRoot)"
-      Command="$(PythonFileName) eng/sanitize.py $(RepoRoot)" />
-    <!-- clang-wrapper.sh hardcodes clang-17 at the moment so make sure it still exists -->
+  <!--  <Exec WorkingDirectory="$(RepoRoot)"
+      Command="$(PythonFileName) eng/sanitize.py $(RepoRoot)" />-->
+    <!-- clang-wrapper.sh hardcodes clang-14 at the moment so make sure it still exists -->
     <Error Text="Update clang-wrapper.sh to point at the correct clang-* version"
-      Condition="!Exists('$(UpstreamDirectory)\bin\clang-17') and !$([MSBuild]::IsOSPlatform(Windows))" />
-    <Delete Files="$(UpstreamDirectory)\bin\clang"
+      Condition="!Exists('$(LLVMDir)\bin\clang-14') and !$([MSBuild]::IsOSPlatform(Windows))" />
+    <Delete Files="$(LLVMDir)\bin\clang"
       Condition="!$([MSBuild]::IsOSPlatform(Windows))" />
-    <Delete Files="$(UpstreamDirectory)\bin\binaryen-unittests"
-      Condition="Exists('$(UpstreamDirectory)\bin\binaryen-unittests')" />
+    <Delete Files="$(BinaryenDir)\bin\binaryen-unittests"
+      Condition="Exists('$(BinaryenDir)\bin\binaryen-unittests')" />
     <Copy SourceFiles="$(RepoRoot)\eng\clang-wrapper.sh"
-      DestinationFiles="$(UpstreamDirectory)\bin\clang"
+      DestinationFiles="$(LLVMDir)\bin\clang"
       Condition="!$([MSBuild]::IsOSPlatform(Windows))"/>
 
     <!-- These symlinks are broken after npm prune -->
-    <Delete Files="$(UpstreamEmscriptenDirectory)\node_modules\.bin\es-check" />
-    <Delete Files="$(UpstreamEmscriptenDirectory)\node_modules\.bin\mkdirp" />
-    <Delete Files="$(UpstreamEmscriptenDirectory)\node_modules\.bin\prettyjson" />
-    <Delete Files="$(UpstreamEmscriptenDirectory)\node_modules\.bin\tabtab" />
-    <Delete Files="$(UpstreamEmscriptenDirectory)\node_modules\.bin\wscat" />
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\es-check" />
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\mkdirp" />
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\prettyjson" />
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\tabtab" />
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\wscat" />
 
     <PropertyGroup>
       <EmBuilder Condition="$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder.bat</EmBuilder>
       <EmBuilder Condition="!$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder</EmBuilder>
     </PropertyGroup>
 
-    <Exec WorkingDirectory="$(RepoRoot)/upstream/emscripten"
+    <Exec WorkingDirectory="$(EmscriptenDir)"
       Command="$(EmBuilder) build MINIMAL" />
 
     <Message Importance="High" Text="Copy files to artifacts directory..." />
     <ItemGroup>
-      <NodeFiles Include="$(NodeDirectory)\**\*" />
-      <PythonFiles Include="$(PythonDirectory)\**\*" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
-      <UpstreamFiles Include="$(UpstreamDirectory)\**\*" />
+      <NodeFiles Include="$(NodeDir)\**\*" />
+      <PythonFiles Include="$(PythonDir)\**\*" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
+      <LLVMFiles Include="$(LLVMDir)\**\*" />
+      <BinaryenFiles Include="$(BinaryenDir)\**\*" />
+      <EmscriptenFiles Include="$(EmscriptenDir)\**\*" />
     </ItemGroup>
 
     <Copy SourceFiles="@(NodeFiles)"
@@ -196,8 +193,14 @@
           DestinationFiles="$(ArtifactsObjDir)python\%(RecursiveDir)%(Filename)%(Extension)"
           Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
 
-    <Copy SourceFiles="@(UpstreamFiles)"
+    <Copy SourceFiles="@(LLVMFiles)"
           DestinationFiles="$(ArtifactsObjDir)upstream\%(RecursiveDir)%(Filename)%(Extension)" />
+
+    <Copy SourceFiles="@(BinaryenFiles)"
+          DestinationFiles="$(ArtifactsObjDir)upstream\%(RecursiveDir)%(Filename)%(Extension)" />
+
+    <Copy SourceFiles="@(EmscriptenFiles)"
+          DestinationFiles="$(ArtifactsObjDir)upstream\emscripten\%(RecursiveDir)%(Filename)%(Extension)" />
 
     <!-- Fixup files that were symlinks originally (on Linux/Mac, Windows has an equivalent already) -->
     <ItemGroup>

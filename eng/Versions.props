@@ -21,6 +21,8 @@
     <runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>8.0.0-preview.4.23224.1</runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>8.0.0-preview.4.23224.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>8.0.0-preview.4.23224.1</runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>
+    <runtimelinuxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-preview.4.23220.1</runtimelinuxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-preview.4.23220.1</runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
     <runtimeosxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-preview.4.23220.1</runtimeosxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
     <runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-preview.4.23220.1</runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-preview.4.23220.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>

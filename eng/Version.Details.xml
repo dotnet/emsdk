@@ -41,6 +41,14 @@
       <Uri>https://github.com/dotnet/cpython</Uri>
       <Sha>39b17253329cb3e967da38bf2c98d2d3f0566c0b</Sha>
     </Dependency>
+    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-preview.4.23220.1">
+      <Uri>https://github.com/dotnet/node</Uri>
+      <Sha>56d25a9b4533ce7fa79821c2ff44d48e6a2c3499</Sha>
+    </Dependency>
+    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-preview.4.23220.1">
+      <Uri>https://github.com/dotnet/node</Uri>
+      <Sha>56d25a9b4533ce7fa79821c2ff44d48e6a2c3499</Sha>
+    </Dependency>
     <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-preview.4.23220.1">
       <Uri>https://github.com/dotnet/node</Uri>
       <Sha>56d25a9b4533ce7fa79821c2ff44d48e6a2c3499</Sha>
