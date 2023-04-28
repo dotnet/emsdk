@@ -50,6 +50,7 @@
                       PackageArch="$(BuildArchitecture)"
                       Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
+                      PackageArch="$(BuildArchitecture)"
                       Version="$(EmscriptenPkgVersion)" />
     <_PackageReferenceDeduplicated Include="@(PackageReference->Distinct())" />
     <PackageReference Remove="@(PackageReference)" />
@@ -107,7 +108,7 @@
     <Target Name="CopyEmscripten" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying Emscripten to $(EmscriptenDir)" />
     <ItemGroup>
-      <Emscripten Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\**"
+      <EmscriptenFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport')) == 'true'" />
     </ItemGroup>
