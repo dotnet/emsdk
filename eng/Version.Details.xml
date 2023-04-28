@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
   <ProductDependencies>
-    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23219.2">
+    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>a85dd05d1cba42294590c5a40b2e24303f0b56e3</Sha>
+      <Sha>3f9d99e10e0af821ad02036574112bbd8859f6d2</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23219.2">
+    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>a85dd05d1cba42294590c5a40b2e24303f0b56e3</Sha>
+      <Sha>3f9d99e10e0af821ad02036574112bbd8859f6d2</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23219.2">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>a85dd05d1cba42294590c5a40b2e24303f0b56e3</Sha>
+      <Sha>3f9d99e10e0af821ad02036574112bbd8859f6d2</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23219.2">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>a85dd05d1cba42294590c5a40b2e24303f0b56e3</Sha>
+      <Sha>3f9d99e10e0af821ad02036574112bbd8859f6d2</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23219.2">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>a85dd05d1cba42294590c5a40b2e24303f0b56e3</Sha>
+      <Sha>3f9d99e10e0af821ad02036574112bbd8859f6d2</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23219.2">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>a85dd05d1cba42294590c5a40b2e24303f0b56e3</Sha>
+      <Sha>3f9d99e10e0af821ad02036574112bbd8859f6d2</Sha>
     </Dependency>
     <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23224.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
@@ -65,33 +65,33 @@
       <Uri>https://github.com/dotnet/node</Uri>
       <Sha>56d25a9b4533ce7fa79821c2ff44d48e6a2c3499</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23221.2">
+    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23224.3">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
+      <Sha>8365ad44a42a88ddb033d3ab7fc23b09b86af25d</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23221.2">
+    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23224.3">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
+      <Sha>8365ad44a42a88ddb033d3ab7fc23b09b86af25d</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23221.2">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23224.3">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
+      <Sha>8365ad44a42a88ddb033d3ab7fc23b09b86af25d</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23221.2">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23224.3">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
+      <Sha>8365ad44a42a88ddb033d3ab7fc23b09b86af25d</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23221.2">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23224.3">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
+      <Sha>8365ad44a42a88ddb033d3ab7fc23b09b86af25d</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23221.2">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="14.0.0-alpha.1.23224.3">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>22bd769077ac1e84b5ad9d8d7cc27750c5e62275</Sha>
+      <Sha>8365ad44a42a88ddb033d3ab7fc23b09b86af25d</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-preview.4.23226.1">
+    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-preview.4.23227.1">
       <Uri>https://github.com/dotnet/emscripten</Uri>
-      <Sha>21dffcc20e5c02d92d0b3c97bb90e834de838920</Sha>
+      <Sha>09cd97728a7cde68dfea2932a41886f5205e80d5</Sha>
     </Dependency>
   </ProductDependencies>
   <ToolsetDependencies>
