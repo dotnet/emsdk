@@ -167,7 +167,7 @@
     </PropertyGroup>
 
     <Exec WorkingDirectory="$(RepoRoot)"
-          Command="$(EmSdkFileName) activate $(EmscriptenVersion)" />
+          Command="$(EmSdkFileName) activate $(EmscriptenSourceVersion)" />
 
     <Message Importance="High" Text="Found node directory: $(NodeDir)" />
     <Message Importance="High" Text="Found python directory: $(PythonDir)" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
