@@ -261,10 +261,6 @@
     <Copy SourceFiles="@(EmscriptenFiles)"
           DestinationFolder="$(ArtifactsObjDir)upstream\emscripten\%(RecursiveDir)" />
 
-    <Exec WorkingDirectory="$(ArtifactsObjDir)upstream\emscripten\"
-      Command="$(HostNodeDir)\bin\$(NodeFileName) $(NativeNodeBinDir)\bin\$(NpmFileName) ci --production --no-optional"
-      IgnoreStandardErrorWarningFormat="true" />
-
     <!-- Fixup files that were symlinks originally (on Linux/Mac, Windows has an equivalent already) -->
     <ItemGroup>
       <EmscriptenNodeModulesBinFiles Include="$(ArtifactsObjDir)upstream\emscripten\node_modules\.bin\*" />
