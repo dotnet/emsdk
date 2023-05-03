@@ -232,7 +232,8 @@
     </PropertyGroup>
 
     <Exec WorkingDirectory="$(EmscriptenDir)"
-      Command="$(EmBuilder) build MINIMAL" />
+      Command="$(EmBuilder) build MINIMAL"
+      EnvironmentVariables="EM_LLVM_ROOT=$(HostLLVMDir)\bin;EM_BINARYEN_ROOT=$(HostBinaryenDir);EM_NODE_JS=$(HostNodeDir)\bin\node"/>
 
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\google-closure-compiler" />
 
