@@ -188,20 +188,20 @@
     </ItemGroup>
 
     <Copy SourceFiles="@(NodeFiles)"
-          DestinationFiles="$(ArtifactsObjDir)node\%(RecursiveDir)%(Filename)%(Extension)" />
+          DestinationFolder="$(ArtifactsObjDir)node\%(RecursiveDir)" />
 
     <Copy SourceFiles="@(PythonFiles)"
-          DestinationFiles="$(ArtifactsObjDir)python\%(RecursiveDir)%(Filename)%(Extension)"
+          DestinationFolder="$(ArtifactsObjDir)python\%(RecursiveDir)"
           Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
 
     <Copy SourceFiles="@(LLVMFiles)"
-          DestinationFiles="$(ArtifactsObjDir)upstream\%(RecursiveDir)%(Filename)%(Extension)" />
+          DestinationFolder="$(ArtifactsObjDir)upstream\%(RecursiveDir)" />
 
     <Copy SourceFiles="@(BinaryenFiles)"
-          DestinationFiles="$(ArtifactsObjDir)upstream\%(RecursiveDir)%(Filename)%(Extension)" />
+          DestinationFolder="$(ArtifactsObjDir)upstream\%(RecursiveDir)" />
 
     <Copy SourceFiles="@(EmscriptenFiles)"
-          DestinationFiles="$(ArtifactsObjDir)upstream\emscripten\%(RecursiveDir)%(Filename)%(Extension)" />
+          DestinationFolder="$(ArtifactsObjDir)upstream\emscripten\%(RecursiveDir)" />
 
     <!-- Fixup files that were symlinks originally (on Linux/Mac, Windows has an equivalent already) -->
     <ItemGroup>
