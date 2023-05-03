@@ -352,7 +352,7 @@
     <Delete Files="@(DeleteCacheFiles)" />
   </Target>
 
-  <Target Name="Pack" DependsOnTargets="Build">
+  <Target Name="ReallyPack" DependsOnTargets="Build" BeforeTargets="Pack">
     <Message Importance="High" Text="Creating nuget packages..." />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Node\Microsoft.NET.Runtime.Emscripten.Node.pkgproj" Targets="Build" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Python\Microsoft.NET.Runtime.Emscripten.Python.pkgproj" Targets="Build" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true' and '$(UsesPythonFromEmsdk)' == 'true'" />
