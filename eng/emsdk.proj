@@ -60,11 +60,11 @@
   <Target Name="CopyBinaryen" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying Binaryen to $(BinaryenDir)" />
     <ItemGroup>
-      <BinaryenFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <BinaryenPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport')) == 'true'" />
     </ItemGroup>
-    <Copy SourceFiles="@(BinaryenFiles)" DestinationFolder="$(BinaryenDir)\%(RecursiveDir)">
+    <Copy SourceFiles="@(BinaryenPkgFiles)" DestinationFolder="$(BinaryenDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>
@@ -72,11 +72,11 @@
   <Target Name="CopyNode" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
     <Message Importance="High" Text="** Copying Node to $(NodeDir)" />
     <ItemGroup>
-      <NodeFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <NodePkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Node.Transport')) == 'true'" />
     </ItemGroup>
-    <Copy SourceFiles="@(NodeFiles)" DestinationFolder="$(NodeDir)\%(RecursiveDir)">
+    <Copy SourceFiles="@(NodePkgFiles)" DestinationFolder="$(NodeDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>
@@ -84,11 +84,11 @@
   <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
     <Message Importance="High" Text="** Copying Python to $(PythonDir)" />
     <ItemGroup>
-      <PythonFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <PythonPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Python.Transport')) == 'true'" />
     </ItemGroup>
-    <Copy SourceFiles="@(PythonFiles)" DestinationFolder="$(PythonDir)\%(RecursiveDir)">
+    <Copy SourceFiles="@(PythonPkgFiles)" DestinationFolder="$(PythonDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>
@@ -96,11 +96,11 @@
   <Target Name="CopyLLVM" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying LLVM to $(LLVMDir)" />
     <ItemGroup>
-      <LLVMFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <LLVMPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.LLVM.Transport')) == 'true'" />
     </ItemGroup>
-    <Copy SourceFiles="@(LLVMFiles)" DestinationFolder="$(LLVMDir)\%(RecursiveDir)">
+    <Copy SourceFiles="@(LLVMPkgFiles)" DestinationFolder="$(LLVMDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>
@@ -108,11 +108,11 @@
     <Target Name="CopyEmscripten" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying Emscripten to $(EmscriptenDir)" />
     <ItemGroup>
-      <EmscriptenFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\**"
+      <EmscriptenPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport')) == 'true'" />
     </ItemGroup>
-    <Copy SourceFiles="@(EmscriptenFiles)" DestinationFolder="$(EmscriptenDir)\%(RecursiveDir)">
+    <Copy SourceFiles="@(EmscriptenPkgFiles)" DestinationFolder="$(EmscriptenDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>
