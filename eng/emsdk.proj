@@ -59,49 +59,77 @@
   </ItemGroup>
 
   <Target Name="CopyBinaryen" BeforeTargets="ReallyBuild">
-    <Message Importance="High" Text="** Copying Binaryen to $(BinaryenDir)" />
+    <Message Importance="High" Text="** Copying $(TargetArchitecture) Binaryen to $(BinaryenDir)" />
+    <Message Importance="High" Text="** Copying $(BuildArchitecture) Binaryen to $(HostBinaryenDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
-      <BinaryenPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <BinaryenPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(TargetArchitecture)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport')) == 'true'" />
+      <HostBinaryenPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(BuildArchitecture)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport')) == 'true'" />
     </ItemGroup>
     <Copy SourceFiles="@(BinaryenPkgFiles)" DestinationFolder="$(BinaryenDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
+    <Copy SourceFiles="@(HostBinaryenPkgFiles)" DestinationFolder="$(HostBinaryenDir)\%(RecursiveDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
   </Target>
 
   <Target Name="CopyNode" BeforeTargets="ReallyBuild">
-    <Message Importance="High" Text="** Copying Node to $(NodeDir)" />
+    <Message Importance="High" Text="** Copying $(TargetArchitecture) Node to $(NodeDir)" />
+    <Message Importance="High" Text="** Copying $(BuildArchitecture) Node to $(HostNodeDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
-      <NodePkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <NodePkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(TargetArchitecture)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Node.Transport')) == 'true'" />
+      <HostNodePkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(BuildArchitecture)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Node.Transport')) == 'true'" />
     </ItemGroup>
     <Copy SourceFiles="@(NodePkgFiles)" DestinationFolder="$(NodeDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
+    <Copy SourceFiles="@(HostNodePkgFiles)" DestinationFolder="$(HostNodeDir)\%(RecursiveDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
   </Target>
 
   <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
-    <Message Importance="High" Text="** Copying Python to $(PythonDir)" />
+    <Message Importance="High" Text="** Copying $(TargetArchitecture) Python to $(PythonDir)" />
+    <Message Importance="High" Text="** Copying $(BuildArchitecture) Python to $(HostPythonDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
-      <PythonPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <PythonPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(TargetArchitecture)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Python.Transport')) == 'true'" />
+      <HostPythonPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(BuildArchitecture)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.Python.Transport')) == 'true'" />
     </ItemGroup>
     <Copy SourceFiles="@(PythonPkgFiles)" DestinationFolder="$(PythonDir)\%(RecursiveDir)">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
+    <Copy SourceFiles="@(HostPythonPkgFiles)" DestinationFolder="$(HostPythonDir)\%(RecursiveDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
   </Target>
 
   <Target Name="CopyLLVM" BeforeTargets="ReallyBuild">
-    <Message Importance="High" Text="** Copying LLVM to $(LLVMDir)" />
+    <Message Importance="High" Text="** Copying $(TargetArchitecture) LLVM to $(LLVMDir)" />
+    <Message Importance="High" Text="** Copying $(BuildArchitecture) LLVM to $(HostLLVMDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
-      <LLVMPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
+      <LLVMPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(TargetArchitecture)\**"
+                 FileArch="%(PackageReference.PackageArch)"
+                 Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.LLVM.Transport')) == 'true'" />
+      <HostLLVMPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-$(BuildArchitecture)\**"
                  FileArch="%(PackageReference.PackageArch)"
                  Condition="$([System.String]::Copy(%(PackageReference.Identity)).Contains('Microsoft.NETCore.Runtime.Wasm.LLVM.Transport')) == 'true'" />
     </ItemGroup>
     <Copy SourceFiles="@(LLVMPkgFiles)" DestinationFolder="$(LLVMDir)\%(RecursiveDir)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
+    <Copy SourceFiles="@(HostLLVMPkgFiles)" DestinationFolder="$(HostLLVMDir)\%(RecursiveDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
     </Copy>
   </Target>
@@ -124,6 +152,8 @@
     <PropertyGroup>
       <EmSdkFileName Condition="!$([MSBuild]::IsOSPlatform(Windows))">./emsdk</EmSdkFileName>
       <EmSdkFileName Condition="$([MSBuild]::IsOSPlatform(Windows))">emsdk.bat</EmSdkFileName>
+      <NodeFileName Condition="!$([MSBuild]::IsOSPlatform(Windows))">node</NodeFileName>
+      <NodeFileName Condition="$([MSBuild]::IsOSPlatform(Windows))">node.exe</NodeFileName>
       <NpmFileName Condition="!$([MSBuild]::IsOSPlatform(Windows))">npm</NpmFileName>
       <NpmFileName Condition="$([MSBuild]::IsOSPlatform(Windows))">npm.cmd</NpmFileName>
       <PythonFileName Condition="!$([MSBuild]::IsOSPlatform(Windows))">python3</PythonFileName>
@@ -203,6 +233,27 @@
 
     <Copy SourceFiles="@(EmscriptenFiles)"
           DestinationFolder="$(ArtifactsObjDir)upstream\emscripten\%(RecursiveDir)" />
+
+    <!-- Run npm ci in emscripten dir -->
+    <Exec WorkingDirectory="$(HostNodeDir)\bin"
+      Command="ln -sf ../lib/node_modules/npm/bin/npm-cli.js npm"
+      Condition="'$(PackageHostOS)' != 'win'"
+      IgnoreStandardErrorWarningFormat="true" />
+    <Exec WorkingDirectory="$(HostNodeDir)\bin"
+      Command="ln -sf ../lib/node_modules/npm/bin/npx-cli.js npx"
+      Condition="'$(PackageHostOS)' != 'win'"
+      IgnoreStandardErrorWarningFormat="true" />
+    <Exec WorkingDirectory="$(NodeDir)\bin"
+      Command="ln -sf ../lib/node_modules/npm/bin/npm-cli.js npm"
+      Condition="'$(PackageHostOS)' != 'win'"
+      IgnoreStandardErrorWarningFormat="true" />
+    <Exec WorkingDirectory="$(NodeDir)\bin"
+      Command="ln -sf ../lib/node_modules/npm/bin/npx-cli.js npx"
+      Condition="'$(PackageHostOS)' != 'win'"
+      IgnoreStandardErrorWarningFormat="true" />
+    <Exec WorkingDirectory="$(ArtifactsObjDir)upstream\emscripten\"
+      Command="$(HostNodeDir)\bin\$(NodeFileName) $(NativeNodeBinDir)\bin\$(NpmFileName) ci --production --no-optional"
+      IgnoreStandardErrorWarningFormat="true" />
 
     <!-- Fixup files that were symlinks originally (on Linux/Mac, Windows has an equivalent already) -->
     <ItemGroup>
@@ -297,9 +348,6 @@
     <ItemGroup>
       <UpstreamBinFiles Include="$(ArtifactsObjDir)upstream\bin\*" />
     </ItemGroup>
-    <Message Importance="High" Text="Stripping binaries..." />
-    <Exec Condition="'$(StripCommand)' != ''" Command="$(StripCommand) $(ArtifactsObjDir)node/bin/node" IgnoreStandardErrorWarningFormat="true" />
-    <Exec Condition="'$(StripCommand)' != ''" Command="$(StripCommand) %(UpstreamBinFiles.Identity) || true" IgnoreStandardErrorWarningFormat="true" />
   </Target>
   <Target Name="Pack" DependsOnTargets="Build">
     <Message Importance="High" Text="Creating nuget packages..." />

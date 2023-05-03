@@ -11,6 +11,11 @@
     <StableVersion>$(VersionPrefix)</StableVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <_hostArch>$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLowerInvariant)</_hostArch>
+    <BuildArchitecture>$(_hostArch)</BuildArchitecture>
+  </PropertyGroup>
+
     <!-- Common properties -->
   <PropertyGroup>
 
@@ -33,9 +38,17 @@
 
   <PropertyGroup>
     <BinaryenDir>$(ProjectDir)\binaryen\$(VersionPrefix)</BinaryenDir>
+    <HostBinaryenDir Condition="'$(BuildArchitecture)' == '$(TargetArchitecture)'">$(BinaryenDir)</HostBinaryenDir>
+    <HostBinaryenDir Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">$(BaseIntermediateOutputPath)\binaryen-$(BuildArchitecture)</HostBinaryenDir>
     <NodeDir>$(ProjectDir)\node\$(VersionPrefix)</NodeDir>
+    <HostNodeDir Condition="'$(BuildArchitecture)' == '$(TargetArchitecture)'">$(NodeDir)</HostNodeDir>
+    <HostNodeDir Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">$(BaseIntermediateOutputPath)\node-$(BuildArchitecture)</HostNodeDir>
     <PythonDir>$(ProjectDir)\python\$(VersionPrefix)</PythonDir>
+    <HostPythonDir Condition="'$(BuildArchitecture)' == '$(TargetArchitecture)'">$(PythonDir)</HostPythonDir>
+    <HostPythonDir Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">$(BaseIntermediateOutputPath)\python-$(BuildArchitecture)</HostPythonDir>
     <LLVMDir>$(ProjectDir)\llvm\$(VersionPrefix)</LLVMDir>
+    <HostLLVMDir Condition="'$(BuildArchitecture)' == '$(TargetArchitecture)'">$(LLVMDir)</HostLLVMDir>
+    <HostLLVMDir Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'">$(BaseIntermediateOutputPath)\llvm-$(BuildArchitecture)</HostLLVMDir>
     <EmscriptenDir>$(ProjectDir)\emscripten\$(VersionPrefix)</EmscriptenDir>
   </PropertyGroup>
 </Project>
