@@ -217,6 +217,7 @@
 
     <!-- These symlinks are broken after npm prune -->
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\es-check" />
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\google-closure-compiler" />
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\mkdirp" />
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\prettyjson" />
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\tabtab" />
@@ -229,6 +230,8 @@
 
     <Exec WorkingDirectory="$(EmscriptenDir)"
       Command="$(EmBuilder) build MINIMAL" />
+
+    <Delete Files="$(EmscriptenDir)\node_modules\.bin\google-closure-compiler" />
 
     <Message Importance="High" Text="Copy files to artifacts directory..." />
     <ItemGroup>
@@ -291,6 +294,7 @@
     <Delete Files="$(ArtifactsObjDir)upstream\lib\libclang.dylib" /> <!-- only libclang-cpp.dylib is used -->
     <Delete Files="$(ArtifactsObjDir)node\bin\npm" />
     <Delete Files="$(ArtifactsObjDir)node\bin\npx" />
+    <Delete Files="$(ArtifactsObjDir)node\lib\node_modules\.bin\google-closure-compiler" /> <!-- resistent to deletion -->
 
     <!-- on Windows these are identical copies that should be symlinks, remove them for now -->
     <!--<Delete Files="$(ArtifactsObjDir)upstream\bin\clang++.exe" /> Used by .23 directly -->
