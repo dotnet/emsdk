@@ -214,6 +214,9 @@
     <Copy SourceFiles="$(RepoRoot)\eng\clang-wrapper.sh"
       DestinationFiles="$(LLVMDir)\bin\clang"
       Condition="!$([MSBuild]::IsOSPlatform(Windows))"/>
+    <Copy SourceFiles="$(RepoRoot)\eng\clang-wrapper.sh"
+      DestinationFiles="$(LLVMDir)\bin\clang++"
+      Condition="!$([MSBuild]::IsOSPlatform(Windows))"/>
 
     <!-- These symlinks are broken after npm prune -->
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\es-check" />
