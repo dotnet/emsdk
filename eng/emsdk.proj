@@ -203,7 +203,7 @@
       IgnoreStandardErrorWarningFormat="true" />
 
     <Exec WorkingDirectory="$(RepoRoot)"
-      Command="$(PythonPath) eng/sanitize.py $(RepoRoot)" />
+      Command="$(PythonPath) eng/sanitize.py $(RepoRoot) $([System.IO.Directory]::GetParent($(HostNodeDir)))" />
     <!-- clang-wrapper.sh hardcodes clang-14 at the moment so make sure it still exists -->
     <Error Text="Update clang-wrapper.sh to point at the correct clang-* version"
       Condition="!Exists('$(LLVMDir)\bin\clang-14') and !$([MSBuild]::IsOSPlatform(Windows))" />
