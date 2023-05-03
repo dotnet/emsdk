@@ -11,6 +11,7 @@
     <BinaryenPkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmBinaryenTransportVersion)</BinaryenPkgVersion>
     <PythonPkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion)</PythonPkgVersion>
     <PythonPkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion)</PythonPkgVersion>
+    <NodePkgVersion Condition="'$(PackageHostOS)' == 'linux'">$(runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
     <NodePkgVersion Condition="'$(PackageHostOS)' == 'win'">$(runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
     <NodePkgVersion Condition="'$(PackageHostOS)' == 'osx'">$(runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion)</NodePkgVersion>
     <EmscriptenPkgVersion>$(MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion)</EmscriptenPkgVersion>
@@ -69,7 +70,7 @@
     </Copy>
   </Target>
 
-  <Target Name="CopyNode" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
+  <Target Name="CopyNode" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying Node to $(NodeDir)" />
     <ItemGroup>
       <NodePkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\$(PackageHostOS)-%(PackageReference.PackageArch)\**"
