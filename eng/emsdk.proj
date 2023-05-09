@@ -231,6 +231,10 @@
       <EmBuilder Condition="!$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder</EmBuilder>
     </PropertyGroup>
 
+    <!-- Emscripten 3.1.34 doesn't support multiple embuilder tasks in the same run -->
+    <Exec WorkingDirectory="$(EmscriptenDir)"
+      Command="$(EmBuilder) build SYSTEM"
+      EnvironmentVariables="EM_LLVM_ROOT=$(HostLLVMDir)\bin;EM_BINARYEN_ROOT=$(HostBinaryenDir);EM_NODE_JS=$(HostNodeDir)\bin\node"/>
     <Exec WorkingDirectory="$(EmscriptenDir)"
       Command="$(EmBuilder) build MINIMAL"
       EnvironmentVariables="EM_LLVM_ROOT=$(HostLLVMDir)\bin;EM_BINARYEN_ROOT=$(HostBinaryenDir);EM_NODE_JS=$(HostNodeDir)\bin\node"/>
