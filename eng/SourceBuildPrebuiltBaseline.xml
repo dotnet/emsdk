@@ -1,7 +1,7 @@
 <UsageData>
   <IgnorePatterns>
     <UsagePattern IdentityGlob="Microsoft.Build.*" />
-    <UsagePattern IdentityGlob="Microsoft.DotNet.XliffTasks.*" />
+    <UsagePattern IdentityGlob="Microsoft.DotNet.XliffTasks" />
     <UsagePattern IdentityGlob="Microsoft.SourceBuild.Intermediate.*" />
     <UsagePattern IdentityGlob="Microsoft.SourceLink.*" />
   </IgnorePatterns>
