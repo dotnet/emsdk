@@ -21,35 +21,35 @@
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
                       Version="$(LLVMPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
                       Version="$(LLVMPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
                       Version="$(NodePkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
                       Version="$(NodePkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
                       PackageArch="$(BuildArchitecture)"
                       Version="$(EmscriptenPkgVersion)" />
@@ -58,7 +58,7 @@
     <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
   </ItemGroup>
 
-  <Target Name="CopyBinaryen" BeforeTargets="ReallyBuild">
+  <Target Name="CopyBinaryen" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying $(TargetArchitecture) Binaryen to $(BinaryenDir)" />
     <Message Importance="High" Text="** Copying $(BuildArchitecture) Binaryen to $(HostBinaryenDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
@@ -77,7 +77,7 @@
     </Copy>
   </Target>
 
-  <Target Name="CopyNode" BeforeTargets="ReallyBuild">
+  <Target Name="CopyNode" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying $(TargetArchitecture) Node to $(NodeDir)" />
     <Message Importance="High" Text="** Copying $(BuildArchitecture) Node to $(HostNodeDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
@@ -96,7 +96,7 @@
     </Copy>
   </Target>
 
-  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
+  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" ">
     <Message Importance="High" Text="** Copying $(TargetArchitecture) Python to $(PythonDir)" />
     <Message Importance="High" Text="** Copying $(BuildArchitecture) Python to $(HostPythonDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
@@ -115,7 +115,7 @@
     </Copy>
   </Target>
 
-  <Target Name="CopyLLVM" BeforeTargets="ReallyBuild">
+  <Target Name="CopyLLVM" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying $(TargetArchitecture) LLVM to $(LLVMDir)" />
     <Message Importance="High" Text="** Copying $(BuildArchitecture) LLVM to $(HostLLVMDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
@@ -134,7 +134,7 @@
     </Copy>
   </Target>
 
-    <Target Name="CopyEmscripten" BeforeTargets="ReallyBuild">
+    <Target Name="CopyEmscripten" Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" BeforeTargets="ReallyBuild">
     <Message Importance="High" Text="** Copying Emscripten to $(EmscriptenDir)" />
     <ItemGroup>
       <EmscriptenPkgFiles Include="$(NuGetPackageRoot)\$([System.String]::Copy(%(PackageReference.Identity)).ToLowerInvariant())\%(PackageReference.Version)\tools\**"
