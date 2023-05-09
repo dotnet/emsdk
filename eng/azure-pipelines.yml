@@ -70,17 +70,17 @@ stages:
           dependsOn: Build_macOS
           displayName: Sign macOS
           timeoutInMinutes: 30
-        strategy:
-          matrix:
-            x64:
-              assetManifestOS: osx
-              assetManifestPlatform: x64
-            arm64:
-              assetManifestOS: osx
-              assetManifestPlatform: arm64
           pool:
             name: $(DncEngInternalBuildPool)
             demands: ImageOverride -equals windows.vs2022.amd64
+          strategy:
+            matrix:
+              x64:
+                assetManifestOS: osx
+                assetManifestPlatform: x64
+              arm64:
+                assetManifestOS: osx
+                assetManifestPlatform: arm64
           steps:
           - task: DownloadPipelineArtifact@2
             inputs:
@@ -95,6 +95,13 @@ stages:
       - job: Build_Linux
         displayName: Linux
         timeoutInMinutes: 30
+        pool:
+          ${{ if eq(variables['System.TeamProject'], 'public') }}:
+            name: $(DncEngPublicBuildPool)
+            demands: ImageOverride -equals build.ubuntu.2204.amd64.open
+          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+            name: $(DncEngInternalBuildPool)
+            demands: ImageOverride -equals build.ubuntu.2204.amd64
         strategy:
           matrix:
             x64:
@@ -105,13 +112,6 @@ stages:
               assetManifestOS: linux
               assetManifestPlatform: arm64
               archflag: --arch arm64
-        pool:
-          ${{ if eq(variables['System.TeamProject'], 'public') }}:
-            name: $(DncEngPublicBuildPool)
-            demands: ImageOverride -equals build.ubuntu.2204.amd64.open
-          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-            name: $(DncEngInternalBuildPool)
-            demands: ImageOverride -equals build.ubuntu.2204.amd64
         steps:
         - bash: |
             ./build.sh $(archflag) --restore --build --pack --ci --configuration $(_BuildConfig) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
@@ -130,17 +130,17 @@ stages:
           dependsOn: Build_Linux
           displayName: Sign Linux
           timeoutInMinutes: 30
-        strategy:
-          matrix:
-            x64:
-              assetManifestOS: linux
-              assetManifestPlatform: x64
-            arm64:
-              assetManifestOS: linux
-              assetManifestPlatform: arm64
           pool:
             name: $(DncEngInternalBuildPool)
             demands: ImageOverride -equals windows.vs2022.amd64
+          strategy:
+            matrix:
+              x64:
+                assetManifestOS: linux
+                assetManifestPlatform: x64
+              arm64:
+                assetManifestOS: linux
+                assetManifestPlatform: arm64
           steps:
           - task: DownloadPipelineArtifact@2
             inputs:
@@ -155,6 +155,13 @@ stages:
       - job: Build_Windows
         displayName: Windows
         timeoutInMinutes: 60
+        pool:
+          ${{ if eq(variables['System.TeamProject'], 'public') }}:
+            name: $(DncEngPublicBuildPool)
+            demands: ImageOverride -equals windows.vs2022.amd64.open
+          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+            name: $(DncEngInternalBuildPool)
+            demands: ImageOverride -equals windows.vs2022.amd64
         strategy:
           matrix:
             x64:
@@ -165,13 +172,6 @@ stages:
               assetManifestOS: win
               assetManifestPlatform: arm64
               archflag: -arch arm64
-        pool:
-          ${{ if eq(variables['System.TeamProject'], 'public') }}:
-            name: $(DncEngPublicBuildPool)
-            demands: ImageOverride -equals windows.vs2022.amd64.open
-          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-            name: $(DncEngInternalBuildPool)
-            demands: ImageOverride -equals windows.vs2022.amd64
         steps:
         - script: |
             .\build.cmd $(archflag) -restore -build -pack -ci -configuration $(_BuildConfig) -sign -publish /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
