@@ -21,35 +21,35 @@
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
                       Version="$(LLVMPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != ''" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
                       Version="$(LLVMPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != ''" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != ''" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != ''" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
                       Version="$(NodePkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != ''" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
                       Version="$(NodePkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != ''" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
                       PackageArch="$(BuildArchitecture)"
                       Version="$(EmscriptenPkgVersion)" />
