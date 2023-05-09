@@ -266,6 +266,14 @@
     <Copy SourceFiles="@(EmscriptenFiles)"
           DestinationFolder="$(ArtifactsObjDir)upstream\emscripten\%(RecursiveDir)" />
 
+    <ItemGroup>
+      <PyCaches Include="$(ArtifactsObjDir)\upstream\**\*.pyc" />
+      <PyCacheDirs Include="@(PyCaches->'%(RelativeDir)')" />
+      <PyCacheDirsDeduplicated Include="@(PyCacheDirs->Distinct())" />
+    </ItemGroup>
+    <RemoveDir Directories="@(PyCacheDirsDeduplicated)" />
+
+
     <!-- Fixup files that were symlinks originally (on Linux/Mac, Windows has an equivalent already) -->
     <ItemGroup>
       <EmscriptenNodeModulesBinFiles Include="$(ArtifactsObjDir)upstream\emscripten\node_modules\.bin\*" />
