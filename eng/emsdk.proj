@@ -52,7 +52,8 @@
                       Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
                       PackageArch="$(BuildArchitecture)"
-                      Version="$(EmscriptenPkgVersion)" />
+                      Version="$(EmscriptenPkgVersion)"
+                      Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
     <_PackageReferenceDeduplicated Include="@(PackageReference->Distinct())" />
     <PackageReference Remove="@(PackageReference)" />
     <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
