@@ -59,7 +59,7 @@ stages:
         - publish: artifacts/packages
           artifact: Packages_macOS_$(assetManifestPlatform)
         - bash: |
-            rm -rf upstream node python
+            rm -rf binaryen node python llvm emscripten
           displayName: Remove temporary artifacts
         - powershell: $(CheckNuGetSizesScript)
           displayName: Check NuGet sizes
@@ -119,7 +119,7 @@ stages:
         - publish: artifacts/packages
           artifact: Packages_Linux_$(assetManifestPlatform)
         - bash: |
-            rm -rf upstream node python
+            rm -rf binaryen node llvm emscripten
           displayName: Remove temporary artifacts
         - powershell: $(CheckNuGetSizesScript)
           displayName: Check NuGet sizes
@@ -179,7 +179,7 @@ stages:
         - publish: artifacts/packages
           artifact: Packages_Windows_$(assetManifestPlatform)
         - script: |
-            rmdir /s /q upstream node python
+            rmdir /s /q binaryen node python llvm emscripten
           displayName: Remove temporary artifacts
         # Upload packages wrapping msis
         - task: CopyFiles@2
