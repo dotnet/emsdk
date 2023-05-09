@@ -96,7 +96,7 @@
     </Copy>
   </Target>
 
-  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" ">
+  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'">
     <Message Importance="High" Text="** Copying $(TargetArchitecture) Python to $(PythonDir)" />
     <Message Importance="High" Text="** Copying $(BuildArchitecture) Python to $(HostPythonDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)'" />
     <ItemGroup>
