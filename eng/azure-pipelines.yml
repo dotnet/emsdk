@@ -39,7 +39,7 @@ stages:
       ############ macOS BUILD ############
       - job: Build_macOS
         displayName: macOS
-        timeoutInMinutes: 30
+        timeoutInMinutes: 120
         pool:
           vmImage: macOS-11
         strategy:
@@ -94,7 +94,7 @@ stages:
       ############ Linux BUILD ############
       - job: Build_Linux
         displayName: Linux
-        timeoutInMinutes: 30
+        timeoutInMinutes: 120
         pool:
           ${{ if eq(variables['System.TeamProject'], 'public') }}:
             name: $(DncEngPublicBuildPool)
@@ -154,7 +154,7 @@ stages:
       ############ Windows BUILD ############
       - job: Build_Windows
         displayName: Windows
-        timeoutInMinutes: 60
+        timeoutInMinutes: 120
         pool:
           ${{ if eq(variables['System.TeamProject'], 'public') }}:
             name: $(DncEngPublicBuildPool)
