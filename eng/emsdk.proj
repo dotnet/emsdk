@@ -165,10 +165,12 @@
       <StripCommand Condition="$([MSBuild]::IsOSPlatform(Linux))">strip -s</StripCommand>
       <StripCommand Condition="$([MSBuild]::IsOSPlatform(OSX))">strip</StripCommand>
       <UsesPythonFromEmsdk Condition="!$([MSBuild]::IsOSPlatform(Linux))">true</UsesPythonFromEmsdk>
+      <PythonEnvironment Condition="$([MSBuild]::IsOSPlatform(Linux))">EMSDK_PYTHON=/usr/bin/python3</PythonEnvironment>
     </PropertyGroup>
 
     <Exec WorkingDirectory="$(RepoRoot)"
-          Command="$(EmSdkFileName) activate $(EmscriptenSourceVersion)" />
+          Command="$(EmSdkFileName) activate $(EmscriptenSourceVersion)"
+          EnvironmentVariables="$(PythonEnvironment)" />
 
     <Message Importance="High" Text="Found node directory: $(NodeDir)" />
     <Message Importance="High" Text="Found python directory: $(PythonDir)" Condition="'$(UsesPythonFromEmsdk)' == 'true'" />
