@@ -17,43 +17,42 @@
     <EmscriptenPkgVersion>$(MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion)</EmscriptenPkgVersion>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'">
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
                       Version="$(LLVMPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.LLVM.Transport"
                       Version="$(LLVMPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport"
                       Version="$(BinaryenPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
                       Version="$(NodePkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Node.Transport"
                       Version="$(NodePkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != ''" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(TargetArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(TargetArchitecture)"
-                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(TargetArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
     <PackageReference Include="runtime.$(PackageHostOS)-$(BuildArchitecture).Microsoft.NETCore.Runtime.Wasm.Python.Transport"
                       Version="$(PythonPkgVersion)"
                       PackageArch="$(BuildArchitecture)"
-                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux' and '$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Condition="'$(BuildArchitecture)' != '' and '$(PackageHostOS)' != 'linux'" />
     <PackageReference Include="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport"
                       PackageArch="$(BuildArchitecture)"
-                      Version="$(EmscriptenPkgVersion)"
-                      Condition="'$(ForceBuildManifestOnly)' != 'true' and '$(ArcadeBuildFromSource)' != 'true'" />
+                      Version="$(EmscriptenPkgVersion)" />
     <_PackageReferenceDeduplicated Include="@(PackageReference->Distinct())" />
     <PackageReference Remove="@(PackageReference)" />
     <PackageReference Include="@(_PackageReferenceDeduplicated->Distinct())" />
