@@ -378,15 +378,15 @@
              Targets="Build" 
              Properties="PreReleaseVersionLabel=$(PreReleaseVersionLabel);PreReleaseVersionIteration=$(PreReleaseVersionIteration)" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Workload.Emscripten.Current.Manifest\Microsoft.NET.Workload.Emscripten.Current.Manifest.pkgproj" 
-             Condition="'$(AssetManifestOS)' == '' or '$(AssetManifestOS)' == 'win' or '$(ForceBuildManifestOnly)' == 'true' or '$(ArcadeBuildFromSource)' == 'true'" 
+             Condition="'$(AssetManifestOS)' == '' or ('$(AssetManifestOS)' == 'win' and '$(TargetArchitecture)' == 'x64') or '$(ForceBuildManifestOnly)' == 'true' or '$(ArcadeBuildFromSource)' == 'true'" 
              Targets="Build"
              Properties="IsUnversionedManifest=true" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Workload.Emscripten.net6.Manifest\Microsoft.NET.Workload.Emscripten.net6.Manifest.pkgproj" 
-             Condition="'$(AssetManifestOS)' == '' or '$(AssetManifestOS)' == 'win' or '$(ForceBuildManifestOnly)' == 'true' or '$(ArcadeBuildFromSource)' == 'true'"
+             Condition="'$(AssetManifestOS)' == '' or ('$(AssetManifestOS)' == 'win' and '$(TargetArchitecture)' == 'x64') or '$(ForceBuildManifestOnly)' == 'true' or '$(ArcadeBuildFromSource)' == 'true'"
              Targets="Build" 
              Properties="PreReleaseVersionLabel=$(PreReleaseVersionLabel);PreReleaseVersionIteration=$(PreReleaseVersionIteration)" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Workload.Emscripten.net7.Manifest\Microsoft.NET.Workload.Emscripten.net7.Manifest.pkgproj" 
-             Condition="'$(AssetManifestOS)' == '' or '$(AssetManifestOS)' == 'win' or '$(ForceBuildManifestOnly)' == 'true' or '$(ArcadeBuildFromSource)' == 'true'"
+             Condition="'$(AssetManifestOS)' == '' or ('$(AssetManifestOS)' == 'win' and '$(TargetArchitecture)' == 'x64')or '$(ForceBuildManifestOnly)' == 'true' or '$(ArcadeBuildFromSource)' == 'true'"
              Targets="Build" 
              Properties="PreReleaseVersionLabel=$(PreReleaseVersionLabel);PreReleaseVersionIteration=$(PreReleaseVersionIteration)" />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Sdk.Internal\Microsoft.NET.Runtime.Emscripten.Sdk.Internal.pkgproj" Targets="Build" Condition="'$(OS)' == 'Windows_NT'" />
