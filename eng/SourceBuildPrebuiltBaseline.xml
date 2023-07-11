@@ -3,9 +3,6 @@
 
 <UsageData>
   <IgnorePatterns>
-    <Usage Id="Microsoft.DotNet.XliffTasks" />
-    <UsagePattern IdentityGlob="Microsoft.Build.*" />
     <UsagePattern IdentityGlob="Microsoft.SourceBuild.Intermediate.*" />
-    <UsagePattern IdentityGlob="Microsoft.SourceLink.*" />
   </IgnorePatterns>
 </UsageData>
