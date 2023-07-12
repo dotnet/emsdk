@@ -120,5 +120,20 @@
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>226c103b56a979243f08032e6cddb4deb66ea54b</Sha>
     </Dependency>
+    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="1.0.0-beta.23326.1" CoherentParentDependency="Microsoft.DotNet.Arcade.Sdk">
+      <Uri>https://github.com/dotnet/xliff-tasks</Uri>
+      <Sha>10a822a79bde97ca45faa76dc4ec33b85533728a</Sha>
+      <SourceBuild RepoName="xliff-tasks" ManagedOnly="true" />
+    </Dependency>
+    <Dependency Name="Microsoft.SourceLink.GitHub" Version="8.0.0-beta.23328.1" CoherentParentDependency="Microsoft.DotNet.Arcade.Sdk">
+      <Uri>https://github.com/dotnet/sourcelink</Uri>
+      <Sha>5d7d1f2bbb1aa5806c219cc8f64c7682b6fe3518</Sha>
+      <SourceBuild RepoName="sourcelink" ManagedOnly="true" />
+    </Dependency>
+    <Dependency Name="Microsoft.SourceBuild.Intermediate.source-build-reference-packages" Version="8.0.0-alpha.1.23356.4">
+      <Uri>https://github.com/dotnet/source-build-reference-packages</Uri>
+      <Sha>81a9aad6994047fc0e589a82597d1d8c179f22bd</Sha>
+      <SourceBuild RepoName="source-build-reference-packages" ManagedOnly="true" />
+    </Dependency>
   </ToolsetDependencies>
 </Dependencies>
