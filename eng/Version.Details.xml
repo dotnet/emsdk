@@ -25,21 +25,21 @@
       <Uri>https://github.com/dotnet/binaryen</Uri>
       <Sha>fc8188b614f1c8773248c62ff8e7926a5db03032</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23409.1">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rc.1.23415.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>56b1ad69e646b6a0457b19df804cd94c150c17d8</Sha>
+      <Sha>5686eb0ee7bfd9e2214b0141f3fafa98fa83b89a</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23409.1">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rc.1.23415.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>56b1ad69e646b6a0457b19df804cd94c150c17d8</Sha>
+      <Sha>5686eb0ee7bfd9e2214b0141f3fafa98fa83b89a</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23409.1">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rc.1.23415.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>56b1ad69e646b6a0457b19df804cd94c150c17d8</Sha>
+      <Sha>5686eb0ee7bfd9e2214b0141f3fafa98fa83b89a</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23409.1">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rc.1.23415.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>56b1ad69e646b6a0457b19df804cd94c150c17d8</Sha>
+      <Sha>5686eb0ee7bfd9e2214b0141f3fafa98fa83b89a</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-preview.4.23407.1">
       <Uri>https://github.com/dotnet/node</Uri>
