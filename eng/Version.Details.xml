@@ -25,21 +25,21 @@
       <Uri>https://github.com/dotnet/binaryen</Uri>
       <Sha>f61a72a7483f7178ead0fdeb5333bd7ce205a5ce</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23414.1">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.23415.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>bfaa5ae635ab4bc7fcb5da63b8fe0e67e288fc6e</Sha>
+      <Sha>58347f13c3d2497933e5cff9df72763efae73659</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23414.1">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.23415.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>bfaa5ae635ab4bc7fcb5da63b8fe0e67e288fc6e</Sha>
+      <Sha>58347f13c3d2497933e5cff9df72763efae73659</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23414.1">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.23415.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>bfaa5ae635ab4bc7fcb5da63b8fe0e67e288fc6e</Sha>
+      <Sha>58347f13c3d2497933e5cff9df72763efae73659</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-preview.4.23414.1">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.23415.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>bfaa5ae635ab4bc7fcb5da63b8fe0e67e288fc6e</Sha>
+      <Sha>58347f13c3d2497933e5cff9df72763efae73659</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-preview.4.23414.1">
       <Uri>https://github.com/dotnet/node</Uri>
