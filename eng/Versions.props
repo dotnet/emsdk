@@ -23,12 +23,12 @@
     <runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>8.0.0-rtm.23516.3</runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>8.0.0-rtm.23516.3</runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>8.0.0-rtm.23516.3</runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportVersion>
-    <runtimelinuxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23468.4</runtimelinuxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
-    <runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23468.4</runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
-    <runtimeosxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23468.4</runtimeosxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
-    <runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23468.4</runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
-    <runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23468.4</runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
-    <runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23468.4</runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimelinuxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23516.2</runtimelinuxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23516.2</runtimelinuxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimeosxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23516.2</runtimeosxarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23516.2</runtimeosxx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23516.2</runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
+    <runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>8.0.0-rtm.23516.2</runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
     <runtimelinuxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>16.0.5-alpha.1.23478.1</runtimelinuxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>16.0.5-alpha.1.23478.1</runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <runtimeosxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>16.0.5-alpha.1.23478.1</runtimeosxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
