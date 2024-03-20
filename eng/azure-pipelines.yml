@@ -291,7 +291,7 @@ extends:
                   artifact: Packages_linux_musl_arm64
                   path: 'artifacts/packages'
               - powershell: |
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:AssetManifestOS=unix-all $(_InternalBuildArgs)
+                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:AssetManifestFileName=unix-all.xml $(_InternalBuildArgs)
 
           ############ Workloads BUILD ############
           - job: Build_Workloads
