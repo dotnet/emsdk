@@ -291,12 +291,7 @@ extends:
                   artifact: Packages_linux_musl_arm64
                   path: 'artifacts/packages'
               - powershell: |
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=osx-x64 /p:AssetManifestOS=osx /p:PlatformName=x64 $(_InternalBuildArgs)
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=osx-arm64 /p:AssetManifestOS=osx /p:PlatformName=arm64 $(_InternalBuildArgs)
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs)
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=linux-arm64 /p:AssetManifestOS=linux /p:PlatformName=arm64 $(_InternalBuildArgs)
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=linux-musl-x64 /p:AssetManifestOS=linux-musl /p:PlatformName=x64 $(_InternalBuildArgs)
-                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:PackageRID=linux-musl-arm64 /p:AssetManifestOS=linux-musl /p:PlatformName=arm64 $(_InternalBuildArgs)
+                  ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish /p:AssetManifestFileName=unix-all.xml $(_InternalBuildArgs)
 
           ############ Workloads BUILD ############
           - job: Build_Workloads
