@@ -113,38 +113,6 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>ad6d4582d52652c9419389f428ec1e7611499542</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.linux-musl-arm64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.linux-musl-x64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.ObjWriter" Version="16.0.5-alpha.1.24161.3">
-      <Uri>https://github.com/dotnet/llvm-project</Uri>
-      <Sha>12ff1c1820d4d7b802552fcb521579c1d3eab2c7</Sha>
-    </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.JIT.Tools" Version="16.0.5-alpha.1.24169.1">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>ad6d4582d52652c9419389f428ec1e7611499542</Sha>
