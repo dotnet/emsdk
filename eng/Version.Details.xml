@@ -33,21 +33,21 @@
       <Uri>https://github.com/dotnet/binaryen</Uri>
       <Sha>9896d4514daf29093e79ccf950300983d54f7a7f</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24172.1">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24176.3">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>a00f7743e844e1df257ae9f29af8c44ea95dcab1</Sha>
+      <Sha>503748040e3789e801eeb930ff6326277cb8d586</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24172.1">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24176.3">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>a00f7743e844e1df257ae9f29af8c44ea95dcab1</Sha>
+      <Sha>503748040e3789e801eeb930ff6326277cb8d586</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24172.1">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24176.3">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>a00f7743e844e1df257ae9f29af8c44ea95dcab1</Sha>
+      <Sha>503748040e3789e801eeb930ff6326277cb8d586</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24172.1">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="9.0.0-alpha.1.24176.3">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>a00f7743e844e1df257ae9f29af8c44ea95dcab1</Sha>
+      <Sha>503748040e3789e801eeb930ff6326277cb8d586</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="9.0.0-alpha.1.24174.1">
       <Uri>https://github.com/dotnet/node</Uri>
