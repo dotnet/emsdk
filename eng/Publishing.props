@@ -4,6 +4,7 @@
       <PublishingVersion>3</PublishingVersion>
       <AutoGenerateSymbolPackages>false</AutoGenerateSymbolPackages> <!-- we don't need symbol packages for emsdk -->
       <PostBuildSign>true</PostBuildSign>
+      <ProducesDotNetReleaseShippingAssets>true</ProducesDotNetReleaseShippingAssets>
    </PropertyGroup>
 
   <PropertyGroup>

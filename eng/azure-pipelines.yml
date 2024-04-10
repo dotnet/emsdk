@@ -1,5 +1,5 @@
 variables:
-  - template: /eng/common-variables.yml
+  - template: /eng/common-variables.yml@self
   - name: Build.Repository.Clean
     value: true
 
@@ -10,139 +10,152 @@ trigger:
     - main
     - release/*
 
-pr:
-  branches:
-    include:
-    - main
-    - release/*
+pr: none
 
-stages:
-- stage: build
-  displayName: Build
-  jobs:
-  - template: /eng/common/templates/jobs/jobs.yml
-    parameters:
-      enablePublishBuildArtifacts: true
-      enablePublishBuildAssets: true
-      enablePublishUsingPipelines: true
-      variables:
-        - _BuildConfig: Release
+resources:
+  repositories:
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release
+
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  parameters:
+    sdl:
+      sourceAnalysisPool:
+        name: NetCore1ESPool-Svc-Internal
+        image: 1es-windows-2022
+        os: windows
+    stages:
+    - stage: build
+      displayName: Build
       jobs:
+      - template: /eng/common/templates-official/jobs/jobs.yml@self
+        parameters:
+          enablePublishBuildArtifacts: true
+          enablePublishBuildAssets: true
+          enablePublishUsingPipelines: true
+          variables:
+            - _BuildConfig: Release
+          jobs:
 
-      ############ macOS BUILD ############
-      - job: Build_macOS
-        displayName: macOS
-        timeoutInMinutes: 30
-        pool:
-          vmImage: macOS-11
-        steps:
-        - bash: |
-            ./build.sh -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=osx-x64 /p:AssetManifestOS=osx /p:PlatformName=x64 $(_InternalBuildArgs)
-          displayName: Build and Publish
-        - publish: artifacts/packages
-          artifact: Packages_macOS
-        - bash: |
-            rm -rf upstream node python
-          displayName: Remove temporary artifacts
+          ############ macOS BUILD ############
+          - job: Build_macOS
+            displayName: macOS
+            timeoutInMinutes: 30
+            pool:
+              name: Azure Pipelines
+              vmImage: macOS-11
+              os: macOS
+            steps:
+            - bash: |
+                ./build.sh -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=osx-x64 /p:AssetManifestOS=osx /p:PlatformName=x64 $(_InternalBuildArgs)
+              displayName: Build and Publish
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                path: $(System.DefaultWorkingDirectory)/artifacts/packages
+                artifact: Packages_macOS
+            - bash: |
+                rm -rf upstream node python
+              displayName: Remove temporary artifacts
 
-      ############ Linux BUILD ############
-      - job: Build_Linux
-        displayName: Linux
-        timeoutInMinutes: 30
-        pool:
-          ${{ if eq(variables['System.TeamProject'], 'public') }}:
-            vmImage: ubuntu-20.04
-          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-            name: NetCore1ESPool-Svc-Internal
-            demands: ImageOverride -equals Build.Ubuntu.1804.Amd64
-        steps:
-        - bash: |
-            ./build.sh -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs)
-          displayName: Build and Publish
-        - publish: artifacts/packages
-          artifact: Packages_Linux
-        - bash: |
-            rm -rf upstream node python
-          displayName: Remove temporary artifacts
+          ############ Linux BUILD ############
+          - job: Build_Linux
+            displayName: Linux
+            timeoutInMinutes: 30
+            pool:
+              name: NetCore1ESPool-Svc-Internal
+              image: 1es-ubuntu-2004
+              os: linux
+            steps:
+            - bash: |
+                ./build.sh -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs)
+              displayName: Build and Publish
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                path: $(System.DefaultWorkingDirectory)/artifacts/packages
+                artifact: Packages_Linux
+            - bash: |
+                rm -rf upstream node python
+              displayName: Remove temporary artifacts
 
-      ############ Windows BUILD ############
-      - job: Build_Windows
-        displayName: Windows
-        timeoutInMinutes: 30
-        pool:
-          ${{ if eq(variables['System.TeamProject'], 'public') }}:
-            vmImage: windows-2019
-          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-            name: NetCore1ESPool-Svc-Internal
-            demands: ImageOverride -equals windows.vs2019.amd64
-        steps:
-        - powershell: |
-            # update the machine cert store so that python can download the files as required by emscripten's install
-            $WebsiteURL="storage.googleapis.com"
-            Try {
-                $Conn = New-Object System.Net.Sockets.TcpClient($WebsiteURL, 443)
-
+          ############ Windows BUILD ############
+          - job: Build_Windows
+            displayName: Windows
+            timeoutInMinutes: 30
+            pool:
+              name: NetCore1ESPool-Svc-Internal
+              image: windows.vs2019.amd64
+              os: windows
+            steps:
+            - powershell: |
+                # update the machine cert store so that python can download the files as required by emscripten's install
+                $WebsiteURL="storage.googleapis.com"
                 Try {
-                    $Stream = New-Object System.Net.Security.SslStream($Conn.GetStream())
-                    $Stream.AuthenticateAsClient($WebsiteURL)
+                    $Conn = New-Object System.Net.Sockets.TcpClient($WebsiteURL, 443)
 
-                    $Cert = $Stream.Get_RemoteCertificate()
+                    Try {
+                        $Stream = New-Object System.Net.Security.SslStream($Conn.GetStream())
+                        $Stream.AuthenticateAsClient($WebsiteURL, $null, [System.Security.Authentication.SslProtocols]::Tls12, $true)
 
-                    $ValidTo = [datetime]::Parse($Cert.GetExpirationDatestring())
+                        $Cert = $Stream.Get_RemoteCertificate()
 
-                    Write-Host "`nConnection Successfull" -ForegroundColor DarkGreen
-                    Write-Host "Website: $WebsiteURL"
-                }
-                Catch { Throw $_ }
-                Finally { $Conn.close() }
-                }
-                Catch {
-                        Write-Host "`nError occurred connecting to $($WebsiteURL)" -ForegroundColor Yellow
+                        $ValidTo = [datetime]::Parse($Cert.GetExpirationDatestring())
+
+                        Write-Host "`nConnection Successfull" -ForegroundColor DarkGreen
                         Write-Host "Website: $WebsiteURL"
-                        Write-Host "Status:" $_.exception.innerexception.message -ForegroundColor Yellow
-                        Write-Host ""
-            }
-          displayName: Fetch storage.googleapis.com certificate
-          condition: eq(variables['System.TeamProject'], 'internal')
-        - script: |
-            .\build.cmd -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=win-x64 /p:AssetManifestOS=win /p:PlatformName=x64 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
-          displayName: Build and Publish
-        - publish: artifacts/packages
-          artifact: Packages_Windows
-        - script: |
-            rmdir /s /q upstream node python
-          displayName: Remove temporary artifacts
-        # Upload packages wrapping msis
-        - task: CopyFiles@2
-          displayName: Prepare job-specific intermediate artifacts subdirectory
-          inputs:
-            SourceFolder: '$(Build.SourcesDirectory)/artifacts/packages/$(_BuildConfig)'
-            Contents: |
-              Shipping/**/*
-              NonShipping/**/*
-            TargetFolder: '$(Build.StagingDirectory)/IntermediateArtifacts/workloads'
-            CleanTargetFolder: true
-        # Delete wixpdb files before they are uploaded to artifacts
-        - task: DeleteFiles@1
-          displayName: Delete wixpdb's
-          inputs:
-            SourceFolder: $(Build.SourcesDirectory)/artifacts/workloadPackages
-            Contents: '*.wixpdb'
-        # Upload artifacts to be used for generating VS components
-        - task: PublishPipelineArtifact@1
-          displayName: Publish workload artifacts
-          inputs:
-            targetPath: $(Build.SourcesDirectory)/artifacts/VSSetup/$(_BuildConfig)/Insertion/
-            artifactName: 'Workloads'
-          continueOnError: true
-          condition: always()
+                    }
+                    Catch { Throw $_ }
+                    Finally { $Conn.close() }
+                    }
+                    Catch {
+                            Write-Host "`nError occurred connecting to $($WebsiteURL)" -ForegroundColor Yellow
+                            Write-Host "Website: $WebsiteURL"
+                            Write-Host "Status:" $_.exception.innerexception.message -ForegroundColor Yellow
+                            Write-Host ""
+                }
+              displayName: Fetch storage.googleapis.com certificate
+              condition: eq(variables['System.TeamProject'], 'internal')
+            - script: |
+                .\build.cmd -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=win-x64 /p:AssetManifestOS=win /p:PlatformName=x64 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
+              displayName: Build and Publish
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                path: $(System.DefaultWorkingDirectory)/artifacts/packages
+                artifact: Packages_Windows
+            - script: |
+                rmdir /s /q upstream node python
+              displayName: Remove temporary artifacts
+            # Upload packages wrapping msis
+            - task: CopyFiles@2
+              displayName: Prepare job-specific intermediate artifacts subdirectory
+              inputs:
+                SourceFolder: '$(Build.SourcesDirectory)/artifacts/packages/$(_BuildConfig)'
+                Contents: |
+                  Shipping/**/*
+                  NonShipping/**/*
+                TargetFolder: '$(Build.StagingDirectory)/IntermediateArtifacts/workloads'
+                CleanTargetFolder: true
+            # Delete wixpdb files before they are uploaded to artifacts
+            - task: DeleteFiles@1
+              displayName: Delete wixpdb's
+              inputs:
+                SourceFolder: $(Build.SourcesDirectory)/artifacts/workloadPackages
+                Contents: '*.wixpdb'
+            # Upload artifacts to be used for generating VS components
+            - task: 1ES.PublishPipelineArtifact@1
+              displayName: Publish workload artifacts
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/VSSetup/$(_BuildConfig)/Insertion/
+                artifactName: 'Workloads'
+              continueOnError: true
+              condition: always()
 
-############ POST BUILD ARCADE LOGIC ############
-- ${{ if and(ne(variables['System.TeamProject'], 'public'), ne(variables['Build.Reason'], 'PullRequest')) }}:
-  - template: /eng/common/templates/post-build/post-build.yml
-    parameters:
-      publishingInfraVersion: 3
-      enableSourceLinkValidation: false
-      enableSigningValidation: false
-      enableSymbolValidation: false
-      enableNugetValidation: true
+    ############ POST BUILD ARCADE LOGIC ############
+    - template: /eng/common/templates-official/post-build/post-build.yml@self
+      parameters:
+        enableSourceLinkValidation: false
+        enableSigningValidation: false
+        enableSymbolValidation: false
+        enableNugetValidation: true

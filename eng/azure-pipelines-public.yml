@@ -1,0 +1,102 @@
+variables:
+  - template: /eng/common-variables.yml
+  - name: Build.Repository.Clean
+    value: true
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - main
+    - release/*
+
+pr:
+  branches:
+    include:
+    - main
+    - release/*
+
+stages:
+- stage: build
+  displayName: Build
+  jobs:
+  - template: /eng/common/templates/jobs/jobs.yml
+    parameters:
+      enablePublishBuildArtifacts: true
+      enablePublishBuildAssets: true
+      enablePublishUsingPipelines: true
+      variables:
+        - _BuildConfig: Release
+      jobs:
+
+      ############ macOS BUILD ############
+      - job: Build_macOS
+        displayName: macOS
+        timeoutInMinutes: 30
+        pool:
+          vmImage: macOS-11
+        steps:
+        - bash: |
+            ./build.sh -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=osx-x64 /p:AssetManifestOS=osx /p:PlatformName=x64 $(_InternalBuildArgs)
+          displayName: Build and Publish
+        - publish: artifacts/packages
+          artifact: Packages_macOS
+        - bash: |
+            rm -rf upstream node python
+          displayName: Remove temporary artifacts
+
+      ############ Linux BUILD ############
+      - job: Build_Linux
+        displayName: Linux
+        timeoutInMinutes: 30
+        pool:
+            vmImage: ubuntu-20.04
+        steps:
+        - bash: |
+            ./build.sh -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=linux-x64 /p:AssetManifestOS=linux /p:PlatformName=x64 $(_InternalBuildArgs)
+          displayName: Build and Publish
+        - publish: artifacts/packages
+          artifact: Packages_Linux
+        - bash: |
+            rm -rf upstream node python
+          displayName: Remove temporary artifacts
+
+      ############ Windows BUILD ############
+      - job: Build_Windows
+        displayName: Windows
+        timeoutInMinutes: 30
+        pool:
+            vmImage: windows-2019
+        steps:
+        - script: |
+            .\build.cmd -ci -configuration $(_BuildConfig) $(_InternalPublishArg) /p:PackageRID=win-x64 /p:AssetManifestOS=win /p:PlatformName=x64 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
+          displayName: Build and Publish
+        - publish: artifacts/packages
+          artifact: Packages_Windows
+        - script: |
+            rmdir /s /q upstream node python
+          displayName: Remove temporary artifacts
+        # Upload packages wrapping msis
+        - task: CopyFiles@2
+          displayName: Prepare job-specific intermediate artifacts subdirectory
+          inputs:
+            SourceFolder: '$(Build.SourcesDirectory)/artifacts/packages/$(_BuildConfig)'
+            Contents: |
+              Shipping/**/*
+              NonShipping/**/*
+            TargetFolder: '$(Build.StagingDirectory)/IntermediateArtifacts/workloads'
+            CleanTargetFolder: true
+        # Delete wixpdb files before they are uploaded to artifacts
+        - task: DeleteFiles@1
+          displayName: Delete wixpdb's
+          inputs:
+            SourceFolder: $(Build.SourcesDirectory)/artifacts/workloadPackages
+            Contents: '*.wixpdb'
+        # Upload artifacts to be used for generating VS components
+        - task: PublishPipelineArtifact@1
+          displayName: Publish workload artifacts
+          inputs:
+            targetPath: $(Build.SourcesDirectory)/artifacts/VSSetup/$(_BuildConfig)/Insertion/
+            artifactName: 'Workloads'
+          continueOnError: true
+          condition: always()
