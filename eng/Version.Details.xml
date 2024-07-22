@@ -207,38 +207,38 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>3358dfd351b424698f3f2cd67432dc62c333a64d</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Installers" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Installers" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Templating" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Templating" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Workloads" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Workloads" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
     </Dependency>
     <!-- Intermediate is necessary for source build. -->
-    <Dependency Name="Microsoft.SourceBuild.Intermediate.arcade" Version="9.0.0-beta.24327.1">
+    <Dependency Name="Microsoft.SourceBuild.Intermediate.arcade" Version="9.0.0-beta.24368.9">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>ede13bd35571c0c8b0c01edcb057031904c5c955</Sha>
+      <Sha>b4e499d1f6e6b3a981feabfed290d99261762382</Sha>
       <SourceBuild RepoName="arcade" ManagedOnly="true" />
     </Dependency>
     <!-- Intermediate is necessary for source build. -->
