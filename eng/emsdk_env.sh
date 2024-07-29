@@ -1,3 +1,4 @@
+#!/bin/bash
 CURRENT_SCRIPT=
 DIR="."
 
@@ -34,6 +35,7 @@ if [ -n "${CURRENT_SCRIPT-}" ]; then
 fi
 unset CURRENT_SCRIPT
 
+# Verify the emsdk directory
 if [ ! -f "$DIR/emscripten/emcmake.py" ]; then
   echo "Error: unable to determine 'emsdk' directory. Perhaps you are using a shell or" 1>&2
   echo "       environment that this script does not support." 1>&2
@@ -43,53 +45,54 @@ if [ ! -f "$DIR/emscripten/emcmake.py" ]; then
   unset DIR
   return
 fi
+
+# Set environment variables
 export EMSDK_PATH=${DIR}/
 unset DIR
 
 export DOTNET_EMSCRIPTEN_LLVM_ROOT=${EMSDK_PATH}bin/
 export DOTNET_EMSCRIPTEN_NODE_JS=${EMSDK_PATH}node/bin/node
 export DOTNET_EMSCRIPTEN_BINARYEN_ROOT=${EMSDK_PATH}
-#!/bin/bash
+
 echo "*** .NET EMSDK path setup ***"
 
+fail_if_empty() {
+  local var_name="$1"
+  local var_value="${!var_name}"
+  if [ -z "${var_value}" ]; then
+    echo "/${var_name} is empty"
+    exit 1
+  fi
+}
+
+add_to_path() {
+  local dir_path="$1"
+  echo "PATH += $dir_path"
+  export PATH="$dir_path:$PATH"
+}
+
 # emscripten (emconfigure, em++, etc)
-if [ -z "${EMSDK_PATH}" ]; then
-echo "/$EMSDK_PATH is empty"
-exit 1
-fi
+fail_if_empty "EMSDK_PATH"
 TOADD_PATH_EMSCRIPTEN="$(realpath ${EMSDK_PATH}/emscripten)"
-echo "PATH += ${TOADD_PATH_EMSCRIPTEN}"
-export PATH=${TOADD_PATH_EMSCRIPTEN}:$PATH
+add_to_path "$TOADD_PATH_EMSCRIPTEN"
 
 # llvm (clang, etc)
-if [ -z "${DOTNET_EMSCRIPTEN_LLVM_ROOT}" ]; then
-echo "/$DOTNET_EMSCRIPTEN_LLVM_ROOT is empty"
-exit 1
-fi
+fail_if_empty "DOTNET_EMSCRIPTEN_LLVM_ROOT"
 TOADD_PATH_LLVM="$(realpath ${DOTNET_EMSCRIPTEN_LLVM_ROOT})"
 if [ "${TOADD_PATH_EMSCRIPTEN}" != "${TOADD_PATH_LLVM}" ]; then
-echo "PATH += ${TOADD_PATH_LLVM}"
-export PATH=${TOADD_PATH_LLVM}:$PATH
+  add_to_path "$TOADD_PATH_LLVM"
 fi
 
 # nodejs (node)
-if [ -z "${DOTNET_EMSCRIPTEN_NODE_JS}" ]; then
-echo "/$DOTNET_EMSCRIPTEN_NODE_JS is empty"
-exit 1
-fi
+fail_if_empty "DOTNET_EMSCRIPTEN_NODE_JS"
 TOADD_PATH_NODEJS="$(dirname ${DOTNET_EMSCRIPTEN_NODE_JS})"
 if [ "${TOADD_PATH_EMSCRIPTEN}" != "${TOADD_PATH_NODEJS}" ] && [ "${TOADD_PATH_LLVM}" != "${TOADD_PATH_NODEJS}" ]; then
-echo "PATH += ${TOADD_PATH_NODEJS}"
-export PATH=${TOADD_PATH_NODEJS}:$PATH
+  add_to_path "$TOADD_PATH_NODEJS"
 fi
 
 # binaryen (wasm-opt, etc)
-if [ -z "${DOTNET_EMSCRIPTEN_BINARYEN_ROOT}" ]; then
-echo "/$DOTNET_EMSCRIPTEN_BINARYEN_ROOT is empty"
-exit 1
-fi
+fail_if_empty "DOTNET_EMSCRIPTEN_BINARYEN_ROOT"
 TOADD_PATH_BINARYEN="$(realpath ${DOTNET_EMSCRIPTEN_BINARYEN_ROOT}/bin)"
 if [ "${TOADD_PATH_EMSCRIPTEN}" != "${TOADD_PATH_BINARYEN}" ] && [ "${TOADD_PATH_LLVM}" != "${TOADD_PATH_BINARYEN}" ] && [ "${TOADD_PATH_NODEJS}" != "${TOADD_PATH_BINARYEN}" ]; then
-echo "PATH += ${TOADD_PATH_BINARYEN}"
-export PATH=${TOADD_PATH_BINARYEN}:$PATH
+  add_to_path "$TOADD_PATH_BINARYEN"
 fi
