@@ -1,9 +1,10 @@
 import os
 
-LLVM_ROOT = os.path.expanduser(os.getenv('DOTNET_EMSCRIPTEN_LLVM_ROOT', ''))
-NODE_JS = os.path.expanduser(os.getenv('DOTNET_EMSCRIPTEN_NODE_JS', ''))
-BINARYEN_ROOT = os.path.expanduser(os.getenv('DOTNET_EMSCRIPTEN_BINARYEN_ROOT', ''))
+emsdk_path = os.path.dirname(os.path.dirname(os.path.realpath(os.getenv('EM_CONFIG')).replace('\\', '/')))
 
+LLVM_ROOT = emsdk_path + '/bin'
+NODE_JS = emsdk_path + '/node/bin/node'
+BINARYEN_ROOT = emsdk_path
 FROZEN_CACHE = bool(os.getenv('FROZEN_CACHE', 'True'))
 
 COMPILER_ENGINE = NODE_JS
