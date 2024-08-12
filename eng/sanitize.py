@@ -34,7 +34,7 @@ def rewrite_package_json(path):
 emscripten_path = sys.argv[1]
 node_root = sys.argv[2]
 node_paths = glob(node_root)
-upgrade = True
+upgrade = False
 
 # Add the local node bin directory to the path so that
 # npm can find it when doing the updating or pruning
@@ -77,6 +77,5 @@ except OSError as error:
 
 prune()
 
-if not upgrade:
-    for path in node_paths:
-        remove_npm(path)
+for path in node_paths:
+    remove_npm(path)
