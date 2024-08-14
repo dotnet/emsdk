@@ -15,8 +15,9 @@
       Script files need to be signed with 3PartyScriptsSHA2 not the dual-signed certificate.
     -->
     <FileExtensionSignInfo Update=".py" CertificateName="3PartyScriptsSHA2" />
-    <FileExtensionSignInfo Update=".js" CertificateName="3PartyScriptsSHA2" />
     <FileExtensionSignInfo Update=".ps1" CertificateName="3PartyScriptsSHA2" />
+    <!-- We don't need to code sign .js files because they are not used in Windows Script Host. -->
+    <FileExtensionSignInfo Include=".js" CertificateName="None" />
 
     <!--
       Zero length files should not be signed because it breaks signing/ESRP.
