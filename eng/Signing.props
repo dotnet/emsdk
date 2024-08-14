@@ -24,7 +24,6 @@
     -->
     <FileSignInfo Include="__init__.py" CertificateName="None" />
     <FileSignInfo Include="eggs.py" CertificateName="None" />
-    <FileSignInfo Include="Final_Punctuation.js" CertificateName="None" />
   </ItemGroup>
   
   <ItemGroup>
