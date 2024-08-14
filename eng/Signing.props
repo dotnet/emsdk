@@ -17,7 +17,7 @@
     <FileExtensionSignInfo Update=".py" CertificateName="3PartyScriptsSHA2" />
     <FileExtensionSignInfo Update=".ps1" CertificateName="3PartyScriptsSHA2" />
     <!-- We don't need to code sign .js files because they are not used in Windows Script Host. -->
-    <FileExtensionSignInfo Include=".js" CertificateName="None" />
+    <FileExtensionSignInfo Update=".js" CertificateName="None" />
 
     <!--
       Zero length files should not be signed because it breaks signing/ESRP.
