@@ -59,6 +59,6 @@
     <SwixPackageVersion>1.1.87-gba258badda</SwixPackageVersion>
   </PropertyGroup>
   <ItemGroup>
-    <WorkloadSdkBandVersions Include="9.0.100" SupportsMachineArch="true" />
+    <WorkloadSdkBandVersions Include="10.0.100" SupportsMachineArch="true" />
   </ItemGroup>
 </Project>
