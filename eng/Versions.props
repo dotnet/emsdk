@@ -59,6 +59,10 @@
   <PropertyGroup>
     <SwixPackageVersion>1.1.87-gba258badda</SwixPackageVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <WorkloadVersionSuffix Condition="'$(DotNetFinalVersionKind)' != 'release' and '$(PrereleaseVersionLabel)' != 'rtm'">-$(PreReleaseVersionLabel).$(PreReleaseVersionIteration)</WorkloadVersionSuffix>
+    <WorkloadVersionSuffix>$(WorkloadVersionSuffix.TrimEnd('.'))</WorkloadVersionSuffix>
+  </PropertyGroup>
   <ItemGroup>
     <WorkloadSdkBandVersions Include="9.0.100" SupportsMachineArch="true" />
   </ItemGroup>
