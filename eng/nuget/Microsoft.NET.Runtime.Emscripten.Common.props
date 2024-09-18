@@ -18,6 +18,7 @@
 
   <PropertyGroup>
     <WorkloadVersionSuffix Condition="'$(DotNetFinalVersionKind)' != 'release'">-$(PreReleaseVersionLabel).$(PreReleaseVersionIteration)</WorkloadVersionSuffix>
+    <WorkloadVersionSuffix>$(WorkloadVersionSuffix.TrimEnd('.'))</WorkloadVersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>
