@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
   <ProductDependencies>
-    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24510.2">
+    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>c1db419407d69018c572fc267c36f92fe355040e</Sha>
+      <Sha>9b126ece617737af9330c91f15eb7f4e611a5754</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24510.2">
+    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>c1db419407d69018c572fc267c36f92fe355040e</Sha>
+      <Sha>9b126ece617737af9330c91f15eb7f4e611a5754</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24510.2">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>c1db419407d69018c572fc267c36f92fe355040e</Sha>
+      <Sha>9b126ece617737af9330c91f15eb7f4e611a5754</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24510.2">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>c1db419407d69018c572fc267c36f92fe355040e</Sha>
+      <Sha>9b126ece617737af9330c91f15eb7f4e611a5754</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24510.2">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>c1db419407d69018c572fc267c36f92fe355040e</Sha>
+      <Sha>9b126ece617737af9330c91f15eb7f4e611a5754</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24510.2">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>c1db419407d69018c572fc267c36f92fe355040e</Sha>
+      <Sha>9b126ece617737af9330c91f15eb7f4e611a5754</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24510.3">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>98531728a86a82b4b807c227a5d702833444b7cb</Sha>
+      <Sha>fc779fe4ab28a892ea9b7427ece0948e60bb8f93</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24510.3">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>98531728a86a82b4b807c227a5d702833444b7cb</Sha>
+      <Sha>fc779fe4ab28a892ea9b7427ece0948e60bb8f93</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24510.3">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>98531728a86a82b4b807c227a5d702833444b7cb</Sha>
+      <Sha>fc779fe4ab28a892ea9b7427ece0948e60bb8f93</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24510.3">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>98531728a86a82b4b807c227a5d702833444b7cb</Sha>
+      <Sha>fc779fe4ab28a892ea9b7427ece0948e60bb8f93</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24514.2">
+    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/node</Uri>
-      <Sha>04a19d6a8eb6a3eeb76569ce9b9118d43531d59a</Sha>
+      <Sha>547bb5fa1f88ebdf801fcfbaedf8e35955ad04ce</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24514.2">
+    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/node</Uri>
-      <Sha>04a19d6a8eb6a3eeb76569ce9b9118d43531d59a</Sha>
+      <Sha>547bb5fa1f88ebdf801fcfbaedf8e35955ad04ce</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24514.2">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/node</Uri>
-      <Sha>04a19d6a8eb6a3eeb76569ce9b9118d43531d59a</Sha>
+      <Sha>547bb5fa1f88ebdf801fcfbaedf8e35955ad04ce</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24514.2">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/node</Uri>
-      <Sha>04a19d6a8eb6a3eeb76569ce9b9118d43531d59a</Sha>
+      <Sha>547bb5fa1f88ebdf801fcfbaedf8e35955ad04ce</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24514.2">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/node</Uri>
-      <Sha>04a19d6a8eb6a3eeb76569ce9b9118d43531d59a</Sha>
+      <Sha>547bb5fa1f88ebdf801fcfbaedf8e35955ad04ce</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24514.2">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/node</Uri>
-      <Sha>04a19d6a8eb6a3eeb76569ce9b9118d43531d59a</Sha>
+      <Sha>547bb5fa1f88ebdf801fcfbaedf8e35955ad04ce</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport" Version="16.0.5-alpha.1.24362.2">
       <Uri>https://github.com/dotnet/llvm-project</Uri>
@@ -153,9 +153,9 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>0eac01ff3c4a8d1dbe6452dd2d8b75395bbf2b3d</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-rtm.24510.3">
+    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-rtm.24516.1">
       <Uri>https://github.com/dotnet/emscripten</Uri>
-      <Sha>feb4f234980590bd0a0b6679df5853bc854de813</Sha>
+      <Sha>0abc5bfc369505dbaff2f181cd993ed71b7f624c</Sha>
     </Dependency>
   </ProductDependencies>
   <ToolsetDependencies>
