@@ -41,14 +41,14 @@
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>10.0.0-alpha.1.25063.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>10.0.0-alpha.1.25063.1</runtimewinx64MicrosoftNETCoreRuntimeWasmNodeTransportVersion>
     <!-- llvm-project -->
-    <runtimelinuxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimelinuxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimelinuxmuslarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimelinuxmuslarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimelinuxmuslx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimelinuxmuslx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimeosxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimeosxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
-    <runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25057.1</runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimelinuxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimelinuxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimelinuxmuslarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimelinuxmuslarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimelinuxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimelinuxmuslx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimelinuxmuslx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimeosxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimeosxarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimeosxx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
+    <runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25070.1</runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <!-- emscripten -->
     <MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>10.0.0-alpha.1.25069.1</MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>
   </PropertyGroup>
