@@ -93,7 +93,7 @@
     </Copy>
   </Target>
 
-  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'>
+  <Target Name="CopyPython" BeforeTargets="ReallyBuild" Condition="'$(PackageHostOS)' != 'linux'">
     <Message Importance="High" Text="** Copying $(PackageTargetOS)-$(TargetArchitecture) Python to $(PythonDir)" />
     <Message Importance="High" Text="** Copying $(PackageHostOS)-$(BuildArchitecture) Python to $(HostPythonDir)" Condition="'$(BuildArchitecture)' != '$(TargetArchitecture)' or '$(PackageTargetOS)' != '$(PackageHostOS)'" />
     <ItemGroup>
