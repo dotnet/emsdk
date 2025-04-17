@@ -42,14 +42,14 @@ stages:
             x64:
               assetManifestOS: osx
               assetManifestPlatform: x64
-              archflag: --arch x64
+              targetArchitecture: x64
             arm64:
               assetManifestOS: osx
               assetManifestPlatform: arm64
-              archflag: --arch arm64
+              targetArchitecture: arm64
         steps:
         - bash: |
-            ./build.sh $(archflag) --restore --build --pack --ci --configuration $(_BuildConfig) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
+            ./eng/common/cibuild.sh --configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
           displayName: Build
         - publish: artifacts/packages
           artifact: Packages_macOS_$(assetManifestPlatform)
@@ -71,22 +71,22 @@ stages:
             x64:
               assetManifestOS: linux
               assetManifestPlatform: x64
-              archflag: --arch x64
+              targetArchitecture: x64
             arm64:
               assetManifestOS: linux
               assetManifestPlatform: arm64
-              archflag: --arch arm64
+              targetArchitecture: arm64
             x64_musl:
               assetManifestOS: linux-musl
               assetManifestPlatform: x64
-              archflag: --arch x64
+              targetArchitecture: x64
             arm64_musl:
               assetManifestOS: linux-musl
               assetManifestPlatform: arm64
-              archflag: --arch arm64
+              targetArchitecture: arm64
         steps:
         - bash: |
-            ./build.sh $(archflag) --restore --build --pack --ci --configuration $(_BuildConfig) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
+            ./eng/common/cibuild.sh --configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
           displayName: Build
         - publish: artifacts/packages
           artifact: Packages_$(assetManifestOS)_$(assetManifestPlatform)
@@ -108,14 +108,14 @@ stages:
             x64:
               assetManifestOS: win
               assetManifestPlatform: x64
-              archflag: -arch x64
+              targetArchitecture: x64
             arm64:
               assetManifestOS: win
               assetManifestPlatform: arm64
-              archflag: -arch arm64
+              targetArchitecture: arm64
         steps:
         - script: |
-            .\build.cmd $(archflag) -restore -build -pack -ci -configuration $(_BuildConfig) -sign -publish /p:SkipWorkloads=true /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
+            .\eng\common\CIBuild.cmd -configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:SkipWorkloads=true /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
           displayName: Build and Publish
         - task: CopyFiles@2
           displayName: Prepare job-specific intermediate artifacts subdirectory
@@ -150,7 +150,7 @@ stages:
             x64:
               assetManifestOS: win
               assetManifestPlatform: x64
-              archflag: -arch x64
+              targetArchitecture: x64
         steps:
         - task: DownloadPipelineArtifact@2
           inputs:
@@ -159,7 +159,7 @@ stages:
             patterns: |
               IntermediateArtifacts/windows/Shipping/*.*
         - script: |
-            .\build.cmd $(archflag) -restore -build -pack -ci -configuration $(_BuildConfig) -sign -publish /p:SkipBuild=true /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestFileName=win-workloads.xml /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\windows\Shipping $(_InternalBuildArgs)
+            .\eng\common\CIBuild.cmd -configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:SkipBuild=true /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestFileName=win-workloads.xml /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\windows\Shipping $(_InternalBuildArgs)
           displayName: Build and Publish
         - task: CopyFiles@2
           displayName: Prepare job-specific intermediate artifacts subdirectory
