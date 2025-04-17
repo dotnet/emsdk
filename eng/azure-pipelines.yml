@@ -64,8 +64,9 @@ extends:
               os: macOS
             steps:
             - bash: build.sh
-                --configuration $(_BuildConfig)
+                --ci
                 --prepareMachine
+                --configuration $(_BuildConfig)
                 --pack
                 /p:TargetArchitecture=x64
                 /p:PackageRID=osx-x64
@@ -93,8 +94,9 @@ extends:
               os: macOS
             steps:
             - bash: build.sh
-                --configuration $(_BuildConfig)
+                --ci
                 --prepareMachine
+                --configuration $(_BuildConfig)
                 --pack
                 /p:TargetArchitecture=arm64
                 /p:PackageRID=osx-arm64
@@ -123,8 +125,9 @@ extends:
               os: linux
             steps:
             - bash: build.sh
-                --configuration $(_BuildConfig)
+                --ci
                 --prepareMachine
+                --configuration $(_BuildConfig)
                 --pack
                 /p:TargetArchitecture=x64
                 /p:PackageRID=linux-x64
@@ -152,8 +155,9 @@ extends:
               os: linux
             steps:
             - bash: build.sh
-                --configuration $(_BuildConfig)
+                --ci
                 --prepareMachine
+                --configuration $(_BuildConfig)
                 --pack
                 /p:TargetArchitecture=arm64
                 /p:PackageRID=linux-arm64
@@ -181,8 +185,9 @@ extends:
               os: linux
             steps:
             - bash: build.sh
-                --configuration $(_BuildConfig)
+                --ci
                 --prepareMachine
+                --configuration $(_BuildConfig)
                 --pack
                 /p:TargetArchitecture=x64
                 /p:PackageRID=linux-musl-x64
@@ -210,8 +215,9 @@ extends:
               os: linux
             steps:
             - bash: build.sh
-                --configuration $(_BuildConfig)
+                --ci
                 --prepareMachine
+                --configuration $(_BuildConfig)
                 --pack
                 /p:TargetArchitecture=arm64
                 /p:PackageRID=linux-musl-arm64
@@ -239,16 +245,19 @@ extends:
               image: $(WindowsImage)
               os: windows
             steps:
-            - script: eng\common\CIBuild.cmd
-                -configuration $(_BuildConfig)
+            - script: build.cmd
+                -ci
                 -prepareMachine
+                -configuration $(_BuildConfig)
+                -pack
+                -sign
+                -publish
                 /p:TargetArchitecture=x64
                 /p:SkipWorkloads=true
                 /p:PackageRID=win-x64
                 /p:AssetManifestOS=win
                 /p:PlatformName=x64
                 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping
-                /p:Test=false
                 $(_InternalBuildArgs)
               displayName: Build
             - task: CopyFiles@2
@@ -279,16 +288,19 @@ extends:
               image: $(WindowsImage)
               os: windows
             steps:
-            - script: eng\common\CIBuild.cmd
-                -configuration $(_BuildConfig)
+            - script: build.cmd
+                -ci
                 -prepareMachine
+                -configuration $(_BuildConfig)
+                -pack
+                -sign
+                -publish
                 /p:TargetArchitecture=arm64
                 /p:SkipWorkloads=true
                 /p:PackageRID=win-arm64
                 /p:AssetManifestOS=win
                 /p:PlatformName=arm64
                 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping
-                /p:Test=false
                 $(_InternalBuildArgs)
               displayName: Build
             - task: CopyFiles@2
@@ -382,9 +394,13 @@ extends:
               inputs:
                 artifact: Packages_win_arm64
                 path: 'artifacts/packages'
-            - script: eng\common\CIBuild.cmd
-                -configuration $(_BuildConfig)
+            - script: build.cmd
+                -ci
                 -prepareMachine
+                -configuration $(_BuildConfig)
+                -pack
+                -sign
+                -publish
                 /p:TargetArchitecture=x64
                 /p:SkipBuild=true
                 /p:PackageRID=win-x64
@@ -392,7 +408,6 @@ extends:
                 /p:AssetManifestOS=win
                 /p:PlatformName=x64
                 /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\windows\Shipping
-                /p:Test=false
                 $(_InternalBuildArgs)
               displayName: Build and Publish
             - task: CopyFiles@2

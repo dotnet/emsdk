@@ -48,8 +48,18 @@ stages:
               assetManifestPlatform: arm64
               targetArchitecture: arm64
         steps:
-        - bash: |
-            ./eng/common/cibuild.sh --configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
+        - bash: build.sh
+            --ci
+            --prepareMachine
+            --configuration $(_BuildConfig)
+            --test
+            --pack
+            /p:TargetArchitecture=$(targetArchitecture)
+            /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform)
+            /p:AssetManifestOS=$(assetManifestOS)
+            /p:PlatformName=$(assetManifestPlatform)
+            $(_InternalBuildArgs)
+            $(_NonWindowsInternalPublishArg)
           displayName: Build
         - publish: artifacts/packages
           artifact: Packages_macOS_$(assetManifestPlatform)
@@ -85,8 +95,18 @@ stages:
               assetManifestPlatform: arm64
               targetArchitecture: arm64
         steps:
-        - bash: |
-            ./eng/common/cibuild.sh --configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) $(_InternalBuildArgs) $(_NonWindowsInternalPublishArg)
+        - bash: cibuild.sh
+            --ci
+            --prepareMachine
+            --configuration $(_BuildConfig)
+            --test
+            --pack
+            /p:TargetArchitecture=$(targetArchitecture)
+            /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform)
+            /p:AssetManifestOS=$(assetManifestOS)
+            /p:PlatformName=$(assetManifestPlatform)
+            $(_InternalBuildArgs)
+            $(_NonWindowsInternalPublishArg)
           displayName: Build
         - publish: artifacts/packages
           artifact: Packages_$(assetManifestOS)_$(assetManifestPlatform)
@@ -114,8 +134,21 @@ stages:
               assetManifestPlatform: arm64
               targetArchitecture: arm64
         steps:
-        - script: |
-            .\eng\common\CIBuild.cmd -configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:SkipWorkloads=true /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping $(_InternalBuildArgs)
+        - script: build.cmd
+            -ci
+            -prepareMachine
+            -configuration $(_BuildConfig)
+            -test
+            -pack
+            -sign
+            -publish
+            /p:TargetArchitecture=$(targetArchitecture)
+            /p:SkipWorkloads=true
+            /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform)
+            /p:AssetManifestOS=$(assetManifestOS)
+            /p:PlatformName=$(assetManifestPlatform)
+            /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\$(_BuildConfig)\Shipping
+            $(_InternalBuildArgs)
           displayName: Build and Publish
         - task: CopyFiles@2
           displayName: Prepare job-specific intermediate artifacts subdirectory
@@ -158,8 +191,22 @@ stages:
             path: 'artifacts/packages'
             patterns: |
               IntermediateArtifacts/windows/Shipping/*.*
-        - script: |
-            .\eng\common\CIBuild.cmd -configuration $(_BuildConfig) /p:TargetArchitecture=$(targetArchitecture) /p:SkipBuild=true /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform) /p:AssetManifestFileName=win-workloads.xml /p:AssetManifestOS=$(assetManifestOS) /p:PlatformName=$(assetManifestPlatform) /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\windows\Shipping $(_InternalBuildArgs)
+        - script: build.cmd
+            -ci
+            -prepareMachine
+            -configuration $(_BuildConfig)
+            -test
+            -pack
+            -sign
+            -publish
+            /p:TargetArchitecture=$(targetArchitecture)
+            /p:SkipBuild=true
+            /p:PackageRID=$(assetManifestOS)-$(assetManifestPlatform)
+            /p:AssetManifestFileName=win-workloads.xml
+            /p:AssetManifestOS=$(assetManifestOS)
+            /p:PlatformName=$(assetManifestPlatform)
+            /p:workloadPackagesPath=$(Build.SourcesDirectory)\artifacts\packages\windows\Shipping
+            $(_InternalBuildArgs)
           displayName: Build and Publish
         - task: CopyFiles@2
           displayName: Prepare job-specific intermediate artifacts subdirectory
