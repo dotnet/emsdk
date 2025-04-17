@@ -63,7 +63,7 @@ extends:
               image: $(MacImage)
               os: macOS
             steps:
-            - bash: build.sh
+            - bash: ./build.sh
                 --ci
                 --prepareMachine
                 --configuration $(_BuildConfig)
@@ -93,7 +93,7 @@ extends:
               image: $(MacImage)
               os: macOS
             steps:
-            - bash: build.sh
+            - bash: ./build.sh
                 --ci
                 --prepareMachine
                 --configuration $(_BuildConfig)
@@ -124,7 +124,7 @@ extends:
               image: $(LinuxImage)
               os: linux
             steps:
-            - bash: build.sh
+            - bash: ./build.sh
                 --ci
                 --prepareMachine
                 --configuration $(_BuildConfig)
@@ -154,7 +154,7 @@ extends:
               image: $(LinuxImage)
               os: linux
             steps:
-            - bash: build.sh
+            - bash: ./build.sh
                 --ci
                 --prepareMachine
                 --configuration $(_BuildConfig)
@@ -184,7 +184,7 @@ extends:
               image: $(LinuxImage)
               os: linux
             steps:
-            - bash: build.sh
+            - bash: ./build.sh
                 --ci
                 --prepareMachine
                 --configuration $(_BuildConfig)
@@ -214,7 +214,7 @@ extends:
               image: $(LinuxImage)
               os: linux
             steps:
-            - bash: build.sh
+            - bash: ./build.sh
                 --ci
                 --prepareMachine
                 --configuration $(_BuildConfig)

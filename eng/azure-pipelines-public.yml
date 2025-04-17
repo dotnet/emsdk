@@ -48,7 +48,7 @@ stages:
               assetManifestPlatform: arm64
               targetArchitecture: arm64
         steps:
-        - bash: build.sh
+        - bash: ./build.sh
             --ci
             --prepareMachine
             --configuration $(_BuildConfig)
@@ -95,7 +95,7 @@ stages:
               assetManifestPlatform: arm64
               targetArchitecture: arm64
         steps:
-        - bash: cibuild.sh
+        - bash: ./build.sh
             --ci
             --prepareMachine
             --configuration $(_BuildConfig)
