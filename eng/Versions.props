@@ -51,21 +51,17 @@
     <runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25218.2</runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <!-- emscripten -->
     <MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>10.0.0-alpha.1.25218.4</MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>
-    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksPackagingVersion>
-    <MicrosoftDotNetBuildTasksInstallersVersion>0.0.0</MicrosoftDotNetBuildTasksInstallersVersion>
-    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksTemplatingVersion>
-    <MicrosoftDotNetBuildTasksWorkloadsVersion>0.0.0</MicrosoftDotNetBuildTasksWorkloadsVersion>
-    <MicrosoftDotNetXliffTasksVersion>10.0.0-beta.25223.119</MicrosoftDotNetXliffTasksVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StabilizePackageVersion Condition="'$(StabilizePackageVersion)' == ''">false</StabilizePackageVersion>
     <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25217.1</MicrosoftDotNetBuildTasksPackagingVersion>
-    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25217.1</MicrosoftDotNetBuildTasksTemplatingVersion>
-    <MicrosoftDotNetBuildTasksInstallersPackageVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksInstallersPackageVersion>
-    <MicrosoftDotNetBuildTasksWorkloadsPackageVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksWorkloadsPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksPackagingVersion>
+    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksTemplatingVersion>
+    <MicrosoftDotNetBuildTasksInstallersVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksInstallersVersion>
+    <MicrosoftDotNetBuildTasksWorkloadsVersion>10.0.0-beta.25223.119</MicrosoftDotNetBuildTasksWorkloadsVersion>
+    <MicrosoftDotNetXliffTasksVersion>10.0.0-beta.25223.119</MicrosoftDotNetXliffTasksVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SwixPackageVersion>1.1.87-gba258badda</SwixPackageVersion>
