@@ -34,21 +34,21 @@
       <Uri>https://github.com/dotnet/binaryen</Uri>
       <Sha>d9d4f7258ec826cd523285fb54e2cfed4630b84a</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25275.1">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25301.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>e764026d1370aca7147a0eb205c4cbe9d9da17ca</Sha>
+      <Sha>fd184a657a3cb7cb764eed87f88c8f5843d900b5</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25275.1">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25301.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>e764026d1370aca7147a0eb205c4cbe9d9da17ca</Sha>
+      <Sha>fd184a657a3cb7cb764eed87f88c8f5843d900b5</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25275.1">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25301.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>e764026d1370aca7147a0eb205c4cbe9d9da17ca</Sha>
+      <Sha>fd184a657a3cb7cb764eed87f88c8f5843d900b5</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25275.1">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25301.1">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>e764026d1370aca7147a0eb205c4cbe9d9da17ca</Sha>
+      <Sha>fd184a657a3cb7cb764eed87f88c8f5843d900b5</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="10.0.0-alpha.1.25302.1">
       <Uri>https://github.com/dotnet/node</Uri>
