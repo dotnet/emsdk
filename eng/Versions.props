@@ -57,11 +57,11 @@
     <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25321.102</MicrosoftDotNetBuildTasksPackagingVersion>
-    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25321.102</MicrosoftDotNetBuildTasksTemplatingVersion>
-    <MicrosoftDotNetBuildTasksInstallersVersion>10.0.0-beta.25321.102</MicrosoftDotNetBuildTasksInstallersVersion>
-    <MicrosoftDotNetBuildTasksWorkloadsVersion>10.0.0-beta.25321.102</MicrosoftDotNetBuildTasksWorkloadsVersion>
-    <MicrosoftDotNetXliffTasksVersion>10.0.0-beta.25321.102</MicrosoftDotNetXliffTasksVersion>
+    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25324.102</MicrosoftDotNetBuildTasksPackagingVersion>
+    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25324.102</MicrosoftDotNetBuildTasksTemplatingVersion>
+    <MicrosoftDotNetBuildTasksInstallersVersion>10.0.0-beta.25324.102</MicrosoftDotNetBuildTasksInstallersVersion>
+    <MicrosoftDotNetBuildTasksWorkloadsVersion>10.0.0-beta.25324.102</MicrosoftDotNetBuildTasksWorkloadsVersion>
+    <MicrosoftDotNetXliffTasksVersion>10.0.0-beta.25324.102</MicrosoftDotNetXliffTasksVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SwixPackageVersion>1.1.87-gba258badda</SwixPackageVersion>
