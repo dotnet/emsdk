@@ -78,8 +78,8 @@
     <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25373.104</MicrosoftDotNetBuildTasksPackagingVersion>
-    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25373.104</MicrosoftDotNetBuildTasksTemplatingVersion>
-    <MicrosoftDotNetXliffTasksVersion>10.0.0-beta.25373.104</MicrosoftDotNetXliffTasksVersion>
+    <MicrosoftDotNetBuildTasksPackagingVersion>10.0.0-beta.25374.102</MicrosoftDotNetBuildTasksPackagingVersion>
+    <MicrosoftDotNetBuildTasksTemplatingVersion>10.0.0-beta.25374.102</MicrosoftDotNetBuildTasksTemplatingVersion>
+    <MicrosoftDotNetXliffTasksVersion>10.0.0-beta.25374.102</MicrosoftDotNetXliffTasksVersion>
   </PropertyGroup>
 </Project>
