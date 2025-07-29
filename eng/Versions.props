@@ -42,7 +42,7 @@
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25371.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>19.1.0-alpha.1.25371.1</runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportVersion>
     <!-- emscripten -->
-    <MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>10.0.0-alpha.1.25370.1</MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>
+    <MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>10.0.0-alpha.1.25377.1</MicrosoftNETCoreRuntimeWasmEmscriptenTransportVersion>
     <runtimelinuxarm64MicrosoftNETCoreRuntimeJITToolsVersion>19.1.0-alpha.1.25371.1</runtimelinuxarm64MicrosoftNETCoreRuntimeJITToolsVersion>
     <runtimelinuxx64MicrosoftNETCoreRuntimeJITToolsVersion>19.1.0-alpha.1.25371.1</runtimelinuxx64MicrosoftNETCoreRuntimeJITToolsVersion>
     <runtimelinuxmuslarm64MicrosoftNETCoreRuntimeJITToolsVersion>19.1.0-alpha.1.25371.1</runtimelinuxmuslarm64MicrosoftNETCoreRuntimeJITToolsVersion>
