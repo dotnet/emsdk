@@ -146,9 +146,9 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>dd5a6844bbb33e6bd1b18e15fc1f63e160f4044a</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="10.0.0-alpha.1.25403.1">
+    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="10.0.0-alpha.1.25410.1">
       <Uri>https://github.com/dotnet/emscripten</Uri>
-      <Sha>35f4e3763e3ebbbff760443d91d04b7875541e27</Sha>
+      <Sha>550ade9581137743d92765bd1d1173a4c73f1f73</Sha>
     </Dependency>
   </ProductDependencies>
   <ToolsetDependencies>
