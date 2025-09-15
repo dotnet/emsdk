@@ -43,10 +43,10 @@
     <DotNetFinalVersionKind Condition="'$(StabilizePackageVersion)' == 'true'">release</DotNetFinalVersionKind>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetBuildTasksPackagingVersion>8.0.0-beta.25461.1</MicrosoftDotNetBuildTasksPackagingVersion>
-    <MicrosoftDotNetBuildTasksTemplatingVersion>8.0.0-beta.25461.1</MicrosoftDotNetBuildTasksTemplatingVersion>
-    <MicrosoftDotNetBuildTasksInstallersPackageVersion>8.0.0-beta.25461.1</MicrosoftDotNetBuildTasksInstallersPackageVersion>
-    <MicrosoftDotNetBuildTasksWorkloadsPackageVersion>8.0.0-beta.25461.1</MicrosoftDotNetBuildTasksWorkloadsPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingVersion>8.0.0-beta.25462.6</MicrosoftDotNetBuildTasksPackagingVersion>
+    <MicrosoftDotNetBuildTasksTemplatingVersion>8.0.0-beta.25462.6</MicrosoftDotNetBuildTasksTemplatingVersion>
+    <MicrosoftDotNetBuildTasksInstallersPackageVersion>8.0.0-beta.25462.6</MicrosoftDotNetBuildTasksInstallersPackageVersion>
+    <MicrosoftDotNetBuildTasksWorkloadsPackageVersion>8.0.0-beta.25462.6</MicrosoftDotNetBuildTasksWorkloadsPackageVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SwixPackageVersion>1.1.87-gba258badda</SwixPackageVersion>
