@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
-  <Source Uri="https://github.com/dotnet/dotnet" Mapping="emsdk" Sha="b0eeb50560544fa782bd8bbddbe2e964c2ab6388" BarId="283422" />
+  <Source Uri="https://github.com/dotnet/dotnet" Mapping="emsdk" Sha="e533cfad385ba4f0ec96e35ad3d485dc13581906" BarId="283666" />
   <ProductDependencies>
-    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-musl-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.linux-musl-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.linux-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.linux-musl-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.linux-musl-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="10.0.0-alpha.1.25464.2">
       <Uri>https://github.com/dotnet/binaryen</Uri>
-      <Sha>e9c2b58661387a019d4603d99ba04a5ff161b090</Sha>
+      <Sha>b125d92b2d13757fcea77c662cfdfaa519d1c156</Sha>
     </Dependency>
     <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="10.0.0-alpha.1.25425.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
@@ -146,9 +146,9 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>2cfe42ea4a7fe364dcb197beca469af8edec0ad6</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="10.0.0-alpha.1.25466.2">
+    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="10.0.0-alpha.1.25425.3">
       <Uri>https://github.com/dotnet/emscripten</Uri>
-      <Sha>a256ffde305323772f6e860646aa8e91dce47cbc</Sha>
+      <Sha>16e406441bf9475e0e96ab3916a316fba57b870b</Sha>
     </Dependency>
   </ProductDependencies>
   <ToolsetDependencies>
@@ -236,25 +236,25 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>2cfe42ea4a7fe364dcb197beca469af8edec0ad6</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="10.0.0-beta.25466.101">
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="10.0.0-beta.25467.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>b0eeb50560544fa782bd8bbddbe2e964c2ab6388</Sha>
+      <Sha>e533cfad385ba4f0ec96e35ad3d485dc13581906</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="10.0.0-beta.25466.101">
+    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="10.0.0-beta.25467.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>b0eeb50560544fa782bd8bbddbe2e964c2ab6388</Sha>
+      <Sha>e533cfad385ba4f0ec96e35ad3d485dc13581906</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="10.0.0-beta.25466.101">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="10.0.0-beta.25467.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>b0eeb50560544fa782bd8bbddbe2e964c2ab6388</Sha>
+      <Sha>e533cfad385ba4f0ec96e35ad3d485dc13581906</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Templating" Version="10.0.0-beta.25466.101">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Templating" Version="10.0.0-beta.25467.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>b0eeb50560544fa782bd8bbddbe2e964c2ab6388</Sha>
+      <Sha>e533cfad385ba4f0ec96e35ad3d485dc13581906</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="10.0.0-beta.25466.101">
+    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="10.0.0-beta.25467.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>b0eeb50560544fa782bd8bbddbe2e964c2ab6388</Sha>
+      <Sha>e533cfad385ba4f0ec96e35ad3d485dc13581906</Sha>
     </Dependency>
   </ToolsetDependencies>
 </Dependencies>
