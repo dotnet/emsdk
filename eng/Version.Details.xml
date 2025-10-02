@@ -25,21 +25,21 @@
       <Uri>https://github.com/dotnet/binaryen</Uri>
       <Sha>16304499ff8630507bafa401edfb8ff4848648f4</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25466.3">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25473.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>61302f38c69313096967bd8e74a6707a90cc87f8</Sha>
+      <Sha>0199c4c24de5e49863a49d0ad275ce588b5ef233</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25466.3">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25473.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>61302f38c69313096967bd8e74a6707a90cc87f8</Sha>
+      <Sha>0199c4c24de5e49863a49d0ad275ce588b5ef233</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25466.3">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25473.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>61302f38c69313096967bd8e74a6707a90cc87f8</Sha>
+      <Sha>0199c4c24de5e49863a49d0ad275ce588b5ef233</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25466.3">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25473.2">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>61302f38c69313096967bd8e74a6707a90cc87f8</Sha>
+      <Sha>0199c4c24de5e49863a49d0ad275ce588b5ef233</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.25326.2">
       <Uri>https://github.com/dotnet/node</Uri>
@@ -153,9 +153,9 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>0a471ebbe6a4a9c095169dd531b825a4370f57f3</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-rtm.25466.3">
+    <Dependency Name="Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport" Version="8.0.0-rtm.25473.2">
       <Uri>https://github.com/dotnet/emscripten</Uri>
-      <Sha>4df7a786ef379ef9b7455b5348eed6cef48d12a6</Sha>
+      <Sha>b98d5496f4f3cb48c8c238c1db3885c0539ba845</Sha>
     </Dependency>
   </ProductDependencies>
   <ToolsetDependencies>
@@ -245,9 +245,9 @@
       <Sha>73f0850939d96131c28cf6ea6ee5aacb4da0083a</Sha>
       <SourceBuild RepoName="xliff-tasks" ManagedOnly="true" />
     </Dependency>
-    <Dependency Name="Microsoft.SourceBuild.Intermediate.source-build-reference-packages" Version="8.0.0-alpha.1.25462.3">
+    <Dependency Name="Microsoft.SourceBuild.Intermediate.source-build-reference-packages" Version="8.0.0-alpha.1.25474.1">
       <Uri>https://github.com/dotnet/source-build-reference-packages</Uri>
-      <Sha>55cc6bb942c12203e42ddb58f72cf5dbf1173eac</Sha>
+      <Sha>fcf0226bfea241d4e4f127600b6c3ae10d772e9a</Sha>
       <SourceBuild RepoName="source-build-reference-packages" ManagedOnly="true" />
     </Dependency>
   </ToolsetDependencies>
