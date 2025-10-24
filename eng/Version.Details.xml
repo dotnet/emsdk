@@ -25,21 +25,21 @@
       <Uri>https://github.com/dotnet/binaryen</Uri>
       <Sha>448beb4be047afdf6c8b627ec50f53f0765ede59</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25515.1">
+    <Dependency Name="runtime.osx-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25522.4">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>404dac71eed3cb47357b841d76ed99a86076514b</Sha>
+      <Sha>0bf1978f79105ab46277230d698c17c0647ad0a9</Sha>
     </Dependency>
-    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25515.1">
+    <Dependency Name="runtime.osx-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25522.4">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>404dac71eed3cb47357b841d76ed99a86076514b</Sha>
+      <Sha>0bf1978f79105ab46277230d698c17c0647ad0a9</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25515.1">
+    <Dependency Name="runtime.win-arm64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25522.4">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>404dac71eed3cb47357b841d76ed99a86076514b</Sha>
+      <Sha>0bf1978f79105ab46277230d698c17c0647ad0a9</Sha>
     </Dependency>
-    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25515.1">
+    <Dependency Name="runtime.win-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport" Version="8.0.0-rtm.25522.4">
       <Uri>https://github.com/dotnet/cpython</Uri>
-      <Sha>404dac71eed3cb47357b841d76ed99a86076514b</Sha>
+      <Sha>0bf1978f79105ab46277230d698c17c0647ad0a9</Sha>
     </Dependency>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Node.Transport" Version="8.0.0-rtm.25326.2">
       <Uri>https://github.com/dotnet/node</Uri>
