@@ -194,11 +194,11 @@
 
     <Message Importance="High" Text="Installing node modules in: $(EmscriptenDir)" />
     <PropertyGroup>
-      <NpmPath>$(NodeDir)/bin:$(PATH)</NpmPath>
-      <NpmPath Condition="$([MSBuild]::IsOSPlatform(Windows))">$(NodeDir)\bin%3B$(PATH.Replace(';', '%3B'))</NpmPath>
+      <NpmPath>$(HostNodeDir)/bin:$(PATH)</NpmPath>
+      <NpmPath Condition="$([MSBuild]::IsOSPlatform(Windows))">$(HostNodeDir)\bin%3B$(PATH.Replace(';', '%3B'))</NpmPath>
     </PropertyGroup>
     <Exec WorkingDirectory="$(EmscriptenDir)"
-      Command="npm ci"
+      Command="$(HostNodeDir)\bin\$(NpmFileName) ci"
       IgnoreStandardErrorWarningFormat="true"
       EnvironmentVariables="PATH=$(NpmPath)" />
 
