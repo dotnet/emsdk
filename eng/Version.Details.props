@@ -67,7 +67,7 @@ This file should be imported by eng/Versions.props
     <runtimewinx64MicrosoftNETCoreRuntimeMonoLLVMToolsPackageVersion>19.1.0-alpha.1.25625.2</runtimewinx64MicrosoftNETCoreRuntimeMonoLLVMToolsPackageVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportPackageVersion>19.1.0-alpha.1.25625.2</runtimewinx64MicrosoftNETCoreRuntimeWasmLLVMTransportPackageVersion>
     <!-- dotnet/emscripten dependencies -->
-    <MicrosoftNETCoreRuntimeWasmEmscriptenTransportPackageVersion>11.0.0-alpha.1.26061.1</MicrosoftNETCoreRuntimeWasmEmscriptenTransportPackageVersion>
+    <MicrosoftNETCoreRuntimeWasmEmscriptenTransportPackageVersion>11.0.0-alpha.1.26068.1</MicrosoftNETCoreRuntimeWasmEmscriptenTransportPackageVersion>
     <!-- dotnet/dotnet dependencies -->
     <MicrosoftDotNetArcadeSdkPackageVersion>11.0.0-beta.26062.101</MicrosoftDotNetArcadeSdkPackageVersion>
     <MicrosoftDotNetBuildTasksPackagingPackageVersion>11.0.0-beta.26062.101</MicrosoftDotNetBuildTasksPackagingPackageVersion>
