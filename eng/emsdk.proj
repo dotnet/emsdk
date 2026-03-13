@@ -197,8 +197,14 @@
       <NpmPath>$(HostNodeDir)/bin:$(PATH)</NpmPath>
       <NpmPath Condition="$([MSBuild]::IsOSPlatform(Windows))">$(HostNodeDir)\bin%3B$(PATH.Replace(';', '%3B'))</NpmPath>
     </PropertyGroup>
+    <!-- Retry npm ci up to 3 times to handle transient network failures (ETIMEDOUT, etc.) -->
+    <PropertyGroup>
+      <NpmCiCommand>$(HostNodeDir)\bin\$(NpmFileName) ci</NpmCiCommand>
+      <NpmCiRetryCommand Condition="$([MSBuild]::IsOSPlatform(Windows))">$(NpmCiCommand) || (echo Retry 1... &amp;&amp; timeout /t 10 /nobreak &gt;nul &amp;&amp; $(NpmCiCommand)) || (echo Retry 2... &amp;&amp; timeout /t 10 /nobreak &gt;nul &amp;&amp; $(NpmCiCommand))</NpmCiRetryCommand>
+      <NpmCiRetryCommand Condition="!$([MSBuild]::IsOSPlatform(Windows))">$(NpmCiCommand) || (echo Retry 1... &amp;&amp; sleep 10 &amp;&amp; $(NpmCiCommand)) || (echo Retry 2... &amp;&amp; sleep 10 &amp;&amp; $(NpmCiCommand))</NpmCiRetryCommand>
+    </PropertyGroup>
     <Exec WorkingDirectory="$(EmscriptenDir)"
-      Command="$(HostNodeDir)\bin\$(NpmFileName) ci"
+      Command="$(NpmCiRetryCommand)"
       IgnoreStandardErrorWarningFormat="true"
       EnvironmentVariables="PATH=$(NpmPath);npm_config_userconfig=$(RepoRoot)\.npmrc" />
 
