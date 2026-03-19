@@ -15,10 +15,10 @@ This file should be imported by eng/Versions.props
     <runtimewinarm64MicrosoftNETCoreRuntimeWasmBinaryenTransportPackageVersion>11.0.0-alpha.1.26167.2</runtimewinarm64MicrosoftNETCoreRuntimeWasmBinaryenTransportPackageVersion>
     <runtimewinx64MicrosoftNETCoreRuntimeWasmBinaryenTransportPackageVersion>11.0.0-alpha.1.26167.2</runtimewinx64MicrosoftNETCoreRuntimeWasmBinaryenTransportPackageVersion>
     <!-- dotnet-cpython dependencies -->
-    <runtimeosxarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26159.1</runtimeosxarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
-    <runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26159.1</runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
-    <runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26159.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
-    <runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26159.1</runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
+    <runtimeosxarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26165.1</runtimeosxarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
+    <runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26165.1</runtimeosxx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
+    <runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26165.1</runtimewinarm64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
+    <runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>11.0.0-alpha.1.26165.1</runtimewinx64MicrosoftNETCoreRuntimeWasmPythonTransportPackageVersion>
     <!-- dotnet-dotnet dependencies -->
     <MicrosoftDotNetArcadeSdkPackageVersion>11.0.0-beta.26165.107</MicrosoftDotNetArcadeSdkPackageVersion>
     <MicrosoftDotNetBuildTasksPackagingPackageVersion>11.0.0-beta.26165.107</MicrosoftDotNetBuildTasksPackagingPackageVersion>
