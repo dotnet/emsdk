@@ -365,6 +365,49 @@
     <Delete Files="@(DeleteCacheFiles)" />
   </Target>
 
+  <!--
+    Generate a catalog (.cat) file covering all .js files in the SDK package.
+    The .js files are customer-modifiable Emscripten toolchain files that cannot be
+    directly Authenticode-signed. The .cat provides integrity verification without
+    preventing modification. Only runs on Windows (makecat.exe is a Windows SDK tool)
+    and only the Windows packs are inserted into VS.
+  -->
+  <Target Name="GenerateCatalogFiles" AfterTargets="ReallyBuild" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <PropertyGroup>
+      <_CdfFile>$(ArtifactsObjDir)emscripten-js.cdf</_CdfFile>
+      <_CatOutputDir>$(ArtifactsObjDir)upstream\emscripten\</_CatOutputDir>
+    </PropertyGroup>
+
+    <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -Command &quot;&amp; {
+      $$rootPath = '$(ArtifactsObjDir)upstream'
+      $$cdfPath = '$(_CdfFile)'
+      $$catPath = '$(_CatOutputDir)emscripten-js.cat'
+
+      $$files = Get-ChildItem -Path $$rootPath -Recurse -Filter '*.js' -File
+      $$cdf = @()
+      $$cdf += '[CatalogHeader]'
+      $$cdf += 'Name=' + $$catPath
+      $$cdf += 'CatalogVersion=2'
+      $$cdf += 'HashAlgorithms=SHA256'
+      $$cdf += ''
+      $$cdf += '[CatalogFiles]'
+
+      $$i = 0
+      foreach ($$f in $$files) {
+        $$label = 'js_' + $$i + '_' + ($$f.Name -replace '[^\w\.-]','_')
+        $$cdf += '&lt;hash&gt;' + $$label + '=' + $$f.FullName
+        $$i++
+      }
+
+      $$cdf | Set-Content -Path $$cdfPath -Encoding ASCII
+      Write-Host ('Generated CDF with ' + $$files.Count + ' .js files')
+    }&quot;" StandardOutputImportance="High" />
+
+    <Exec Command="makecat.exe &quot;$(_CdfFile)&quot;" StandardOutputImportance="High" />
+
+    <Message Importance="High" Text="Generated catalog file: $(_CatOutputDir)emscripten-js.cat" />
+  </Target>
+
   <Target Name="ReallyPack" DependsOnTargets="Build" BeforeTargets="Pack">
     <Message Importance="High" Text="Creating nuget packages..." />
     <MSBuild Projects="$(MSBuildThisFileDirectory)nuget\Microsoft.NET.Runtime.Emscripten.Node\Microsoft.NET.Runtime.Emscripten.Node.pkgproj" Targets="Build" />
