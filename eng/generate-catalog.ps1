@@ -14,7 +14,7 @@ param(
     [Parameter(Mandatory)][string]$RootPath,
     [Parameter(Mandatory)][string]$CatOutputPath,
     [string]$WindowsSdkDir = '',
-    [bool]$ErrorIfMakecatNotFound = $false
+    [switch]$ErrorIfMakecatNotFound
 )
 
 $ErrorActionPreference = 'Stop'
