@@ -375,9 +375,10 @@
   <Target Name="GenerateCatalogFiles" AfterTargets="ReallyBuild" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <PropertyGroup>
       <_CatOutputPath>$(ArtifactsObjDir)upstream\emscripten\emscripten-js.cat</_CatOutputPath>
+      <_ErrorIfMakecatNotFound Condition="'$(ContinuousIntegrationBuild)' == 'true' or '$(OfficialBuild)' == 'true'">true</_ErrorIfMakecatNotFound>
     </PropertyGroup>
 
-    <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -Command &quot;&amp; '$(MSBuildThisFileDirectory)generate-catalog.ps1' -RootPath '$(ArtifactsObjDir)upstream' -CatOutputPath '$(_CatOutputPath)' -WindowsSdkDir '$(WindowsSdkDir)'&quot;" StandardOutputImportance="High" />
+    <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -Command &quot;&amp; '$(MSBuildThisFileDirectory)generate-catalog.ps1' -RootPath '$(ArtifactsObjDir)upstream' -CatOutputPath '$(_CatOutputPath)' -WindowsSdkDir '$(WindowsSdkDir)' -ErrorIfMakecatNotFound '$(_ErrorIfMakecatNotFound)'&quot;" StandardOutputImportance="High" />
 
     <Message Importance="High" Text="Generated catalog file: $(_CatOutputPath)" />
   </Target>

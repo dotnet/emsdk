@@ -13,7 +13,8 @@
 param(
     [Parameter(Mandatory)][string]$RootPath,
     [Parameter(Mandatory)][string]$CatOutputPath,
-    [string]$WindowsSdkDir = ''
+    [string]$WindowsSdkDir = '',
+    [bool]$ErrorIfMakecatNotFound = $false
 )
 
 $ErrorActionPreference = 'Stop'
@@ -76,6 +77,9 @@ if (-not $makecat) {
 }
 
 if (-not $makecat) {
+    if ($ErrorIfMakecatNotFound) {
+        throw "makecat.exe not found. Catalog signing requires the Windows SDK which must be available in CI builds."
+    }
     Write-Warning "makecat.exe not found - skipping catalog generation. Catalog signing requires the Windows SDK."
     exit 0
 }
