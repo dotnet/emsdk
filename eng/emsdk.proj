@@ -380,7 +380,7 @@
 
     <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -Command &quot;&amp; '$(MSBuildThisFileDirectory)generate-catalog.ps1' -RootPath '$(ArtifactsObjDir)upstream' -CatOutputPath '$(_CatOutputPath)' -WindowsSdkDir '$(WindowsSdkDir)' -ErrorIfMakecatNotFound '$(_ErrorIfMakecatNotFound)'&quot;" StandardOutputImportance="High" />
 
-    <Message Importance="High" Text="Generated catalog file: $(_CatOutputPath)" />
+    <Message Condition="Exists('$(_CatOutputPath)')" Importance="High" Text="Generated catalog file: $(_CatOutputPath)" />
   </Target>
 
   <Target Name="ReallyPack" DependsOnTargets="Build" BeforeTargets="Pack">
