@@ -14,7 +14,6 @@ This wrapper currently serves the following purposes.
    bazel path.
 """
 
-from __future__ import print_function
 
 import argparse
 import os
@@ -24,7 +23,7 @@ import sys
 # Only argument should be @path/to/parameter/file
 assert sys.argv[1][0] == '@', sys.argv
 param_filename = sys.argv[1][1:]
-param_file_args = [l.strip() for l in open(param_filename, 'r').readlines()]
+param_file_args = [line.strip() for line in open(param_filename).readlines()]
 
 # Re-write response file if needed.
 if any(' ' in a for a in param_file_args):
@@ -84,13 +83,12 @@ extensions = [
     '.js',
     '.wasm',
     '.wasm.map',
-    '.js.mem',
-    '.fetch.js',
-    '.worker.js',
     '.data',
     '.js.symbols',
     '.wasm.debug.wasm',
-    '.html'
+    '.html',
+    '.ts',
+    '.d.ts',
 ]
 
 for ext in extensions:
@@ -138,7 +136,7 @@ if os.path.exists(wasm_base + '.debug.wasm') and os.path.exists(wasm_base):
     final_bytes.extend((base_name + '.wasm.debug.wasm').encode())
 
     # Write our length + filename bytes to a temp file.
-    with open('debugsection.tmp', 'wb+') as f:
+    with open(base_name + '_debugsection.tmp', 'wb+') as f:
       f.write(final_bytes)
       f.close()
 
@@ -151,16 +149,16 @@ if os.path.exists(wasm_base + '.debug.wasm') and os.path.exists(wasm_base):
     subprocess.check_call([
         llvm_objcopy,
         wasm_base,
-        '--add-section=external_debug_info=debugsection.tmp'])
+        '--add-section=external_debug_info=' + base_name + '_debugsection.tmp'])
 
 # Make sure we have at least one output file.
-if not len(files):
+if not files:
   print('emcc.py did not appear to output any known files!')
   sys.exit(1)
 
 # cc_binary must output exactly one file; put all the output files in a tarball.
-cmd = ['tar', 'cf', 'tmp.tar'] + files
+cmd = ['tar', 'cf', base_name + '.tar'] + files
 subprocess.check_call(cmd, cwd=outdir)
-os.replace(os.path.join(outdir, 'tmp.tar'), output_file)
+os.replace(os.path.join(outdir, base_name + '.tar'), output_file)
 
 sys.exit(0)
