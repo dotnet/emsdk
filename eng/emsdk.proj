@@ -202,9 +202,9 @@
       IgnoreStandardErrorWarningFormat="true"
       EnvironmentVariables="PATH=$(NpmPath);npm_config_userconfig=$(RepoRoot)\.npmrc;npm_config_fetch_retries=10" />
 
-    <!-- clang-wrapper.sh hardcodes clang-19 at the moment so make sure it still exists -->
+    <!-- clang-wrapper.sh hardcodes clang-23 at the moment so make sure it still exists -->
     <Error Text="Update clang-wrapper.sh to point at the correct clang-* version"
-      Condition="!Exists('$(LLVMDir)\bin\clang-19') and !$([MSBuild]::IsOSPlatform(Windows))" />
+      Condition="!Exists('$(LLVMDir)\bin\clang-23') and !$([MSBuild]::IsOSPlatform(Windows))" />
     <Delete Files="$(LLVMDir)\bin\clang"
       Condition="!$([MSBuild]::IsOSPlatform(Windows))" />
     <Delete Files="$(BinaryenDir)\bin\binaryen-unittests"
