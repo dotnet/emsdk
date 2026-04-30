@@ -225,8 +225,12 @@
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\wscat" />
 
     <PropertyGroup>
-      <EmBuilder Condition="$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder.bat</EmBuilder>
-      <EmBuilder Condition="!$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder</EmBuilder>
+      <!--
+        Emscripten 5.0.6 removed the standalone embuilder.bat / embuilder POSIX launchers
+        (consolidated into the upstream `bootstrap` mechanism). Invoke embuilder.py via the
+        Python interpreter resolved earlier in this target.
+      -->
+      <EmBuilder>"$(PythonPath)" embuilder.py</EmBuilder>
     </PropertyGroup>
 
     <!-- Split into two embuilder runs (SYSTEM then MINIMAL) for clarity; both are required for the Emscripten cache. -->
