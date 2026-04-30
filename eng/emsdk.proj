@@ -202,9 +202,9 @@
       IgnoreStandardErrorWarningFormat="true"
       EnvironmentVariables="PATH=$(NpmPath);npm_config_userconfig=$(RepoRoot)\.npmrc;npm_config_fetch_retries=10" />
 
-    <!-- clang-wrapper.sh hardcodes clang-19 at the moment so make sure it still exists -->
+    <!-- clang-wrapper.sh hardcodes clang-23 at the moment so make sure it still exists -->
     <Error Text="Update clang-wrapper.sh to point at the correct clang-* version"
-      Condition="!Exists('$(LLVMDir)\bin\clang-19') and !$([MSBuild]::IsOSPlatform(Windows))" />
+      Condition="!Exists('$(LLVMDir)\bin\clang-23') and !$([MSBuild]::IsOSPlatform(Windows))" />
     <Delete Files="$(LLVMDir)\bin\clang"
       Condition="!$([MSBuild]::IsOSPlatform(Windows))" />
     <Delete Files="$(BinaryenDir)\bin\binaryen-unittests"
@@ -225,11 +225,15 @@
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\wscat" />
 
     <PropertyGroup>
-      <EmBuilder Condition="$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder.bat</EmBuilder>
-      <EmBuilder Condition="!$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder</EmBuilder>
+      <!--
+        Emscripten 5.0.6 removed the standalone embuilder.bat / embuilder POSIX launchers
+        (consolidated into the upstream `bootstrap` mechanism). Invoke embuilder.py via the
+        Python interpreter resolved earlier in this target.
+      -->
+      <EmBuilder>"$(PythonPath)" embuilder.py</EmBuilder>
     </PropertyGroup>
 
-    <!-- Emscripten 3.1.34 doesn't support multiple embuilder tasks in the same run -->
+    <!-- Split into two embuilder runs (SYSTEM then MINIMAL) for clarity; both are required for the Emscripten cache. -->
     <Exec WorkingDirectory="$(EmscriptenDir)"
       Command="$(EmBuilder) build SYSTEM"
       EnvironmentVariables="EM_LLVM_ROOT=$(HostLLVMDir)\bin;EM_BINARYEN_ROOT=$(HostBinaryenDir);EM_NODE_JS=$(HostNodeDir)\bin\node"/>
