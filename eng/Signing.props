@@ -28,8 +28,8 @@
     <!-- sign macOS binaries from transport packages -->
     <FileSignInfo Include="node" CertificateName="MacDeveloper" />
     <FileSignInfo Include="python3" CertificateName="MacDeveloper" />
-    <FileSignInfo Include="python3.11" CertificateName="MacDeveloper" />
-    <FileSignInfo Include="clang-19" CertificateName="MacDeveloper" />
+    <FileSignInfo Include="python3.13" CertificateName="MacDeveloper" />
+    <FileSignInfo Include="clang-23" CertificateName="MacDeveloper" />
     <FileSignInfo Include="llvm-addr2line" CertificateName="MacDeveloper" />
     <FileSignInfo Include="llvm-ar" CertificateName="MacDeveloper" />
     <FileSignInfo Include="llvm-cxxfilt" CertificateName="MacDeveloper" />
