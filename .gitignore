@@ -34,3 +34,6 @@ __pycache__
 /spidermonkey
 /binaryen
 /firefox
+.dotnet/
+.packages/
+artifacts/

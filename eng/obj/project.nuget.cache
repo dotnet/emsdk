@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "JbmHfvxNhkU=",
+  "success": false,
+  "projectFilePath": "/home/pavelsavara/dev/emsdk/eng/emsdk.proj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1015",
+      "level": "Error",
+      "message": "The following PackageReference item(s) do not have a version specified: Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport, runtime.-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport, runtime.-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport, runtime.-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport, runtime.-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport",
+      "projectPath": "/home/pavelsavara/dev/emsdk/eng/emsdk.proj",
+      "filePath": "/home/pavelsavara/dev/emsdk/eng/emsdk.proj",
+      "targetGraphs": []
+    }
+  ]
+}

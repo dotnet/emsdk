@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/pavelsavara/dev/emsdk/eng/emsdk.proj": {}
+  },
+  "projects": {
+    "/home/pavelsavara/dev/emsdk/eng/emsdk.proj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/pavelsavara/dev/emsdk/eng/emsdk.proj",
+        "projectName": "emsdk",
+        "projectPath": "/home/pavelsavara/dev/emsdk/eng/emsdk.proj",
+        "packagesPath": "/home/pavelsavara/dev/emsdk/.packages/",
+        "outputPath": "/home/pavelsavara/dev/emsdk/eng/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/pavelsavara/dev/emsdk/NuGet.config",
+          "/home/pavelsavara/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net45"
+        ],
+        "sources": {
+          "/home/pavelsavara/dev/binaryen/artifacts/packages/Release/NonShipping": {},
+          "/home/pavelsavara/dev/emscripten/artifacts/packages/Release/NonShipping": {},
+          "/home/pavelsavara/dev/llvm-project/artifacts/packages/Release/NonShipping": {},
+          "/home/pavelsavara/dev/llvm-project/artifacts/packages/Release/Shipping": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet10-transport/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet10/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet11-transport/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet11/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "framework": "net45",
+            "targetAlias": "net45",
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "11.0.100"
+      },
+      "frameworks": {
+        "net45": {
+          "framework": "net45",
+          "targetAlias": "net45",
+          "dependencies": {
+            "Microsoft.NETCore.Runtime.Wasm.Emscripten.Transport": {
+              "target": "Package",
+              "version": "(, )"
+            },
+            "runtime.-x64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport": {
+              "target": "Package",
+              "version": "(, )"
+            },
+            "runtime.-x64.Microsoft.NETCore.Runtime.Wasm.LLVM.Transport": {
+              "target": "Package",
+              "version": "(, )"
+            },
+            "runtime.-x64.Microsoft.NETCore.Runtime.Wasm.Node.Transport": {
+              "target": "Package",
+              "version": "(, )"
+            },
+            "runtime.-x64.Microsoft.NETCore.Runtime.Wasm.Python.Transport": {
+              "target": "Package",
+              "version": "(, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/pavelsavara/dev/emsdk/.dotnet/sdk/11.0.100-preview.4.26210.111/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
