@@ -225,14 +225,11 @@
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\wscat" />
 
     <PropertyGroup>
-      <!--
-        Emscripten 5.0.6 removed the standalone embuilder.bat / embuilder POSIX launchers.
-        Invoke embuilder.py via the Python interpreter resolved earlier.
-      -->
-      <EmBuilder>"$(PythonPath)" embuilder.py</EmBuilder>
+      <EmBuilder Condition="$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder.bat</EmBuilder>
+      <EmBuilder Condition="!$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder</EmBuilder>
     </PropertyGroup>
 
-    <!-- Emscripten 3.1.34 doesn't support multiple embuilder tasks in the same run -->
+    <!-- Emscripten doesn't support multiple embuilder tasks in the same run -->
     <Exec WorkingDirectory="$(EmscriptenDir)"
       Command="$(EmBuilder) build SYSTEM"
       EnvironmentVariables="EM_LLVM_ROOT=$(HostLLVMDir)\bin;EM_BINARYEN_ROOT=$(HostBinaryenDir);EM_NODE_JS=$(HostNodeDir)\bin\node"/>
