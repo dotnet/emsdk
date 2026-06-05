@@ -308,6 +308,18 @@
     <Delete Files="$(ArtifactsObjDir)node\bin\npx" />
     <Delete Files="$(ArtifactsObjDir)node\lib\node_modules\.bin\google-closure-compiler" /> <!-- resistent to deletion -->
 
+    <!-- Remove tools we don't need -->
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-shell" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-shell.exe" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-reduce" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-reduce.exe" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-merge" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-merge.exe" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-types" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-types.exe" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-lattices" />
+    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-lattices.exe" />
+
     <!-- on Windows these are identical copies that should be symlinks, remove them for now -->
     <!--<Delete Files="$(ArtifactsObjDir)upstream\bin\clang++.exe" /> Used by .23 directly -->
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm32-clang++.exe" />
