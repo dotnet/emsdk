@@ -1904,9 +1904,9 @@ class Tool:
   def installation_dir(self):
     dir = self.installation_path()
     if path_points_to_directory(dir):
-      return dir
+      return os.path.normpath(dir)
     else:
-      return os.path.dirname(dir)
+      return os.path.dirname(os.path.normpath(dir))
 
   # Returns the configuration item that needs to be added to .emscripten to make
   # this Tool active for the current user.

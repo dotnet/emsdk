@@ -12,6 +12,12 @@ __pycache__
 # Tags files that get generated at runtime
 /emscripten-releases-tot.txt
 
+### OSX ###
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
 # File that get download/extracted by emsdk itself
 /ccache
 /gnu
@@ -34,6 +40,8 @@ __pycache__
 /spidermonkey
 /binaryen
 /firefox
-.dotnet/
-.packages/
-artifacts/
+
+# MSFT ignores
+/artifacts
+/.dotnet
+/.packages
