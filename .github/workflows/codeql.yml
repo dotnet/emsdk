@@ -1,0 +1,47 @@
+name: CodeQL
+
+on:
+  push:
+    branches:
+    - main
+    - release/*
+
+  pull_request:
+    branches:
+    - main
+    - release/*
+
+  schedule:
+  - cron: '0 12 * * 1'
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyze Python
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+
+    - name: Setup Python
+      uses: actions/setup-python@v7
+      with:
+        python-version: '3.x'
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v4
+      with:
+        languages: python
+
+    - name: Compile Python sources
+      run: python3 -m compileall -q emsdk.py scripts
+
+    - name: Perform CodeQL analysis
+      uses: github/codeql-action/analyze@v4
+      with:
+        category: "/language:python"

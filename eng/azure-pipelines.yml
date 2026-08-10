@@ -51,6 +51,35 @@ extends:
           enablePublishBuildArtifacts: true
 
           jobs:
+          ############ CODEQL BUILD ############
+          - job: CodeQL_Python
+            displayName: CodeQL_Python
+            timeoutInMinutes: 60
+            pool:
+              name: $(DncEngInternalBuildPool)
+              image: $(LinuxImage)
+              os: linux
+            variables:
+            - name: Codeql.BuildIdentifier
+              value: $(System.JobDisplayName)
+            - name: Codeql.Cadence
+              value: 0
+            - name: Codeql.Enabled
+              value: true
+            - name: Codeql.Language
+              value: python
+            - name: Codeql.TSAEnabled
+              value: true
+            - name: skipComponentGovernanceDetection
+              value: true
+            steps:
+            - task: CodeQL3000Init@0
+              displayName: Initialize CodeQL
+            - bash: python3 -m compileall -q emsdk.py scripts
+              displayName: Compile Python sources
+            - task: CodeQL3000Finalize@0
+              displayName: Finalize CodeQL
+
           ############ macOS BUILD ############
           - job: Build_macOS_x64
             displayName: macOS_x64
