@@ -6,8 +6,5 @@ variables:
     value: Release
 
   - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-    # DotNet-HelixApi-Access provides: HelixApiAccessToken
-    - group: DotNet-HelixApi-Access
-    - group: SDL_Settings
     - name: _InternalBuildArgs
       value: /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
