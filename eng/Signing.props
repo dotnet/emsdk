@@ -10,9 +10,9 @@
     <FileExtensionSignInfo Include=".cab" CertificateName="MicrosoftDotNet500" />
     <FileExtensionSignInfo Include=".vbs" CertificateName="MicrosoftDotNet500" />
 
-    <!-- JS files are customer-modifiable Emscripten toolchain files. They cannot be
+    <!-- JS files are customer-modifiable toolchain files. They cannot be
          Authenticode-signed because modifying a signed file breaks the signature.
-         Instead, a catalog file (emscripten-js.cat) is generated and signed to provide
+         Instead, catalog files (emscripten-js.cat and node-js.cat) are generated and signed to provide
          integrity verification. See the GenerateCatalogFiles target in eng/emsdk.proj. -->
     <FileExtensionSignInfo Update=".js" CertificateName="None" />
 
