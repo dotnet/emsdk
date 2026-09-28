@@ -315,8 +315,6 @@
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-shell.exe" />
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-reduce" />
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-reduce.exe" />
-    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-merge" />
-    <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-merge.exe" />
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-types" />
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-types.exe" />
     <Delete Files="$(ArtifactsObjDir)upstream\bin\wasm-fuzz-lattices" />
