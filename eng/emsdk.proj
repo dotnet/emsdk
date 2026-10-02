@@ -226,17 +226,12 @@
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\tabtab" />
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\wscat" />
 
-    <PropertyGroup>
-      <EmBuilder Condition="$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder.bat</EmBuilder>
-      <EmBuilder Condition="!$([MSBuild]::IsOSPlatform('WINDOWS'))">./embuilder</EmBuilder>
-    </PropertyGroup>
-
     <!-- Emscripten doesn't support multiple embuilder tasks in the same run -->
     <Exec WorkingDirectory="$(EmscriptenDir)"
-      Command="$(EmBuilder) build SYSTEM"
+      Command="&quot;$(PythonPath)&quot; ./embuilder.py build SYSTEM"
       EnvironmentVariables="EM_LLVM_ROOT=$(BuildLLVMDir)\bin;EM_BINARYEN_ROOT=$(BuildBinaryenDir);EM_NODE_JS=$(BuildNodeDir)\bin\node"/>
     <Exec WorkingDirectory="$(EmscriptenDir)"
-      Command="$(EmBuilder) build MINIMAL"
+      Command="&quot;$(PythonPath)&quot; ./embuilder.py build MINIMAL"
       EnvironmentVariables="EM_LLVM_ROOT=$(BuildLLVMDir)\bin;EM_BINARYEN_ROOT=$(BuildBinaryenDir);EM_NODE_JS=$(BuildNodeDir)\bin\node"/>
 
     <Delete Files="$(EmscriptenDir)\node_modules\.bin\google-closure-compiler" />
