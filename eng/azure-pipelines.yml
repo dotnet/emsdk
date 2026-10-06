@@ -51,6 +51,8 @@ extends:
       - template: /eng/common/templates-official/jobs/jobs.yml@self
         parameters:
           enablePublishBuildArtifacts: true
+          enablePublishBuildAssets: true
+          enableMicrobuild: true
 
           jobs:
           ############ macOS BUILD ############
@@ -71,12 +73,15 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
-                --publish
                 /p:TargetOS=osx
                 /p:TargetArchitecture=x64
                 /p:TargetRid=osx-x64
                 $(_InternalBuildArgs)
-              displayName: Build and Publish
+              displayName: Build and Pack
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/packages
+                artifactName: Packages_macOS_x64
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -100,12 +105,15 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
-                --publish
                 /p:TargetOS=osx
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=osx-arm64
                 $(_InternalBuildArgs)
-              displayName: Build and Publish
+              displayName: Build and Pack
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/packages
+                artifactName: Packages_macOS_arm64
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -130,12 +138,15 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
-                --publish
                 /p:TargetOS=linux
                 /p:TargetArchitecture=x64
                 /p:TargetRid=linux-x64
                 $(_InternalBuildArgs)
-              displayName: Build and Publish
+              displayName: Build and Pack
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/packages
+                artifactName: Packages_linux_x64
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -159,12 +170,15 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
-                --publish
                 /p:TargetOS=linux
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=linux-arm64
                 $(_InternalBuildArgs)
-              displayName: Build and Publish
+              displayName: Build and Pack
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/packages
+                artifactName: Packages_linux_arm64
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -188,12 +202,15 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
-                --publish
                 /p:TargetOS=linux-musl
                 /p:TargetArchitecture=x64
                 /p:TargetRid=linux-musl-x64
                 $(_InternalBuildArgs)
-              displayName: Build and Publish
+              displayName: Build and Pack
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/packages
+                artifactName: Packages_linux_musl_x64
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -217,12 +234,15 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
-                --publish
                 /p:TargetOS=linux-musl
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=linux-musl-arm64
                 $(_InternalBuildArgs)
-              displayName: Build and Publish
+              displayName: Build and Pack
+            - task: 1ES.PublishPipelineArtifact@1
+              inputs:
+                targetPath: $(Build.SourcesDirectory)/artifacts/packages
+                artifactName: Packages_linux_musl_arm64
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -247,6 +267,7 @@ extends:
                 -prepareMachine
                 -configuration $(_BuildConfig)
                 -pack
+                -sign
                 -publish
                 /p:TargetOS=windows
                 /p:TargetArchitecture=x64
@@ -276,6 +297,7 @@ extends:
                 -prepareMachine
                 -configuration $(_BuildConfig)
                 -pack
+                -sign
                 -publish
                 /p:TargetOS=windows
                 /p:TargetArchitecture=arm64
@@ -288,10 +310,70 @@ extends:
             - powershell: $(CheckNuGetSizesScript)
               displayName: Check NuGet sizes
 
-    - stage: Publish
-      displayName: Publish
-      dependsOn: []
-      jobs:
-      - template: /eng/common/templates-official/jobs/jobs.yml@self
-        parameters:
-          isAssetlessBuild: true
+          # Signing Unix packages on Windows avoids installing signing tooling on the build hosts.
+          # Keep macOS separate so its binary signing rules do not apply to Linux tools named node.
+          - job: Sign_macOS
+            displayName: Sign and Publish macOS Packages
+            timeoutInMinutes: 120
+            dependsOn:
+            - Build_macOS_x64
+            - Build_macOS_arm64
+            pool:
+              name: $(DncEngInternalBuildPool)
+              image: $(WindowsImage)
+              os: windows
+            steps:
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: Packages_macOS_x64
+                targetPath: artifacts/packages
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: Packages_macOS_arm64
+                targetPath: artifacts/packages
+            - powershell: >
+                ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish
+                /p:TargetOS=osx /p:TargetRid=osx-x64
+                /p:AssetManifestFileName=osx-all.xml $(_InternalBuildArgs)
+              displayName: Sign and Publish
+
+          - job: Sign_linux
+            displayName: Sign and Publish Linux Packages
+            timeoutInMinutes: 120
+            dependsOn:
+            - Build_linux_x64
+            - Build_linux_arm64
+            - Build_linux_musl_x64
+            - Build_linux_musl_arm64
+            pool:
+              name: $(DncEngInternalBuildPool)
+              image: $(WindowsImage)
+              os: windows
+            steps:
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: Packages_linux_x64
+                targetPath: artifacts/packages
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: Packages_linux_arm64
+                targetPath: artifacts/packages
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: Packages_linux_musl_x64
+                targetPath: artifacts/packages
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: Packages_linux_musl_arm64
+                targetPath: artifacts/packages
+            - powershell: >
+                ./eng/common/build.ps1 -ci -configuration $(_BuildConfig) -restore -sign -publish
+                /p:TargetOS=linux /p:TargetRid=linux-x64
+                /p:AssetManifestFileName=linux-all.xml $(_InternalBuildArgs)
+              displayName: Sign and Publish
+
+    - template: /eng/common/templates-official/post-build/post-build.yml@self
+      parameters:
+        enableSigningValidation: true
+        enableNugetValidation: true
+        enableSymbolValidation: false
