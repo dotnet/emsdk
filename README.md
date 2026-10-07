@@ -11,6 +11,38 @@ released.
 You can also set up Emscripten from source, without the pre-built SDK, see
 "Installing from Source" below.
 
+## .NET official product builds
+
+`eng/azure-pipelines.yml` builds, signs, and publishes the standalone .NET
+toolchain packages in each RID-specific job. macOS signing uses the macOS-specific
+rules in `eng/Signing.props`; Linux and Windows use their corresponding rules.
+Publishing V4 stages each job's signed packages and manifest, then the build-stage
+asset registry job registers them in BAR and immediately starts Darc publication.
+Arcade's post-build stages validate NuGet packages and signatures.
+This is a product build, not an assetless codeflow build. The eight producer
+manifests use unique names so V4 can safely flatten them during BAR registration.
+
+Expected package assets are:
+
+* `Microsoft.NET.Runtime.Emscripten.<EmscriptenVersion>.{Sdk,Cache,Node}.<RID>`
+  for `win-x64`, `win-arm64`, `osx-x64`, `osx-arm64`, `linux-x64`,
+  `linux-arm64`, `linux-musl-x64`, and `linux-musl-arm64`.
+* `Microsoft.NET.Runtime.Emscripten.<EmscriptenVersion>.Python.<RID>` for
+  Windows and macOS; Linux uses system Python.
+* `Microsoft.NET.Runtime.Emscripten.Internal`, a non-shipping, payload-free
+  version marker, registered once from `win-x64`.
+
+Shipping toolchain packages follow the repository's release version settings,
+including stable versions when `DotNetFinalVersionKind=release`. The Internal
+marker always keeps the prerelease build suffix so dependency updates can
+identify individual producer builds, including stable releases. JS files remain
+customer-modifiable; their signed catalogs provide integrity verification.
+Workload manifests and MSI wrapping remain owned by the .NET SDK repository.
+
+After a pipeline change, an authorized official run must verify the complete
+29-package BAR asset set, signatures, release publishing, and availability to
+dependency consumers. Local evaluations cannot prove these service-side steps.
+
 ## Downloads / How do I get the latest Emscripten build?
 
 To get started with Emscripten development, see the [Emscripten website
