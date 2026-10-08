@@ -85,6 +85,8 @@ extends:
                 /p:AssetManifestFileName=osx-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -117,6 +119,8 @@ extends:
                 /p:AssetManifestFileName=osx-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -150,6 +154,8 @@ extends:
                 /p:AssetManifestFileName=linux-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -182,6 +188,8 @@ extends:
                 /p:AssetManifestFileName=linux-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -214,6 +222,8 @@ extends:
                 /p:AssetManifestFileName=linux-musl-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -246,6 +256,8 @@ extends:
                 /p:AssetManifestFileName=linux-musl-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
