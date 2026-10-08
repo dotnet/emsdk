@@ -2,6 +2,8 @@ variables:
   # Cannot use key:value syntax in root defined variables
   - name: _TeamName
     value: DotNetCore
+  - name: TeamName
+    value: DotNetCore
   - name: _InternalBuildArgs
     value: ''
   - name: _BuildConfig
@@ -13,5 +15,5 @@ variables:
     - name: _InternalBuildArgs
       value: /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
         /p:DotNetSignType=$(_SignType)
-        /p:TeamName=$(_TeamName)
+        /p:TeamName=$(TeamName)
         /p:DotNetPublishUsingPipelines=true
