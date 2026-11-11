@@ -15,7 +15,7 @@ variables:
 - name: WindowsImage
   value: windows.vs2022.amd64
 - name: MacImage
-  value: macOS-14
+  value: macos-latest-internal
 - name: CheckNuGetSizesScript
   value: >-
     $nupkgs_large=(Get-ChildItem artifacts/packages/$(_BuildConfig)/Shipping -recurse -include "*.nupkg" | Select-Object Name,Length | Where-Object { $_.Length -gt 250*1MB });
@@ -51,11 +51,17 @@ extends:
       - template: /eng/common/templates-official/jobs/jobs.yml@self
         parameters:
           enablePublishBuildArtifacts: true
+          enablePublishBuildAssets: true
+          enableMicrobuild: true
+          enableMicrobuildForMacAndLinux: true
+          publishAssetsImmediately: true
+          publishingVersion: 4
 
           jobs:
           ############ macOS BUILD ############
           - job: Build_macOS_x64
             displayName: macOS_x64
+            enablePublishing: true
             timeoutInMinutes: 120
             pool:
               name: Azure Pipelines
@@ -71,12 +77,16 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
+                --sign
                 --publish
                 /p:TargetOS=osx
                 /p:TargetArchitecture=x64
                 /p:TargetRid=osx-x64
+                /p:AssetManifestFileName=osx-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -85,6 +95,7 @@ extends:
 
           - job: Build_macOS_arm64
             displayName: macOS_arm64
+            enablePublishing: true
             timeoutInMinutes: 120
             pool:
               name: Azure Pipelines
@@ -100,12 +111,16 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
+                --sign
                 --publish
                 /p:TargetOS=osx
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=osx-arm64
+                /p:AssetManifestFileName=osx-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -115,6 +130,7 @@ extends:
           ############ Linux BUILD ############
           - job: Build_linux_x64
             displayName: Linux_x64
+            enablePublishing: true
             timeoutInMinutes: 120
             pool:
               name: $(DncEngInternalBuildPool)
@@ -130,12 +146,16 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
+                --sign
                 --publish
                 /p:TargetOS=linux
                 /p:TargetArchitecture=x64
                 /p:TargetRid=linux-x64
+                /p:AssetManifestFileName=linux-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -144,6 +164,7 @@ extends:
           
           - job: Build_linux_arm64
             displayName: Linux_arm64
+            enablePublishing: true
             timeoutInMinutes: 120
             pool:
               name: $(DncEngInternalBuildPool)
@@ -159,12 +180,16 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
+                --sign
                 --publish
                 /p:TargetOS=linux
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=linux-arm64
+                /p:AssetManifestFileName=linux-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -173,6 +198,7 @@ extends:
 
           - job: Build_linux_musl_x64
             displayName: Linux_musl_x64
+            enablePublishing: true
             timeoutInMinutes: 120
             pool:
               name: $(DncEngInternalBuildPool)
@@ -188,12 +214,16 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
+                --sign
                 --publish
                 /p:TargetOS=linux-musl
                 /p:TargetArchitecture=x64
                 /p:TargetRid=linux-musl-x64
+                /p:AssetManifestFileName=linux-musl-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -202,6 +232,7 @@ extends:
           
           - job: Build_linux_musl_arm64
             displayName: Linux_musl_arm64
+            enablePublishing: true
             timeoutInMinutes: 120
             pool:
               name: $(DncEngInternalBuildPool)
@@ -217,12 +248,16 @@ extends:
                 --prepareMachine
                 --configuration $(_BuildConfig)
                 --pack
+                --sign
                 --publish
                 /p:TargetOS=linux-musl
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=linux-musl-arm64
+                /p:AssetManifestFileName=linux-musl-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
+              env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)
             - bash: |
                 rm -rf binaryen node python llvm emscripten
               displayName: Remove temporary artifacts
@@ -232,6 +267,7 @@ extends:
           ############ Windows BUILD ############
           - job: Build_win_x64
             displayName: Windows_x64
+            enablePublishing: true
             timeoutInMinutes: 240
             pool:
               name: $(DncEngInternalBuildPool)
@@ -247,10 +283,12 @@ extends:
                 -prepareMachine
                 -configuration $(_BuildConfig)
                 -pack
+                -sign
                 -publish
                 /p:TargetOS=windows
                 /p:TargetArchitecture=x64
                 /p:TargetRid=win-x64
+                /p:AssetManifestFileName=win-x64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
             - script: |
@@ -261,6 +299,7 @@ extends:
 
           - job: Build_win_arm64
             displayName: Windows_arm64
+            enablePublishing: true
             timeoutInMinutes: 240
             pool:
               name: $(DncEngInternalBuildPool)
@@ -276,10 +315,12 @@ extends:
                 -prepareMachine
                 -configuration $(_BuildConfig)
                 -pack
+                -sign
                 -publish
                 /p:TargetOS=windows
                 /p:TargetArchitecture=arm64
                 /p:TargetRid=win-arm64
+                /p:AssetManifestFileName=win-arm64.xml
                 $(_InternalBuildArgs)
               displayName: Build and Publish
             - script: |
@@ -288,10 +329,10 @@ extends:
             - powershell: $(CheckNuGetSizesScript)
               displayName: Check NuGet sizes
 
-    - stage: Publish
-      displayName: Publish
-      dependsOn: []
-      jobs:
-      - template: /eng/common/templates-official/jobs/jobs.yml@self
-        parameters:
-          isAssetlessBuild: true
+    - template: /eng/common/templates-official/post-build/post-build.yml@self
+      parameters:
+        publishingInfraVersion: 4
+        publishAssetsImmediately: true
+        enableSigningValidation: true
+        enableNugetValidation: true
+        enableSymbolValidation: false
