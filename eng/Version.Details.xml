@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
-  <Source Uri="https://github.com/dotnet/dotnet" Mapping="emsdk" Sha="213c38deb6b0d8210c7c4550efa1afa57d016fe2" BarId="342150" />
+  <Source Uri="https://github.com/dotnet/dotnet" Mapping="emsdk" Sha="4f30608f5e5220a5671e61f4bd5dece130657f47" BarId="342317" />
   <ProductDependencies>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="12.0.0-alpha.1.26566.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
@@ -236,25 +236,25 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>762dd6d5e65ad87a9cb8ad94a476fec36b6900d3</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="12.0.0-beta.26568.110">
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="12.0.0-beta.26569.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>213c38deb6b0d8210c7c4550efa1afa57d016fe2</Sha>
+      <Sha>4f30608f5e5220a5671e61f4bd5dece130657f47</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="12.0.0-beta.26568.110">
+    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="12.0.0-beta.26569.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>213c38deb6b0d8210c7c4550efa1afa57d016fe2</Sha>
+      <Sha>4f30608f5e5220a5671e61f4bd5dece130657f47</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="12.0.0-beta.26568.110">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="12.0.0-beta.26569.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>213c38deb6b0d8210c7c4550efa1afa57d016fe2</Sha>
+      <Sha>4f30608f5e5220a5671e61f4bd5dece130657f47</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="12.0.0-beta.26568.110">
+    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="12.0.0-beta.26569.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>213c38deb6b0d8210c7c4550efa1afa57d016fe2</Sha>
+      <Sha>4f30608f5e5220a5671e61f4bd5dece130657f47</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.FileCatalog" Version="12.0.0-beta.26568.110">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.FileCatalog" Version="12.0.0-beta.26569.107">
       <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>213c38deb6b0d8210c7c4550efa1afa57d016fe2</Sha>
+      <Sha>4f30608f5e5220a5671e61f4bd5dece130657f47</Sha>
     </Dependency>
   </ToolsetDependencies>
 </Dependencies>
