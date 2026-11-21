@@ -16,6 +16,21 @@
     <Description>Contains Emscripten SDK binaries for $(TargetRid).</Description>
   </PropertyGroup>
 
+  <Target Name="SanityCheckWasmMerge" AfterTargets="Deploy">
+    <PropertyGroup>
+      <_WasmMergeFileName Condition="'$(TargetOS)' == 'windows'">wasm-merge.exe</_WasmMergeFileName>
+      <_WasmMergeFileName Condition="'$(_WasmMergeFileName)' == ''">wasm-merge</_WasmMergeFileName>
+      <_WasmMergeUnpackedNuGetPath>$(ArtifactsObjDir)unpacked.$(Id).wasm-merge\</_WasmMergeUnpackedNuGetPath>
+      <_WasmMergePackageFile>$(_WasmMergeUnpackedNuGetPath)tools\bin\$(_WasmMergeFileName)</_WasmMergePackageFile>
+    </PropertyGroup>
+
+    <RemoveDir Directories="$(_WasmMergeUnpackedNuGetPath)" />
+    <Unzip SourceFiles="$(PackageOutputPath)$(Id).$(PackageVersion).nupkg" DestinationFolder="$(_WasmMergeUnpackedNuGetPath)" />
+    <Error Text="Could not find $(_WasmMergePackageFile) in the Emscripten SDK package"
+           Condition="!Exists('$(_WasmMergePackageFile)')" />
+    <RemoveDir Directories="$(_WasmMergeUnpackedNuGetPath)" />
+  </Target>
+
   <Import Project="$(NuGetPackageRoot)\microsoft.dotnet.build.tasks.packaging\$(MicrosoftDotNetBuildTasksPackagingVersion)\build\Microsoft.DotNet.Build.Tasks.Packaging.targets" />
   <Import Project="..\Directory.Build.targets" />
 </Project>
