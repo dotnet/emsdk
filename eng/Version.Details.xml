@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
-  <Source Uri="https://github.com/dotnet/dotnet" Mapping="emsdk" Sha="ee7a7c0752b641dc8c1142eb8f37fb1ec8510d0c" BarId="342624" />
   <ProductDependencies>
     <Dependency Name="runtime.linux-arm64.Microsoft.NETCore.Runtime.Wasm.Binaryen.Transport" Version="12.0.0-alpha.1.26566.1">
       <Uri>https://github.com/dotnet/binaryen</Uri>
