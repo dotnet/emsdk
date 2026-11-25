@@ -9,7 +9,7 @@
 
   <!-- The host-independent marker is built by every host, but registered only once. -->
   <ItemGroup Condition="'$(TargetRid)' != 'win-x64'">
-    <Artifact Remove="$(ArtifactsNonShippingPackagesDir)Microsoft.NET.Runtime.Emscripten.Internal.*.nupkg" />
+    <Artifact Remove="$(ArtifactsShippingPackagesDir)Microsoft.NET.Runtime.Emscripten.Internal.*.nupkg" />
   </ItemGroup>
 
 </Project>
