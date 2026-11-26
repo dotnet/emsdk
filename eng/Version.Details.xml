@@ -235,25 +235,25 @@
       <Uri>https://github.com/dotnet/llvm-project</Uri>
       <Sha>762dd6d5e65ad87a9cb8ad94a476fec36b6900d3</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="12.0.0-beta.26571.109">
-      <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>ee7a7c0752b641dc8c1142eb8f37fb1ec8510d0c</Sha>
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="12.0.0-beta.26575.2">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>bca80a2c5b99104b53924456a2d4b025fba1caf0</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="12.0.0-beta.26571.109">
-      <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>ee7a7c0752b641dc8c1142eb8f37fb1ec8510d0c</Sha>
+    <Dependency Name="Microsoft.DotNet.Helix.Sdk" Version="12.0.0-beta.26575.2">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>bca80a2c5b99104b53924456a2d4b025fba1caf0</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="12.0.0-beta.26571.109">
-      <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>ee7a7c0752b641dc8c1142eb8f37fb1ec8510d0c</Sha>
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="12.0.0-beta.26575.2">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>bca80a2c5b99104b53924456a2d4b025fba1caf0</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="12.0.0-beta.26571.109">
-      <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>ee7a7c0752b641dc8c1142eb8f37fb1ec8510d0c</Sha>
+    <Dependency Name="Microsoft.DotNet.XliffTasks" Version="12.0.0-beta.26575.2">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>bca80a2c5b99104b53924456a2d4b025fba1caf0</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.FileCatalog" Version="12.0.0-beta.26571.109">
-      <Uri>https://github.com/dotnet/dotnet</Uri>
-      <Sha>ee7a7c0752b641dc8c1142eb8f37fb1ec8510d0c</Sha>
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.FileCatalog" Version="12.0.0-beta.26575.2">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>bca80a2c5b99104b53924456a2d4b025fba1caf0</Sha>
     </Dependency>
   </ToolsetDependencies>
 </Dependencies>
